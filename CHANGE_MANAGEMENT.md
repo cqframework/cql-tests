@@ -138,3 +138,11 @@ This project uses the Github Issues tracker to track all issues and feature requ
 
 All packages within the project shall use semantic versioning. Any stakeholder can propose a release, but the DSC must review and approve the contents and timing of any release. Specifically, releases must be coordinated with impacted stakeholders and timed with availability of published versions of the specifications involved.<br>
 The DSC Chair is responsible for announcing releases to the community via the zulip chat. When appropriate, the DSC Chair should also announce plans for upcoming releases to solicit feedback from the community on release content and timing.
+
+# Change Management Continuous Improvement
+
+The DQIC is committed to continous improvement of code and process. While changes can happen at any time, the DSC and Committers shall be formally appreview and discuss governance bi-annually. As with all other artifacts, consensus shall be used to approve.
+
+# Last Formal Review Date: 2024/03/15
+
+ 
