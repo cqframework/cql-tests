@@ -108,7 +108,7 @@ The project uses a stable-trunk methodology, meaning that the master branch must
 
 All changes to the main branch must be made using a pull request and must be reviewed by at least two committers that were not the author of the pull request prior to being applied.
 
-Changes must be reviewed by at least two committers. Large, significant, or breaking changes must have full committer consensus before being applied.
+In addition, large, significant, or breaking changes must have full committer consensus before being applied.
 
 In general, when a new version of the CQL specification is created, a new branch of the test repository is created to implement support for that version. Changes to this branch can be committed directly. Once the new version of the specification is published, the tests in this repository are added.
 
