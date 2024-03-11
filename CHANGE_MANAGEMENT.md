@@ -40,7 +40,7 @@ In addition to their actions as stakeholders, contributors may also find themsel
 - Fixing bugs
 - Adding features
 
-In addition, it is highly encouraged to be active Contributors engage with the project through the issue tracker and Zulip, or by writing or editing documentation. They submit changes to the project itself via pull requests, which will be considered for inclusion in the project by existing committers (see next section). Use of Zulip is the most appropriate place to ask for help when making that first contribution.
+In addition, Contributors are encouraged to engage with the project by [submitting issues](https://github.com/cqframework/cql-tests/issues) and [the CQL stream in the FHIR Zulip chat](https://chat.fhir.org/#narrow/stream/179220-cql), or by writing or editing documentation. Contributors can submit changes to the project itself via pull requests, which will be considered for inclusion in the project by existing committers (see next section). Use of Zulip is the most appropriate place to ask for help when making that first contribution.
 
 As contributors gain experience and familiarity with the project, their profile within, and commitment to, the community will increase. At some stage, they may find themselves being nominated to become committers.
 
