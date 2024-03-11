@@ -106,7 +106,7 @@ Not all decisions can be made using the process of consensus. Issues such as tho
 
 The project uses a stable-trunk methodology, meaning that the master branch must be always kept in a releasable state. This is ensured through regression tests and continuous integration is used to check pull requests to the master branch.
 
-Only trivial commits (such as documentation changes, typos, and packaging changes) can be made directly to the master branch. All other changes to the master branch must be made using a pull request and must be reviewed prior to being applied.
+All changes to the main branch must be made using a pull request and must be reviewed by at least two committers that were not the author of the pull request prior to being applied.
 
 Changes must be reviewed by at least two committers. Large, significant, or breaking changes must have full committer consensus before being applied.
 
