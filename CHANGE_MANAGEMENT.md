@@ -29,7 +29,7 @@ Contributors are community members who contribute in concrete ways to DQIC. Anyo
 
 In addition to their actions as stakeholders, contributors may also find themselves doing one or more of the following:
 
-- Contributing to the [Cinical Quality Language](https://github.com/cqframework/clinical_quality_language/tree/master) project
+- Contributing to the [CQL Tests](https://github.com/cqframework/cql-tests) repository (this project)
 - Supporting new users (existing users are often the best people to support new users)
 - Reporting bugs
 - Identifying requirements
