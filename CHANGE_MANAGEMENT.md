@@ -110,7 +110,7 @@ All changes to the main branch must be made using a pull request and must be rev
 
 In addition, large, significant, or breaking changes must have full committer consensus before being applied.
 
-In general, when a new version of the CQL specification is created, a new branch of the test repository is created to implement support for that version. Changes to this branch can be committed directly. Once the new version of the specification is published, the tests in this repository are added.
+In general, when a new version of the CQL specification is created, a new branch of the test repository is created to implement support for that version. Although changes to this new version branch may be committed directly, best practice is to use pull requests for the new version branch as well. Once the new version of the specification is published, the tests in this repository are added.
 
 Note that changes must always align with the CQL specification. Any changes to the CQL specification itself are governed by HL7 and must be done through the HL7 process, either by submitting an STU comment, or balloting a new version of the specification.
 
