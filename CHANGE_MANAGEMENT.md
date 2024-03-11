@@ -120,7 +120,7 @@ Communication should be done in an open and public manner. The project uses many
 
 - Chat
 - Email
-- Public Zulip
+- Public [CQL Stream in the FHIR Zulip Chat](https://chat.fhir.org/#narrow/stream/179220-cql)
 
 Sometimes, communication occurs outside of these public channels, and that is okay; however, committers must summarize any private discussions that impact the tooling project in a public channel.
 
