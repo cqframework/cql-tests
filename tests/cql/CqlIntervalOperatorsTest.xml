@@ -192,7 +192,7 @@
 	<group name="Collapse">
 		<test name="TestCollapseNull">
 			<expression>collapse {Interval(null, null)}</expression>
-			<output>{ Interval(null, null) }</output>
+			<output>{ }</output>
 		</test>
 		<test name="IntegerIntervalCollapse">
 			<expression>collapse { Interval[1,5], Interval[3,7], Interval[12,19], Interval[7,10] }</expression>
@@ -492,7 +492,7 @@
 	<group name="In">
 		<test name="TestInNullBoundaries">
 			<expression>5 in Interval[null, null]</expression>
-			<output>true</output>
+			<output>false</output>
 		</test>
 		<test name="IntegerIntervalInTrue">
 			<expression>5 in Interval[1, 10]</expression>
