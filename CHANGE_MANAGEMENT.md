@@ -1,5 +1,4 @@
 # Overview
-## **What is the Digital Quality Implementer's Community?**
 DQIC (pronounced "D-Quick") is a meritocratic, consensus-based community project focused on Digital Quality improvement applications. Anyone with interest in the project can participate as a Stakeholder and a Contributor. Participation in these processes is completely voluntary. This document describes how that participation takes place and how to set about earning merit within the project community. 
 
 ## **Who can be part of DQIC?**
