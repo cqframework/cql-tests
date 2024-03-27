@@ -128,7 +128,7 @@ Sometimes, communication occurs outside of these public channels, and that is ok
 
 In support of a healthy and inclusive community, we use and enforce a [code of conduct](https://github.com/cqframework/clinical_quality_language/blob/master/CODE_OF_CONDUCT.md) for all members of our community, including committers and DSC members. Our code of conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/).
 
-If you encounter any violation of these terms, please contact the DSC Chair or a DSC committee member. All reports will be kept in strict confidence and dealt with promptly.
+If you encounter any violation of these terms, please contact the PMC Chair or a PMC member. All reports will be kept in strict confidence and dealt with promptly.
 
 ## Issues
 
