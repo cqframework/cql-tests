@@ -65,7 +65,7 @@ The DSC will be responsible for referring items that have consensus to the HL7 C
 
 The DSC Chair is a single individual, appointed by DQIC’s Executive Committee.
 
-The DSC Chair has no additional authority over other members of the DSC: the role is one of coordinator and facilitator. The Chair is also expected to ensure adherence to all governance processes and has the casting vote when the community fails to reach consensus.
+The PMC Chair has no additional authority over other members of the PMC: the role is one of coordinator and facilitator. The Chair is also expected to ensure adherence to all governance processes and has the casting vote when the community fails to reach consensus.
 
 ### DSC Membership
 
