@@ -2,7 +2,7 @@
 DQIC (pronounced "D-Quick") is a meritocratic, consensus-based community project focused on Digital Quality improvement applications. Anyone with interest in the project can participate as a Stakeholder and a Contributor. Participation in these processes is completely voluntary. This document describes how that participation takes place and how to set about earning merit within the project community. 
 
 ## **Who can be part of DQIC?**
-Any interested stakeholder that is involved in digital quality improvement is welcome; however, participation as a committer or DQIC Steering Comittee (DSC) member requires active participation and contributions as Committers and DSC members, compliance with the DQIC charter, and a monthly membership fee. Contact DQIC’s Executive Committee (https://www.ncqa.org/digital-quality-implementers-community/) to learn more about official membership in DQIC . All products produced by DQIC will be open-source and available to the public. The cql-tests repository is a key output of DQIC.
+Any interested stakeholder that is involved in digital quality improvement is welcome; however, participation as a committer or DQIC Steering Comittee (DSC) member requires active participation and contributions as Committers and DSC members. Please contact DQIC’s Executive Committee (https://www.ncqa.org/digital-quality-implementers-community/) to learn more about official membership in DQIC . All products produced by DQIC will be open-source and available to the public. The cql-tests repository is a key output of DQIC.
 Although these processes are adapted from the [OSSWatch Meritocratic Model](http://oss-watch.ac.uk/resources/meritocraticgovernancemodel), this documentation is a formalization of existing processes involving relevant stakeholders.
 
 # Roles
@@ -51,11 +51,11 @@ It is important to recognize that commitership is a privilege, not a right. That
 
 Committers are managed as members of the Committers Team in this repository.
 
-A committer who shows an above-average level of contribution to the project, particularly with respect to its strategic direction and long-term health, may be nominated to become a member of the DSC. This role is described below.
+
 
 ## Digital Quality Implementers’ Community Steering Committee (DSC)
 
-The DSC consists of those individuals identified as ‘owners’ on the development site. In addition, the DSC also are active participants in the Digital Quality Implementers' Community (DQIC) and defined in the DQIC Charet.  The DSC is responsible for ensuring the smooth running of the project, including strategic planning, release cycles, change management, and changes to project governance. In addition, the DSC will ensure any changes needed to CQL are funneled to the HL7 CQL Workgroup for appropriate balloting and changes.
+The DSC consists of those individuals identified as ‘owners’ on the development site. In addition, the DSC also are active participants in the Digital Quality Implementers' Community (DQIC) and defined in the DQIC Charter.  The DSC is responsible for ensuring the smooth running of the project, including strategic planning, release cycles, change management, and changes to project governance. In addition, the DSC will ensure any changes needed to CQL are funneled to the HL7 CQL Workgroup for appropriate balloting and changes.
 
 Membership of the DSC is by invitation from the existing DSC members. A nomination will result in discussion and then a vote by the existing DSC members. DSC membership votes are subject to consensus approval of the current DSC members. DSC members must also be approved by the DSC Executive Committee.
 
