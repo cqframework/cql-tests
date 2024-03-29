@@ -97,8 +97,16 @@
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 2, Name : null }</expression>
 			<output>false</output>
 		</test>
-		<test name="TupleEqJohn1John2WithBothNamesNull">
+		<test name="TupleEqDifferentNamesWithOneNullId">
+			<expression>Tuple { Id : null, Name : 'John' } = Tuple { Id : 1, Name : 'James' }</expression>
+			<output>false</output>
+		</test>
+		<test name="TupleEqJohn1John1WithBothNamesNull">
 			<expression>Tuple { Id : 1, Name : null } = Tuple { Id : 1, Name : null }</expression>
+			<output>true</output>
+		</test>
+		<test name="TupleEqJohnJohnWithBothIdsNull">
+			<expression>Tuple { Id : null, Name : 'John' } = Tuple { Id : null, Name : 'John' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqJohn1John1WithNullName">
@@ -779,8 +787,16 @@
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 2, Name : null }</expression>
 			<output>true</output>
 		</test>
+		<test name="TupleNotEqDifferingNamesWithOneNullId">
+			<expression>Tuple{ Id : null, Name : 'John' } != Tuple{ Id : 1, Name : 'Joe' }</expression>
+			<output>true</output>
+		</test>
 		<test name="TupleNotEqJohn1John1WithBothNamesNull">
 			<expression>Tuple{ Id : 1, Name : null } != Tuple{ Id : 1, Name : null }</expression>
+			<output>false</output>
+		</test>
+		<test name="TupleNotEqMatchingNamesWithNullIDs">
+			<expression>Tuple{ Id : null, Name : 'John' } != Tuple{ Id : null, Name : 'John' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleNotEqJohn1John1WithNullName">
