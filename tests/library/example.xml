@@ -1,0 +1,15 @@
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="testSchema.xsd"
+	name="OverloadMatching" reference="https://cql.hl7.org/03-developersguide.html#conversion-precedence">
+    <test name="SimpleOverloadMatching">
+        <library>
+            library SimpleOverloadMatching version '1.0.0'
+
+            define function A(foo Decimal): 2
+            define function A(foo Integer): 1
+
+            define output: A(1.0)
+        </library>
+        <description></description>
+        <output name="output">2</output>
+    </test>
+</tests>
