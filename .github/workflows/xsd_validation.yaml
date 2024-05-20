@@ -10,5 +10,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r .github/python/requirements.txt
       - name: Validate CQL Test XML
         run: python .github/python/xsd_validate.py -xsd_file tests/testSchema.xsd -xml_directory tests/cql
