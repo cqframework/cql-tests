@@ -13,7 +13,7 @@ def validate_xml_files(xsd_path, xml_dir):
                 schema.validate(xml_path)
                 print(f"✅ {filename} is valid")
             except xmlschema.XMLSchemaValidationError as e:
-                print(f"❌ {filename} is NOT valid:\n   {e}")
+                print(f"❌ {filename} is NOT valid:\n{e}")
                 at_least_one_invalid = True
     
     if at_least_one_invalid:
