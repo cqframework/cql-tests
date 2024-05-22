@@ -50,6 +50,11 @@
 			<expression>'5' is Integer</expression>
 			<output>false</output>
 		</test>
+		<test name="ValueSetIsVocabulary">
+			<expression>ValueSet{id: id { value: '123'}} is Vocabulary</expression>
+			<output>true</output>
+			<notes>This should return true because ValueSet is derived from (subtype of) Vocabulary.</notes>
+		</test>
 	</group>
 	<group name="ToBoolean">
 		<test name="StringNoToBoolean">
