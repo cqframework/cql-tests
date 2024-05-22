@@ -53,7 +53,7 @@
 		<test name="ValueSetIsVocabulary">
 			<expression>ValueSet{id: id { value: '123'}} is Vocabulary</expression>
 			<output>true</output>
-			<notes>This should return true because ValueSet is derived from (subtype of) Vocabulary.</notes>
+			<notes>This should return true because ValueSet is derived from Vocabulary.</notes>
 		</test>
 	</group>
 	<group name="ToBoolean">
