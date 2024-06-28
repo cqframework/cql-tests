@@ -1222,8 +1222,8 @@
 	</group>
 	<group name="TimeOfDay">
 		<test name="TimeOfDayTest">
-			<expression>TimeOfDay()</expression>
-			<output>TimeOfDay()</output>
+			<expression>TimeOfDay() = TimeOfDay()</expression>
+			<output>true</output>
 		</test>
 	</group>
 	<group name="Today">
@@ -1244,8 +1244,8 @@
 			<output>true</output>
 		</test>
 		<test name="Issue34B">
-			<expression>Today()</expression>
-			<output>Today()</output>
+			<expression>Today() = Today()</expression>
+			<output>true</output>
 		</test>
 	</group>
 </tests>
