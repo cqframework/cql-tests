@@ -51,7 +51,7 @@
 			<output>false</output>
 		</test>
 		<test name="ValueSetIsVocabulary">
-			<expression>ValueSet{id: id { value: '123'}} is Vocabulary</expression>
+			<expression>System.ValueSet{id: '123'} is Vocabulary</expression>
 			<output>true</output>
 			<notes>This should return true because ValueSet is derived from Vocabulary.</notes>
 		</test>
