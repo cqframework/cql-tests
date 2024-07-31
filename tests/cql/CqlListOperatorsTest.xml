@@ -650,12 +650,52 @@
 		</test>
 	</group>
 	<group name="ProperContains">
+		<test name="ProperContains1">
+			<expression>null as List&lt;String&gt; properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains2">
+			<expression>{} properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains3">
+			<expression>{ 'a' } properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains4">
+			<expression>{ null } properly includes null as String</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperContainsNullRightFalse">
-			<expression>{'s', 'u', 'n'} properly includes null</expression>
+			<expression>{'s', 'u', 'n'} properly includes null as String</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains5">
+			<expression>{ null, null } properly includes null as String</expression>
 			<output>false</output>
 		</test>
 		<test name="ProperContainsNullRightTrue">
-			<expression>{'s', 'u', 'n', null} properly includes null</expression>
+			<expression>{'s', 'u', 'n', null} properly includes null as String</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperContains6">
+			<expression>{ 'a', 'b' } properly includes 'a'</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperContains7">
+			<expression>{ 'a', 'a' } properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains8">
+			<expression>{ 'a', 'b' } properly includes 'c'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains9">
+			<expression>{ 'a', null } properly includes 'a'</expression>
+			<output>null</output>
+		</test>
+		<test name="ProperContains10">
+			<expression>{ 'a', 'b', null } properly includes 'a'</expression>
 			<output>true</output>
 		</test>
 		<test name="ProperContainsTimeTrue">
@@ -668,12 +708,52 @@
 		</test>
 	</group>
 	<group name="ProperIn">
+		<test name="ProperIn1">
+			<expression>'a' properly included in null as List&lt;String&gt;</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn2">
+			<expression>'a' properly included in {}</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn3">
+			<expression>'a' properly included in { 'a' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn4">
+			<expression>null as String properly included in { null }</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperInNullRightFalse">
-			<expression>null properly included in {'s', 'u', 'n'}</expression>
+			<expression>null as String properly included in {'s', 'u', 'n'}</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn5">
+			<expression>null as String properly included in { null, null }</expression>
 			<output>false</output>
 		</test>
 		<test name="ProperInNullRightTrue">
-			<expression>null properly included in {'s', 'u', 'n', null}</expression>
+			<expression>null as String properly included in {'s', 'u', 'n', null}</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperIn6">
+			<expression>'a' properly included in { 'a', 'b' }</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperIn7">
+			<expression>'a' properly included in { 'a', 'a' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn8">
+			<expression>'c' properly included in { 'a', 'b' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn9">
+			<expression>'a' properly included in { 'a', null }</expression>
+			<output>null</output>
+		</test>
+		<test name="ProperIn10">
+			<expression>'a' properly included in { 'a', 'b', null }</expression>
 			<output>true</output>
 		</test>
 		<test name="ProperInTimeTrue">
