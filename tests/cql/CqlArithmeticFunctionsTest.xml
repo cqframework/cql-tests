@@ -225,6 +225,14 @@
 			<expression>HighBoundary(@T10:30, 9)</expression>
 			<output>@T10:30:59.999</output>
 		</test>
+		<test name="HighBoundaryNull">
+			<expression>HighBoundary(null as Decimal, 8)</expression>
+			<output>null</output>
+		</test>
+		<test name="HighBoundaryNullPrecision">
+			<expression>HighBoundary(1.58888, null)</expression>
+			<output>1.58888999</output>
+		</test>
 	</group>
 	<group name="Log">
 		<test name="LogNullNull">
@@ -272,6 +280,14 @@
 		<test name="LowBoundaryTimeMillisecond">
 			<expression>LowBoundary(@T10:30, 9)</expression>
 			<output>@T10:30:00.000</output>
+		</test>
+		<test name="LowBoundaryNull">
+			<expression>LowBoundary(null as Decimal, 8)</expression>
+			<output>null</output>
+		</test>
+		<test name="LowBoundaryNullPrecision">
+			<expression>LowBoundary(1.58888, null)</expression>
+			<output>1.58888000</output>
 		</test>
 	</group>
 	<group name="Ln">
