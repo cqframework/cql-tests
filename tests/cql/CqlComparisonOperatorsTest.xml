@@ -184,9 +184,9 @@
 			<expression>DateTime(null) = DateTime(null)</expression>
 			<output>null</output>
 		</test>
-		<test name="DateTimeEqNull2">
+		<test name="DateTimeEqTrue">
 			<expression>DateTime(2001, 1, 1, null) = DateTime(2001, 1, 1, null, null)</expression>
-			<output>null</output>
+			<output>true</output>
 		</test>
 		<test name="DateTimeUTC">
 			<expression>@2014-01-25T14:30:14.559+01:00 = @2014-01-25T14:30:14.559+01:00</expression>
