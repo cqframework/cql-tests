@@ -142,7 +142,7 @@
 		</test>
 		<test name="ModeTestDateTime">
 			<expression>Mode({ DateTime(2012, 10, 5), DateTime(2012, 9, 5), DateTime(2012, 10, 6), DateTime(2012, 9, 5) })</expression>
-			<output>@2012-09-05T)</output>
+			<output>@2012-09-05T</output>
 		</test>
 		<test name="ModeTestTime">
 			<expression>Mode({ @T15:59:59.999, @T05:59:59.999, @T20:59:59.999, @T05:59:59.999 })</expression>
