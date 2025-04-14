@@ -134,7 +134,7 @@
 		</test>
 		<test name="DecimalNegZero">
 			<expression>-0.0</expression>
-			<output>-0.0</output>
+			<output>0.0</output>
 		</test>
 		<test name="DecimalOne">
 			<expression>1.0</expression>
@@ -202,7 +202,7 @@
 		</test>
 		<test name="DecimalPos2Pow31ToInf1">
 			<expression>+Power(2.0,30.0)+1.0+Power(2.0,30.0)</expression>
-			<output>+2147483649.0</output>
+			<output>2147483649.0</output>
 		</test>
 		<test name="DecimalNeg2Pow31ToInf1">
 			<expression>-Power(2.0,30.0)-1.0-Power(2.0,30.0)</expression>
@@ -218,7 +218,7 @@
 		</test>
 		<test name="DecimalNegZeroStep">
 			<expression>-0.00000000</expression>
-			<output>-0.00000000</output>
+			<output>0.00000000</output>
 		</test>
 		<test name="DecimalOneStep">
 			<expression>Power(10,-8)</expression>

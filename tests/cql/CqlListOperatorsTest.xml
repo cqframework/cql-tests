@@ -24,7 +24,7 @@
 		</test>
 		<test name="SortDatesDesc">
 			<expression>({ DateTime(2012, 10, 5, 10), DateTime(2012, 1, 1), DateTime(2012, 1, 1, 12), DateTime(2012, 10, 5) }) S sort desc</expression>
-			<output>{ @2012-10-05T10, @2012-10-05T, @2012-01-01T12, @2012-01-01 }</output>
+			<output>{ @2012-10-05T10, @2012-10-05T, @2012-01-01T12, @2012-01-01T }</output>
 		</test>
 		<test name="intList">
 			<expression>{ 3, 2, 1 }</expression>
