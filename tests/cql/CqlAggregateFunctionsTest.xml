@@ -84,7 +84,7 @@
 		</test>
 	</group>
 	<group name="Product">
-		<test name="Product_Long">
+		<test name="ProductLong">
 			<expression>Product({5L, 4L, 5L})</expression>
 			<output>100L</output>
 		</test>
