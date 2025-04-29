@@ -20,11 +20,11 @@
 		</test>
 		<test name="SortDatesAsc">
 			<expression>({ DateTime(2012, 10, 5, 10), DateTime(2012, 1, 1), DateTime(2012, 1, 1, 12), DateTime(2012, 10, 5) }) S sort asc</expression>
-			<output>{DateTime(2012, 1, 1), DateTime(2012, 1, 1, 12), DateTime(2012, 10, 5), DateTime(2012, 10, 5, 10)}</output>
+			<output>{ @2012-01-01T, @2012-01-01T12, @2012-10-05T, @2012-10-05T10 }</output>
 		</test>
 		<test name="SortDatesDesc">
 			<expression>({ DateTime(2012, 10, 5, 10), DateTime(2012, 1, 1), DateTime(2012, 1, 1, 12), DateTime(2012, 10, 5) }) S sort desc</expression>
-			<output>{DateTime(2012, 10, 5, 10), DateTime(2012, 10, 5), DateTime(2012, 1, 1, 12), DateTime(2012, 1, 1)}</output>
+			<output>{ @2012-10-05T10, @2012-10-05T, @2012-01-01T12, @2012-01-01T }</output>
 		</test>
 		<test name="intList">
 			<expression>{ 3, 2, 1 }</expression>
@@ -119,7 +119,7 @@
 		</test>
 		<test name="DistinctDateTime">
 			<expression>distinct { DateTime(2012, 10, 5), DateTime(2012, 1, 1), DateTime(2012, 1, 1)}</expression>
-			<output>{ DateTime(2012, 10, 5), DateTime(2012, 1, 1)}</output>
+			<output>{ @2012-10-05T, @2012-01-01T }</output>
 		</test>
 		<test name="DistinctTime">
 			<expression>distinct { @T15:59:59.999, @T20:59:59.999 }</expression>
@@ -263,7 +263,7 @@
 		</test>
 		<test name="FlattenDateTime">
 			<expression>Flatten({ {DateTime(2012, 5, 10)}, {DateTime(2014, 12, 10)} })</expression>
-			<output>{ DateTime(2012, 5, 10), DateTime(2014, 12, 10) }</output>
+			<output>{ @2012-05-10T, @2014-12-10T }</output>
 		</test>
 		<test name="FlattenTime">
 			<expression>Flatten({ {@T15:59:59.999}, {@T20:59:59.999} })</expression>
@@ -289,7 +289,7 @@
 		</test>
 		<test name="FirstDateTime">
 			<expression>First({ DateTime(2012, 5, 10), DateTime(2014, 12, 10) })</expression>
-			<output>DateTime(2012, 5, 10)</output>
+			<output>@2012-05-10T</output>
 		</test>
 		<test name="FirstTime">
 			<expression>First({ @T15:59:59.999, @T20:59:59.999 })</expression>
@@ -452,7 +452,7 @@
 		</test>
 		<test name="IndexerDateTime">
 			<expression>{ DateTime(2001, 9, 11), DateTime(2012, 5, 10), DateTime(2014, 12, 10) }[1]</expression>
-			<output>DateTime(2012, 5, 10)</output>
+			<output>@2012-05-10T</output>
 		</test>
 		<test name="IndexerTime">
 			<expression>{ @T02:29:15.156, @T15:59:59.999, @T20:59:59.999 }[1]</expression>
@@ -534,7 +534,7 @@
 		</test>
 		<test name="LastDateTime">
 			<expression>Last({DateTime(2012, 5, 10), DateTime(2014, 12, 10)})</expression>
-			<output>DateTime(2014, 12, 10)</output>
+			<output>@2014-12-10T</output>
 		</test>
 		<test name="LastTime">
 			<expression>Last({ @T15:59:59.999, @T20:59:59.999 })</expression>
@@ -808,7 +808,7 @@
 		</test>
 		<test name="SingletonFromDateTime">
 			<expression>singleton from { DateTime(2012, 5, 10) }</expression>
-			<output>DateTime(2012, 5, 10)</output>
+			<output>@2012-05-10T</output>
 		</test>
 		<test name="SingletonFromTime">
 			<expression>singleton from { @T15:59:59.999 }</expression>
