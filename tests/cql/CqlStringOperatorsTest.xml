@@ -301,6 +301,10 @@
 			<expression>Substring('ab', -1)</expression>
 			<output>null</output>
 		</test>
+		<test name="SubstringEmptyAnd0">
+			<expression>Substring('', 0)</expression>
+			<output>''</output>
+		</test>
 		<test name="SubstringAB0To1">
 			<expression>Substring('ab', 0, 1)</expression>
 			<output>'a'</output>
