@@ -837,6 +837,40 @@
 			<output>{}</output>
 		</test>
 	</group>
+	<group name="Slice" version="2.0.0" reference="http://cql.hl7.org/09-b-cqlreference.html#slice">
+		<test name="SliceAll">
+			<expression>Slice({ 1, 2, 3, 4, 5 })</expression>
+			<output>{ 1, 2, 3, 4, 5 }</output>
+		</test>
+		<test name="SliceEmpty">
+			<expression>Slice({ })</expression>
+			<output>{ }</output>
+		</test>
+		<test name="SliceNull">
+			<expression>Slice(null)</expression>
+			<output>null</output>
+		</test>
+		<test name="SliceStart">
+			<expression>Slice({ 1, 2, 3, 4, 5 }, 1)</expression>
+			<output>{ 2, 3, 4, 5 }</output>
+		</test>
+		<test name="SliceEnd">
+			<expression>Slice({ 1, 2, 3, 4, 5 }, 1, 3)</expression>
+			<output>{ 2, 3 }</output>
+		</test>
+		<test name="SliceNegative">
+			<expression>Slice({ 1, 2, 3, 4, 5 }, -2)</expression>
+			<output>{ 4, 5 }</output>
+		</test>
+		<test name="SliceStartAndNegative">
+			<expression>Slice({ 1, 2, 3, 4, 5 }, 1, -1)</expression>
+			<output>{ 2, 3, 4 }</output>
+		</test>
+		<test name="SlicePast">
+			<expression>Slice({ 1, 2, 3, 4, 5 }, 5)</expression>
+			<output>{ }</output>
+		</test>
+	</group>
 	<group name="Tail">
 		<test name="TailNull">
 			<expression>Tail(null)</expression>
