@@ -221,109 +221,109 @@
 		</test>
 	</group>
 	<group name="HighBoundary" version="1.0">
-		<test name="HighBoundaryDecimal" version="1.0">
+		<test name="HighBoundaryDecimal" version="1.4">
 			<expression>HighBoundary(1.587, 8)</expression>
 			<output>1.58799999</output>
 		</test>
-		<test name="HighBoundaryDateMonth" version="1.0">
+		<test name="HighBoundaryDateMonth" version="1.4">
 			<expression>HighBoundary(@2014, 6)</expression>
 			<output>@2014-12</output>
 		</test>
-		<test name="HighBoundaryDateTimeMillisecond" version="1.0">
+		<test name="HighBoundaryDateTimeMillisecond" version="1.4">
 			<expression>HighBoundary(@2014-01-01T08, 17)</expression>
 			<output>@2014-01-01T08:59:59.999</output>
 		</test>
-		<test name="HighBoundaryTimeMillisecond" version="1.0">
+		<test name="HighBoundaryTimeMillisecond" version="1.4">
 			<expression>HighBoundary(@T10:30, 9)</expression>
 			<output>@T10:30:59.999</output>
 		</test>
 	</group>
-	<group name="Log" version="1.0">
-		<test name="LogNullNull" version="1.0">
+	<group name="Log" version="1.4">
+		<test name="LogNullNull" version="1.4">
 			<expression>Log(null, null)</expression>
 			<output>null</output>
 		</test>
-		<test name="Log1BaseNull" version="1.0">
+		<test name="Log1BaseNull" version="1.4">
 			<expression>Log(1, null)</expression>
 			<output>null</output>
 		</test>
-		<test name="Log1Base1" version="1.0">
+		<test name="Log1Base1" version="1.4">
 			<expression>Log(1, 1)</expression>
 			<output>null</output>
 		</test>
-		<test name="Log2Base1" version="1.0">
+		<test name="Log2Base1" version="1.4">
 			<expression>Log(2, 1)</expression>
 			<output>null</output>
 		</test>
-		<test name="Log1Base2" version="1.0">
+		<test name="Log1Base2" version="1.4">
 			<expression>Log(1, 2)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Log1Base100" version="1.0">
+		<test name="Log1Base100" version="1.4">
 			<expression>Log(1, 100)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Log1Base100L" version="1.0">
+		<test name="Log1Base100L" version="1.4">
 			<expression>Log(1L, 100L)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Log16Base2" version="1.0">
+		<test name="Log16Base2" version="1.4">
 			<expression>Log(16, 2)</expression>
 			<output>4.0</output>
 		</test>
-		<test name="LogD125Base2" version="1.0">
+		<test name="LogD125Base2" version="1.4">
 			<expression>Log(0.125, 2)</expression>
 			<output>-3.0</output>
 		</test>
 	</group>
-	<group name="LowBoundary" version="1.0">
-		<test name="LowBoundaryDecimal" version="1.0">
+	<group name="LowBoundary" version="1.4">
+		<test name="LowBoundaryDecimal" version="1.4">
 			<expression>LowBoundary(1.587, 8)</expression>
 			<output>1.58700000</output>
 		</test>
-		<test name="LowBoundaryDateMonth" version="1.0">
+		<test name="LowBoundaryDateMonth" version="1.4">
 			<expression>LowBoundary(@2014, 6)</expression>
 			<output>@2014-01</output>
 		</test>
-		<test name="LowBoundaryDateTimeMillisecond" version="1.0">
+		<test name="LowBoundaryDateTimeMillisecond" version="1.4">
 			<expression>LowBoundary(@2014-01-01T08, 17)</expression>
 			<output>@2014-01-01T08:00:00.000</output>
 		</test>
-		<test name="LowBoundaryTimeMillisecond" version="1.0">
+		<test name="LowBoundaryTimeMillisecond" version="1.4">
 			<expression>LowBoundary(@T10:30, 9)</expression>
 			<output>@T10:30:00.000</output>
 		</test>
 	</group>
-	<group name="Ln" version="1.0">
-		<test name="LnNull" version="1.0">
+	<group name="Ln" version="1.4">
+		<test name="LnNull" version="1.4">
 			<expression>Ln(null)</expression>
 			<output>null</output>
 		</test>
-		<test name="Ln0" version="1.0">
+		<test name="Ln0" version="1.4">
 			<expression invalid="true">Ln(0)</expression>
 			<!-- EXPECT: Results in negative infinity -->
 		</test>
-		<test name="LnNeg0" version="1.0">
+		<test name="LnNeg0" version="1.4">
 			<expression invalid="true">Ln(-0)</expression>
 			<!-- EXPECT: Results in negative infinity -->
 		</test>
-		<test name="Ln1" version="1.0">
+		<test name="Ln1" version="1.4">
 			<expression>Ln(1)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Ln1L" version="1.0">
+		<test name="Ln1L" version="1.4">
 			<expression>Ln(1L)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="LnNeg1" version="1.0">
+		<test name="LnNeg1" version="1.4">
 			<expression>Ln(-1)</expression>
 			<output>null</output>
 		</test>
-		<test name="Ln1000" version="1.0">
+		<test name="Ln1000" version="1.4">
 			<expression>Round(Ln(1000), 8)</expression>
 			<output>6.90775528</output>
 		</test>
-		<test name="Ln1000D" version="1.0">
+		<test name="Ln1000D" version="1.4">
 			<expression>Round(Ln(1000.0), 8)</expression>
 			<output>6.90775528</output>
 		</test>
@@ -334,24 +334,24 @@
 			<output>-2147483648</output>
 			<!-- TODO: make Engine parse -2147483648 holistically not as a negated positive -->
 		</test>
-		<test name="LongMinValue" version="1.0">
+		<test name="LongMinValue" version="1.5">
 			<expression>minimum Long</expression>
 			<output>-9223372036854775808L</output>
 		</test>
-		<test name="DecimalMinValue" version="1.0">
+		<test name="DecimalMinValue" version="1.4">
 			<expression>minimum Decimal</expression>
 			<output>-99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMinValue: minimum Quantity -->
-		<test name="DateTimeMinValue" version="1.0">
+		<test name="DateTimeMinValue" version="1.4">
 			<expression>minimum DateTime</expression>
 			<output>@0001-01-01T00:00:00.000Z</output>
 		</test>
-		<test name="DateMinValue" version="1.0">
+		<test name="DateMinValue" version="1.4">
 			<expression>minimum Date</expression>
 			<output>@0001-01-01</output>
 		</test>
-		<test name="TimeMinValue" version="1.0">
+		<test name="TimeMinValue" version="1.4">
 			<expression>minimum Time</expression>
 			<output>@T00:00:00.000</output>
 		</test>
@@ -365,24 +365,24 @@
 			<expression>maximum Integer</expression>
 			<output>2147483647</output>
 		</test>
-		<test name="LongMaxValue" version="1.0">
+		<test name="LongMaxValue" version="1.5">
 			<expression>maximum Long</expression>
 			<output>9223372036854775807L</output>
 		</test>
-		<test name="DecimalMaxValue" version="1.0">
+		<test name="DecimalMaxValue" version="1.4">
 			<expression>maximum Decimal</expression>
 			<output>99999999999999999999.99999999</output>
 		</test>
 		<!-- OBSOLETE: define QuantityMaxValue: maximum Quantity -->
-		<test name="DateTimeMaxValue" version="1.0">
+		<test name="DateTimeMaxValue" version="1.4">
 			<expression>maximum DateTime</expression>
 			<output>@9999-12-31T23:59:59.999Z</output>
 		</test>
-		<test name="DateMaxValue" version="1.0">
+		<test name="DateMaxValue" version="1.4">
 			<expression>maximum Date</expression>
 			<output>@9999-12-31</output>
 		</test>
-		<test name="TimeMaxValue" version="1.0">
+		<test name="TimeMaxValue" version="1.4">
 			<expression>maximum Time</expression>
 			<output>@T23:59:59.999</output>
 		</test>
@@ -391,52 +391,52 @@
 			<!-- EXPECT: The Maximum operator is not implemented for type Boolean -->
 		</test>
 	</group>
-	<group name="Modulo" version="1.0">
-		<test name="ModuloNull" version="1.0">
+	<group name="Modulo" version="1.5">
+		<test name="ModuloNull" version="1.5">
 			<expression>1 mod null</expression>
 			<output>null</output>
 		</test>
-		<test name="Modulo0By0" version="1.0">
+		<test name="Modulo0By0" version="1.5">
 			<expression>0 mod 0</expression>
 			<output>null</output>
 		</test>
-		<test name="Modulo4By2" version="1.0">
+		<test name="Modulo4By2" version="1.5">
 			<expression>4 mod 2</expression>
 			<output>0</output>
 		</test>
-		<test name="Modulo4LBy2L" version="1.0">
+		<test name="Modulo4LBy2L" version="1.5">
 			<expression>4L mod 2L</expression>
 			<output>0L</output>
 		</test>
-		<test name="Modulo4DBy2D" version="1.0">
+		<test name="Modulo4DBy2D" version="1.5">
 			<expression>4.0 mod 2.0</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Modulo10By3" version="1.0">
+		<test name="Modulo10By3" version="1.5">
 			<expression>10 mod 3</expression>
 			<output>1</output>
 		</test>
-		<test name="Modulo10DBy3D" version="1.0">
+		<test name="Modulo10DBy3D" version="1.5">
 			<expression>10.0 mod 3.0</expression>
 			<output>1.0</output>
 		</test>
-		<test name="Modulo10IBy3D" version="1.0">
+		<test name="Modulo10IBy3D" version="1.5">
 			<expression>10 mod 3.0</expression>
 			<output>1.0</output>
 		</test>
-		<test name="ModuloDResult" version="1.0">
+		<test name="ModuloDResult" version="1.5">
 			<expression>3.5 mod 3</expression>
 			<output>0.5</output>
 		</test>
-		<test name="ModuloQuantity" version="1.0">
+		<test name="ModuloQuantity" version="1.5">
 			<expression>3.5 'cm' mod 3 'cm'</expression>
 			<output>0.5 'cm'</output>
 		</test>
-		<test name="Modulo10By3Quantity" version="1.0">
+		<test name="Modulo10By3Quantity" version="1.5">
 			<expression>10.0 'g' mod 3.0 'g'</expression>
 			<output>1.0 'g'</output>
 		</test>
-		<test name="Modulo10By0Quantity" version="1.0">
+		<test name="Modulo10By0Quantity" version="1.5">
 			<expression>10.0 'g' mod 0.0 'g'</expression>
 			<output>null</output>
 		</test>
@@ -526,24 +526,24 @@
 			<output>-1.0'cm'</output>
 		</test>
 	</group>
-	<group name="Precision" version="1.0">
-		<test name="PrecisionDecimal" version="1.0">
+	<group name="Precision" version="1.4">
+		<test name="PrecisionDecimal" version="1.4">
 			<expression>Precision(1.58700)</expression>
 			<output>5</output>
 		</test>
-		<test name="PrecisionYear" version="1.0">
+		<test name="PrecisionYear" version="1.4">
 			<expression>Precision(@2014)</expression>
 			<output>4</output>
 		</test>
-		<test name="PrecisionDateTimeMilliseconds" version="1.0">
+		<test name="PrecisionDateTimeMilliseconds" version="1.4">
 			<expression>Precision(@2014-01-05T10:30:00.000)</expression>
 			<output>17</output>
 		</test>
-		<test name="PrecisionTimeMinutes" version="1.0">
+		<test name="PrecisionTimeMinutes" version="1.4">
 			<expression>Precision(@T10:30)</expression>
 			<output>4</output>
 		</test>
-		<test name="PrecisionTimeMilliseconds" version="1.0">
+		<test name="PrecisionTimeMilliseconds" version="1.4">
 			<expression>Precision(@T10:30:00.000)</expression>
 			<output>9</output>
 		</test>
