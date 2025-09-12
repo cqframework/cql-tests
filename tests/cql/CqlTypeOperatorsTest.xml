@@ -50,7 +50,7 @@
 			<expression>'5' is Integer</expression>
 			<output>false</output>
 		</test>
-		<test name="ValueSetIsVocabulary" version="1.0">
+		<test name="ValueSetIsVocabulary" version="1.5">
 			<expression>System.ValueSet{id: '123'} is Vocabulary</expression>
 			<output>true</output>
 			<notes>This should return true because ValueSet is derived from Vocabulary.</notes>
