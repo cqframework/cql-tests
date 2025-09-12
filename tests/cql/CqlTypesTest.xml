@@ -34,11 +34,11 @@
 			<expression>{1, 2, 3}</expression>
 			<output>{1, 2, 3}</output>
 		</test>
-		<test name="AnyTuple" version="1.0">
+		<test name="AnyTuple" version="1.5">
 			<expression>Tuple { id: 5, name: 'Chris'}</expression>
 			<output>Tuple { id: 5, name: 'Chris'}</output>
 		</test>
-		<test name="AnyString" version="1.0">
+		<test name="AnyString" version="1.5">
 			<expression>Tuple { id: 5, name: 'Chris'}.name</expression>
 			<output>'Chris'</output>
 		</test>
