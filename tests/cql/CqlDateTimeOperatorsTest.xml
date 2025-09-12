@@ -50,19 +50,19 @@
 			<expression>DateTime(2005, 5, 10) + 25 hours = DateTime(2005, 5, 11)</expression>
 			<output>true</output>
 		</test>
-		<test name="DateAdd2YearsAsMonths" version="1.0">
+		<test name="DateAdd2YearsAsMonths" version="1.3">
 			<expression>Date(2014) + 24 months</expression>
 			<output>@2016</output>
 		</test>
-		<test name="DateAdd2YearsAsMonthsRem1" version="1.0">
+		<test name="DateAdd2YearsAsMonthsRem1" version="1.3">
 			<expression>Date(2014) + 25 months</expression>
 			<output>@2016</output>
 		</test>
-		<test name="DateAdd33Days" version="1.0">
+		<test name="DateAdd33Days" version="1.3">
 			<expression>Date(2014,6) + 33 days</expression>
 			<output>@2014-07</output>
 		</test>
-		<test name="DateAdd1Year" version="1.0">
+		<test name="DateAdd1Year" version="1.3">
 			<expression>Date(2014,6) + 1 year</expression>
 			<output>@2015-06</output>
 		</test>
@@ -1247,19 +1247,19 @@
 			<expression>DateTime(2014) - 25 months</expression>
 			<output>@2012T</output>
 		</test>
-		<test name="DateSubtract2YearsAsMonths" version="1.0">
+		<test name="DateSubtract2YearsAsMonths" version="1.3">
 			<expression>Date(2014) - 24 months</expression>
 			<output>@2012</output>
 		</test>
-		<test name="DateSubtract2YearsAsMonthsRem1" version="1.0">
+		<test name="DateSubtract2YearsAsMonthsRem1" version="1.3">
 			<expression>Date(2014) - 25 months</expression>
 			<output>@2012</output>
 		</test>
-		<test name="DateSubtract33Days" version="1.0">
+		<test name="DateSubtract33Days" version="1.3">
 			<expression>Date(2014,6) - 33 days</expression>
 			<output>@2014-05</output>
 		</test>
-		<test name="DateSubtract1Year" version="1.0">
+		<test name="DateSubtract1Year" version="1.3">
 			<expression>Date(2014,6) - 1 year</expression>
 			<output>@2013-06</output>
 		</test>
