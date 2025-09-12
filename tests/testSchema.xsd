@@ -24,6 +24,11 @@
 				<xs:documentation>The version of FHIRPath in which the features being tested were introduced. This should correspond to a published or planned published version of FHIRPath.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="versionTo" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The last version of the specification in which the features being tested appears</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>A description of the test suite.</xs:documentation>
@@ -52,6 +57,11 @@
 		<xs:attribute name="version" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>The version of FHIRPath in which the features being tested were introduced. This should correspond to a published or planned published version of FHIRPath.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="versionTo" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The last version of the specification in which the features being tested appears</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="description" type="xs:string">
@@ -98,6 +108,11 @@
 		<xs:attribute name="version" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>The version of FHIRPath in which the feature being tested was introduced. This should correspond to a published or planned published version of FHIRPath.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="versionTo" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The last version of the specification in which the features being tested appears</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="description" type="xs:string">
