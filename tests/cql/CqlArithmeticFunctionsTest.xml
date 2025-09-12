@@ -120,7 +120,7 @@
 			<expression>Round(10 / 3, 8)</expression>
 			<output>3.33333333</output>
 		</test>
-		<test name="Divide1Q1" version="1.0">
+		<test name="Divide1Q1" version="1.4">
 			<expression>1'g/cm3' / 1.0</expression>
 			<output>1.0'g/cm3'</output>
 			<!-- See HL7 STU comment #1443. -->

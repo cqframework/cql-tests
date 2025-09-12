@@ -110,60 +110,60 @@
 			<output>true</output>
 		</test>
 	</group>
-	<group name="ToDecimal" version="1.0">
+	<group name="ToDecimal" version="1.4">
 		<test name="String25D5ToDecimal" version="1.0">
 			<expression>ToDecimal('+25.5')</expression>
 			<output>25.5</output>
 		</test>
 	</group>
-	<group name="ToInteger" version="1.0">
+	<group name="ToInteger" version="1.4">
 		<test name="StringNeg25ToInteger" version="1.0">
 			<expression>ToInteger('-25')</expression>
 			<output>-25</output>
 		</test>
 	</group>
-	<group name="ToQuantity" version="1.0">
-		<test name="String5D5CMToQuantity" version="1.0">
+	<group name="ToQuantity" version="1.4">
+		<test name="String5D5CMToQuantity" version="1.4">
 			<expression>ToQuantity('5.5 \'cm\'')</expression>
 			<output>5.5'cm'</output>
 		</test>
 	</group>
-	<group name="ToString" version="1.0">
-		<test name="IntegerNeg5ToString" version="1.0">
+	<group name="ToString" version="1.4">
+		<test name="IntegerNeg5ToString" version="1.4">
 			<expression>ToString(-5)</expression>
 			<output>'-5'</output>
 		</test>
-		<test name="Decimal18D55ToString" version="1.0">
+		<test name="Decimal18D55ToString" version="1.4">
 			<expression>ToString(18.55)</expression>
 			<output>'18.55'</output>
 		</test>
-		<test name="Quantity5D5CMToString" version="1.0">
+		<test name="Quantity5D5CMToString" version="1.4">
 			<expression>ToString(5.5 'cm')</expression>
 			<output>'5.5 \'cm\''</output>
 		</test>
-		<test name="BooleanTrueToString" version="1.0">
+		<test name="BooleanTrueToString" version="1.4">
 			<expression>ToString(true)</expression>
 			<output>'true'</output>
 		</test>
 	</group>
-	<group name="ToTime" version="1.0">
-		<test name="ToTime1" version="1.0">
+	<group name="ToTime" version="1.4">
+		<test name="ToTime1" version="1.4">
 			<expression>ToTime('T14:30:00.0')</expression>
 			<output>@T14:30:00.000</output>
 		</test>
-		<test name="ToTime2" version="1.0">
+		<test name="ToTime2" version="1.4">
 			<expression>ToTime('T14:30:00.0+05:30')</expression>
 			<output>@T14:30:00.000</output>
 		</test>
-		<test name="ToTime3" version="1.0">
+		<test name="ToTime3" version="1.4">
 			<expression>ToTime('T14:30:00.0-05:45')</expression>
 			<output>@T14:30:00.000</output>
 		</test>
-		<test name="ToTime4" version="1.0">
+		<test name="ToTime4" version="1.4">
 			<expression>ToTime('T14:30:00.0Z')</expression>
 			<output>@T14:30:00.000</output>
 		</test>
-		<test name="ToTimeMalformed" version="1.0">
+		<test name="ToTimeMalformed" version="1.4">
 			<expression>ToTime('T14-30-00.0')</expression>
 			<output>null</output>
 		</test>

@@ -72,7 +72,7 @@
 			<expression>1'cm' = 1'cm'</expression>
 			<output>true</output>
 		</test>
-		<test name="QuantityEqCM1M01" version="1.0">
+		<test name="QuantityEqCM1M01" version="1.4">
 			<expression>1'cm' = 0.01'm'</expression>
 			<output>true</output>
 		</test>
