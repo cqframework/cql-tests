@@ -12,7 +12,7 @@
 					<xs:documentation>Notes about the test suite.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="group" type="Group" maxOccurs="unbounded"/>
+			<xs:element name="group" type="Group" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string">
 			<xs:annotation>
@@ -47,7 +47,7 @@
 					<xs:documentation>Notes about the test group.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="test" type="Test" maxOccurs="unbounded"/>
+			<xs:element name="test" type="Test" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string">
 			<xs:annotation>
@@ -158,9 +158,9 @@
 	<xs:complexType name="Output">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="type" type="OutputType" use="required">
+				<xs:attribute name="type" type="OutputType" use="optional">
 					<xs:annotation>
-						<xs:documentation>The type of the expected output.</xs:documentation>
+						<xs:documentation>The type of the expected output. If output type is not present, the content of the output is the string representation of a literal (e.g. 10.0)</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
