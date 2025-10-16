@@ -22,7 +22,7 @@
 				  aggregate R starting (null as List&lt;Interval&lt;DateTime>>): R union ({
 				    M X
 				      let S: Max({ end of Last(R) + 1 day, start of X }),
-				        E: S + duration in days of X
+				        E: S + Quantity{ value: duration in days of X, unit: 'days' }
 				      return Interval[S, E]
 				  })
 			</expression>
@@ -33,7 +33,6 @@
 				  Interval[@2012-04-29, @2012-06-28]
 				}
 			</output>
-			<!-- Execution Error: Invalid precision: 1. -->
 		</test>
 		<test name="AggregateSumWithStart" version="1.5">
 			<capability code="single-source-query"/>
