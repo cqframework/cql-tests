@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd" name="CqlArithmeticFunctionsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators-4" version="1.0">
-	<!-- Suite-level capabilities -->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+	name="CqlArithmeticFunctionsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators-4" version="1.0">
 	<capability code="arithmetic-operators"/>
 	<capability code="decimal-precision-and-scale" value="28,8"/>
 	<group name="Abs" version="1.0">

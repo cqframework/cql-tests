@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd" name="CqlAggregateFunctionsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#aggregate-functions" version="1.5">
-	<!-- Suite-level capability (applies to all groups/tests unless overridden) -->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+	name="CqlAggregateFunctionsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#aggregate-functions" version="1.5">
 	<capability code="aggregate-functions"/>
 	<group name="AllTrue" version="1.5">
 		<test name="AllTrueAllTrue" version="1.5">
@@ -86,7 +86,6 @@
 	</group>
 	<group name="Product" version="1.5">
 		<test name="ProductLong" version="1.5">
-			<!-- Requires Long arithmetic support -->
 			<capability code="system.long"/>
 			<expression>Product({5L, 4L, 5L})</expression>
 			<output>100L</output>
@@ -98,7 +97,6 @@
 			<output>4</output>
 		</test>
 		<test name="CountTestDateTime" version="1.5">
-			<!-- Counting DateTimes implies date/time handling & comparisons -->
 			<capability code="date-and-time-operators"/>
 			<expression>Count({ DateTime(2014), DateTime(2001), DateTime(2010) })</expression>
 			<output>3</output>
@@ -233,7 +231,6 @@
 			<output>20L</output>
 		</test>
 		<test name="SumTestQuantity" version="1.5">
-			<!-- Quantity arithmetic (with potential for unit conversions) -->
 			<capability code="unit-conversion-support"/>
 			<expression>Sum({1 'ml',2 'ml',3 'ml',4 'ml',5 'ml'})</expression>
 			<output>15 'ml'</output>

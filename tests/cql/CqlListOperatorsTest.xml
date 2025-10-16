@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<tests xmlns="http://hl7.org/fhirpath/tests" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd" name="CqlListOperatorsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#list-operators-2" version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+	name="CqlListOperatorsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#list-operators-2" version="1.0">
 	<capability code="list-operators" />
 	<group name="Sort" version="1.0">
 		<capability code="list-operators" />
@@ -61,7 +62,7 @@
 	</group>
 	<group name="Contains" version="1.0">
 		<capability code="list-operators" />
-			<test name="ContainsABNullHasNull" version="1.0">
+		<test name="ContainsABNullHasNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 'a', 'b', null } contains null</expression>
 			<output>true</output>
@@ -104,15 +105,16 @@
 	</group>
 	<group name="Descendents" version="1.0">
 		<capability code="list-operators" />
-			<test name="DescendentsEmptyList" version="1.0">
+		<test name="DescendentsEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>(null).descendents()</expression>
 			<output>null</output>
 		</test>
+		<!-- TODO: how to call without fhirpath syntax -->
 	</group>
 	<group name="Distinct" version="1.0">
 		<capability code="list-operators" />
-			<test name="DistinctEmptyList" version="1.0">
+		<test name="DistinctEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>distinct {}</expression>
 			<output>{}</output>
@@ -160,7 +162,7 @@
 	</group>
 	<group name="Equal" version="1.0">
 		<capability code="list-operators" />
-			<test name="EqualNullNull" version="1.0">
+		<test name="EqualNullNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>{null} = {null}</expression>
 			<output>true</output>
@@ -243,7 +245,7 @@
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="list-operators" />
-			<test name="ExceptEmptyListAndEmptyList" version="1.0">
+		<test name="ExceptEmptyListAndEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} except {}</expression>
 			<output>{}</output>
@@ -276,7 +278,7 @@
 	</group>
 	<group name="Exists" version="1.0">
 		<capability code="list-operators" />
-			<test name="ExistsEmpty" version="1.0">
+		<test name="ExistsEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>Exists({})</expression>
 			<output>false</output>
@@ -314,7 +316,7 @@
 	</group>
 	<group name="Flatten" version="1.0">
 		<capability code="list-operators" />
-			<test name="FlattenEmpty" version="1.0">
+		<test name="FlattenEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>Flatten({{},{}})</expression>
 			<output>{}</output>
@@ -342,7 +344,7 @@
 	</group>
 	<group name="First" version="1.0">
 		<capability code="list-operators" />
-			<test name="FirstEmpty" version="1.0">
+		<test name="FirstEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>First({})</expression>
 			<output>null</output>
@@ -375,7 +377,7 @@
 	</group>
 	<group name="In" version="1.0">
 		<capability code="list-operators" />
-			<test name="InNullEmpty" version="1.0">
+		<test name="InNullEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>null in {}</expression>
 			<output>false</output>
@@ -423,7 +425,7 @@
 	</group>
 	<group name="Includes" version="1.0">
 		<capability code="list-operators" />
-			<test name="IncludesEmptyAndEmpty" version="1.0">
+		<test name="IncludesEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} includes {}</expression>
 			<output>true</output>
@@ -473,7 +475,7 @@
 			<expression>null includes {2}</expression>
 			<output>null</output>
 		</test>
-
+		<!-- this test is going to the ContainsEvaluator -->
 		<test name="IncludesNullRight" version="1.0">
 			<capability code="list-operators" />
 			<expression>{'s', 'a', 'm'} includes null</expression>
@@ -482,7 +484,7 @@
 	</group>
 	<group name="IncludedIn" version="1.0">
 		<capability code="list-operators" />
-			<test name="IncludedInEmptyAndEmpty" version="1.0">
+		<test name="IncludedInEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} included in {}</expression>
 			<output>true</output>
@@ -527,6 +529,7 @@
 			<expression>@T16:59:59.999 included in { @T02:29:15.156, @T15:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
 		</test>
+		<!-- the following expression is going to the InEvaluator -->
 		<test name="IncludedInNullLeft" version="1.0">
 			<capability code="list-operators" />
 			<expression>null included in {2}</expression>
@@ -540,12 +543,12 @@
 	</group>
 	<group name="Indexer" version="1.0">
 		<capability code="list-operators" />
-			<test name="IndexerNull1List" version="1.0">
+		<test name="IndexerNull1List" version="1.0">
 			<capability code="list-operators" />
 			<expression>(null as List&lt;System.Any&gt;)[1]</expression>
 			<output>null</output>
 		</test>
-
+		<!-- Cast is required due to ambiguity with Indexer(String) and Indexer(List&lt;Any&gt;) -->
 		<test name="Indexer0Of12" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 1, 2 }[0]</expression>
@@ -579,7 +582,7 @@
 	</group>
 	<group name="IndexOf" version="1.0">
 		<capability code="list-operators" />
-			<test name="IndexOfEmptyNull" version="1.0">
+		<test name="IndexOfEmptyNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>IndexOf({}, null)</expression>
 			<output>null</output>
@@ -622,7 +625,7 @@
 	</group>
 	<group name="Intersect" version="1.0">
 		<capability code="list-operators" />
-			<test name="IntersectEmptyListAndEmptyList" version="1.0">
+		<test name="IntersectEmptyListAndEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} intersect {}</expression>
 			<output>{}</output>
@@ -650,7 +653,7 @@
 	</group>
 	<group name="Last" version="1.0">
 		<capability code="list-operators" />
-			<test name="LastEmpty" version="1.0">
+		<test name="LastEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>Last({})</expression>
 			<output>null</output>
@@ -683,7 +686,7 @@
 	</group>
 	<group name="Length" version="1.0">
 		<capability code="list-operators" />
-			<test name="LengthEmptyList" version="1.0">
+		<test name="LengthEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>Length({})</expression>
 			<output>0</output>
@@ -721,7 +724,7 @@
 	</group>
 	<group name="Equivalent" version="1.0">
 		<capability code="list-operators" />
-			<test name="EquivalentEmptyAndEmpty" version="1.0">
+		<test name="EquivalentEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} ~ {}</expression>
 			<output>true</output>
@@ -740,19 +743,19 @@
 			<capability code="list-operators" />
 			<expression>{ 'a', 'b', 'c' } ~ { 1, 2, 3 }</expression>
 			<output>false</output>
-
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="Equivalent123AndABC" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 1, 2, 3 } ~ { 'a', 'b', 'c' }</expression>
 			<output>false</output>
-
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="Equivalent123AndString123" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 1, 2, 3 } ~ { '1', '2', '3' }</expression>
 			<output>false</output>
-
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="EquivalentDateTimeTrue" version="1.0">
 			<capability code="list-operators" />
@@ -787,7 +790,7 @@
 	</group>
 	<group name="NotEqual" version="1.0">
 		<capability code="list-operators" />
-			<test name="NotEqualEmptyAndEmpty" version="1.0">
+		<test name="NotEqualEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} != {}</expression>
 			<output>false</output>
@@ -806,18 +809,19 @@
 			<capability code="list-operators" />
 			<expression>{ 'a', 'b', 'c' } != { 1, 2, 3 }</expression>
 			<output>true</output>
-
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="NotEqual123AndABC" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 1, 2, 3 } != { 'a', 'b', 'c' }</expression>
 			<output>true</output>
-
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="NotEqual123AndString123" version="1.0">
 			<capability code="list-operators" />
 			<expression>{ 1, 2, 3 } != { '1', '2', '3' }</expression>
 			<output>true</output>
+			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="NotEqualDateTimeTrue" version="1.0">
 			<capability code="list-operators" />
@@ -842,7 +846,7 @@
 	</group>
 	<group name="ProperContains" version="1.0">
 		<capability code="list-operators" />
-			<test name="ProperContainsNullRightFalse" version="1.0">
+		<test name="ProperContainsNullRightFalse" version="1.0">
 			<capability code="list-operators" />
 			<expression>{'s', 'u', 'n'} properly includes null</expression>
 			<output>false</output>
@@ -865,7 +869,7 @@
 	</group>
 	<group name="ProperIn" version="1.0">
 		<capability code="list-operators" />
-			<test name="ProperInNullRightFalse" version="1.0">
+		<test name="ProperInNullRightFalse" version="1.0">
 			<capability code="list-operators" />
 			<expression>null properly included in {'s', 'u', 'n'}</expression>
 			<output>false</output>
@@ -888,7 +892,7 @@
 	</group>
 	<group name="ProperlyIncludes" version="1.0">
 		<capability code="list-operators" />
-			<test name="ProperIncludesEmptyAndEmpty" version="1.0">
+		<test name="ProperIncludesEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} properly includes {}</expression>
 			<output>false</output>
@@ -941,7 +945,7 @@
 	</group>
 	<group name="ProperlyIncludedIn" version="1.0">
 		<capability code="list-operators" />
-			<test name="ProperIncludedInEmptyAndEmpty" version="1.0">
+		<test name="ProperIncludedInEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} properly included in {}</expression>
 			<output>false</output>
@@ -994,7 +998,7 @@
 	</group>
 	<group name="SingletonFrom" version="1.0">
 		<capability code="list-operators" />
-			<test name="SingletonFromEmpty" version="1.0">
+		<test name="SingletonFromEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>singleton from {}</expression>
 			<output>null</output>
@@ -1012,7 +1016,7 @@
 		<test name="SingletonFrom12" version="1.0">
 			<capability code="list-operators" />
 			<expression invalid="true">singleton from { 1, 2 }</expression>
-
+			<!-- EXPECT: Expected a list with at most one element, but found a list with multiple elements. -->
 		</test>
 		<test name="SingletonFromDateTime" version="1.0">
 			<capability code="list-operators" />
@@ -1027,7 +1031,7 @@
 	</group>
 	<group name="Skip" version="1.0">
 		<capability code="list-operators" />
-			<test name="SkipNull" version="1.0">
+		<test name="SkipNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>Skip(null, 3)</expression>
 			<output>null</output>
@@ -1055,7 +1059,7 @@
 	</group>
 	<group name="Tail" version="1.0">
 		<capability code="list-operators" />
-			<test name="TailNull" version="1.0">
+		<test name="TailNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>Tail(null)</expression>
 			<output>null</output>
@@ -1083,7 +1087,7 @@
 	</group>
 	<group name="Take" version="1.0">
 		<capability code="list-operators" />
-			<test name="TakeNull">
+		<test name="TakeNull">
 			<capability code="list-operators" />
 			<expression>Take(null, 3)</expression>
 			<output>null</output>
@@ -1116,7 +1120,7 @@
 	</group>
 	<group name="Union" version="1.0">
 		<capability code="list-operators" />
-			<test name="UnionEmptyAndEmpty" version="1.0">
+		<test name="UnionEmptyAndEmpty" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} union {}</expression>
 			<output>{}</output>

@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<tests xmlns="http://hl7.org/fhirpath/tests" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd" name="CqlNullologicalOperatorsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#nullological-operators-3" version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+	name="CqlNullologicalOperatorsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#nullological-operators-3" version="1.0">
 	<capability code="nullological-operators" />
 	<group name="Coalesce" version="1.0">
 		<capability code="nullological-operators" />
@@ -61,7 +62,7 @@
 	</group>
 	<group name="IsNull" version="1.0">
 		<capability code="nullological-operators" />
-			<test name="IsNullTrue" version="1.0">
+		<test name="IsNullTrue" version="1.0">
 			<capability code="nullological-operators" />
 			<expression>IsNull(null)</expression>
 			<output>true</output>
@@ -89,7 +90,7 @@
 	</group>
 	<group name="IsFalse" version="1.0">
 		<capability code="nullological-operators" />
-			<test name="IsFalseFalse" version="1.0">
+		<test name="IsFalseFalse" version="1.0">
 			<capability code="nullological-operators" />
 			<expression>IsFalse(false)</expression>
 			<output>true</output>
@@ -107,7 +108,7 @@
 	</group>
 	<group name="IsTrue" version="1.0">
 		<capability code="nullological-operators" />
-			<test name="IsTrueTrue" version="1.0">
+		<test name="IsTrueTrue" version="1.0">
 			<capability code="nullological-operators" />
 			<expression>IsTrue(true)</expression>
 			<output>true</output>
