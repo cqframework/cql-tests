@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
 	name="CqlComparisonOperatorsTest" reference="https://cql.hl7.org/09-b-cqlreference.html#comparison-operators-4" version="1.0">
+	<capability code="comparison-operators"/>
 	<group name="Between" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="BetweenIntTrue" version="1.0">
 			<expression>4 between 2 and 6</expression>
 			<output>true</output>
 		</test>
 	</group>
 	<group name="Equal" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="SimpleEqTrueTrue" version="1.0">
 			<expression>true = true</expression>
 			<output>true</output>
@@ -73,6 +76,7 @@
 			<output>true</output>
 		</test>
 		<test name="QuantityEqCM1M01" version="1.4">
+			<capability code="unit-conversion-support"/>
 			<expression>1'cm' = 0.01'm'</expression>
 			<output>true</output>
 		</test>
@@ -81,50 +85,62 @@
 			<output>true</output>
 		</test>
 		<test name="TupleEqJohnJohn" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 1, Name : 'John' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqJohnJane" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 2, Name : 'Jane' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqJohn1John2" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 2, Name : 'John' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqJohn1John2WithNullName" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 2, Name : null }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqDifferentNamesWithOneNullId" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : null, Name : 'John' } = Tuple { Id : 1, Name : 'James' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqJohn1John1WithBothNamesNull" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : null } = Tuple { Id : 1, Name : null }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqJohnJohnWithBothIdsNull" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : null, Name : 'John' } = Tuple { Id : null, Name : 'John' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqJohn1John1WithNullName" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 1, Name : null }</expression>
 			<output>null</output>
 		</test>
 		<test name="TupleEqDateTimeTrue" version="1.0">
+			<capability code="tuple"/>
 			<expression>Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) } = Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqDateTimeFalse" version="1.0">
+			<capability code="tuple"/>
 			<expression>Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) } = Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 5, 0, 0, 0) }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqTimeTrue" version="1.0">
+			<capability code="tuple"/>
 			<expression>Tuple { timeId: 55, TheTime: @T05:15:15.541 } = Tuple { timeId: 55, TheTime: @T05:15:15.541 }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleEqTimeFalse" version="1.0">
+			<capability code="tuple"/>
 			<expression>Tuple { timeId: 55, TheTime: @T05:15:15.541 } = Tuple { timeId: 55, TheTime: @T05:15:15.540 }</expression>
 			<output>false</output>
 		</test>
@@ -166,6 +182,7 @@
 		</test>
 	</group>
 	<group name="Greater" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="GreaterZZ" version="1.0">
 			<expression>0 &gt; 0</expression>
 			<output>false</output>
@@ -207,10 +224,12 @@
 			<output>true</output>
 		</test>
 		<test name="GreaterM1CM1" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &gt; 1'cm'</expression>
 			<output>true</output>
 		</test>
 		<test name="GreaterM1CM10" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &gt; 10'cm'</expression>
 			<output>true</output>
 		</test>
@@ -268,6 +287,7 @@
 		</test>
 	</group>
 	<group name="Greater Or Equal" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="GreaterOrEqualZZ" version="1.0">
 			<expression>0 &gt;= 0</expression>
 			<output>true</output>
@@ -309,10 +329,12 @@
 			<output>true</output>
 		</test>
 		<test name="GreaterOrEqualM1CM1" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &gt;= 1'cm'</expression>
 			<output>true</output>
 		</test>
 		<test name="GreaterOrEqualM1CM10" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &gt;= 10'cm'</expression>
 			<output>true</output>
 		</test>
@@ -378,6 +400,7 @@
 		</test>
 	</group>
 	<group name="Less" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="LessZZ" version="1.0">
 			<expression>0 &lt; 0</expression>
 			<output>false</output>
@@ -419,10 +442,12 @@
 			<output>false</output>
 		</test>
 		<test name="LessM1CM1" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &lt; 1'cm'</expression>
 			<output>false</output>
 		</test>
 		<test name="LessM1CM10" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &lt; 10'cm'</expression>
 			<output>false</output>
 		</test>
@@ -480,6 +505,7 @@
 		</test>
 	</group>
 	<group name="Less Or Equal" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="LessOrEqualZZ" version="1.0">
 			<expression>0 &lt;= 0</expression>
 			<output>true</output>
@@ -521,10 +547,12 @@
 			<output>false</output>
 		</test>
 		<test name="LessOrEqualM1CM1" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &lt;= 1'cm'</expression>
 			<output>false</output>
 		</test>
 		<test name="LessOrEqualM1CM10" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'm' &lt;= 10'cm'</expression>
 			<output>false</output>
 		</test>
@@ -590,6 +618,7 @@
 		</test>
 	</group>
 	<group name="Equivalent" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="EquivTrueTrue" version="1.0">
 			<expression>true ~ true</expression>
 			<output>true</output>
@@ -655,22 +684,27 @@
 			<output>true</output>
 		</test>
 		<test name="EquivEqCM1M01" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'cm' ~ 0.01'm'</expression>
 			<output>true</output>
 		</test>
 		<test name="EquivTupleJohnJohn" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 1, Name : 'John' }</expression>
 			<output>true</output>
 		</test>
 		<test name="EquivTupleJohnJohnWithNulls" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John', Position: null } ~ Tuple { Id : 1, Name : 'John', Position: null }</expression>
 			<output>true</output>
 		</test>
 		<test name="EquivTupleJohnJane" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 2, Name : 'Jane' }</expression>
 			<output>false</output>
 		</test>
 		<test name="EquivTupleJohn1John2" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 2, Name : 'John' }</expression>
 			<output>false</output>
 		</test>
@@ -692,6 +726,7 @@
 		</test>
 	</group>
 	<group name="Not Equal" version="1.0">
+		<capability code="comparison-operators"/>
 		<test name="SimpleNotEqTrueTrue" version="1.0">
 			<expression>true != true</expression>
 			<output>false</output>
@@ -757,38 +792,47 @@
 			<output>false</output>
 		</test>
 		<test name="QuantityNotEqCM1M01" version="1.0">
+			<capability code="unit-conversion-support"/>
 			<expression>1'cm' != 0.01'm'</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleNotEqJohnJohn" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 1, Name : 'John' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleNotEqJohnJane" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 2, Name : 'Jane' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleNotEqJohn1John2" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 2, Name : 'John' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleNotEqJohn1John2WithNullName" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 2, Name : null }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleNotEqDifferingNamesWithOneNullId" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : null, Name : 'John' } != Tuple{ Id : 1, Name : 'Joe' }</expression>
 			<output>true</output>
 		</test>
 		<test name="TupleNotEqJohn1John1WithBothNamesNull" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : null } != Tuple{ Id : 1, Name : null }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleNotEqMatchingNamesWithNullIDs" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : null, Name : 'John' } != Tuple{ Id : null, Name : 'John' }</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleNotEqJohn1John1WithNullName" version="1.5">
+			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 1, Name : null }</expression>
 			<output>null</output>
 		</test>
