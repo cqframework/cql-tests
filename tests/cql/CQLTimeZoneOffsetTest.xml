@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+       name="CqlTimeZoneOffsetTest" reference="https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2" version="1.4">
+    <capability code="timezone-offset"/>
+    <capability code="component-extraction"/>
+    <capability code="timezone-offset-policy.no-default-offset"/>
+    <group name="Policy: No default offset (preserve offset-less)" version="1.5">
+        <test name="DateTimeEquality_NoDefaultOffset_NullWhenComparingOffsetlessToOffset" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.no-default-offset"/><!-- Offset-less vs explicit UTC -->
+            <expression>@2012-04-01T00:00 = @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_ReturnsNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.no-default-offset"/>
+            <expression>timezoneoffset from @2012-04-01T00:00</expression>
+            <output>true</output>
+        </test>
+        <test name="DateTimeOrdering_NoDefaultOffset_NullWhenOffsetlessVsOffset" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.no-default-offset"/>
+            <expression>@2012-04-01T00:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+    </group>
+    <group name="Policy: Default to server offset (normalize offset-less to server)">
+        <test name="TimezoneOffsetExtraction_DefaultServerOffset_MatchesServer" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <expression>(timezoneoffset from @2012-04-01T00:00) = (timezoneoffset from Now())</expression>
+            <output>true</output>
+        </test>
+        <test name="DateTimeEquality_DefaultServerOffset_EqualsWhenExplicitServerOffsetGiven" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <expression>@2012-04-01T00:00 = @2012-04-01T00:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>true</output>
+        </test>
+        <test name="DateTimeOrdering_DefaultServerOffset_Deterministic" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!-- If both normalize to the same instant, < is false -->
+            <expression>@2012-04-01T00:00 &lt; @2012-04-01T00:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>false</output>
+        </test>
+    </group>
+</tests>
