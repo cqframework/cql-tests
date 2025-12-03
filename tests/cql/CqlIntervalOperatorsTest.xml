@@ -283,7 +283,7 @@
 		<test name="DateTimeCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[DateTime(2012, 1, 1), DateTime(2012, 1, 15)], Interval[DateTime(2012, 1, 16), DateTime(2012, 5, 25)] }</expression>
-			<output>{Interval [ @2012-01-01T, @2012-05-25T ]}</output>
+			<output>Interval [ @2012-01-01T, @2012-05-25T ]</output>
 		</test>
 		<test name="TimeCollapse" version="1.0">
 			<capability code="interval-operators"/>
