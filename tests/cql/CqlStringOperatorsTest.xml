@@ -172,8 +172,8 @@
 		</test>
 		<test name="LowerEmpty" version="1.0">
 			<capability code="string-operators" />
-			<expression>Lower('')</expression>
-			<output>''</output>
+			<expression>Lower('') = ''</expression>
+			<output>true</output>
 		</test>
 		<test name="LowerA" version="1.0">
 			<capability code="string-operators" />
@@ -304,13 +304,13 @@
 		</test>
 		<test name="SplitABNull" version="1.0">
 			<capability code="string-operators" />
-			<expression>Split('a,b', null)</expression>
-			<output>{'a,b'}</output>
+			<expression>Split('a,b', null) = {'a,b'}</expression>
+			<output>true</output>
 		</test>
 		<test name="SplitABDash" version="1.0">
 			<capability code="string-operators" />
-			<expression>Split('a,b', '-')</expression>
-			<output>{'a,b'}</output>
+			<expression>Split('a,b', '-') = {'a,b'}</expression>
+			<output>true</output>
 		</test>
 		<test name="SplitABComma" version="1.0">
 			<capability code="string-operators" />
@@ -408,8 +408,8 @@
 		</test>
 		<test name="UpperEmpty" version="1.0">
 			<capability code="string-operators" />
-			<expression>Upper('')</expression>
-			<output>''</output>
+			<expression>Upper('') = ''</expression>
+			<output>true</output>
 		</test>
 		<test name="UpperA" version="1.0">
 			<capability code="string-operators" />
