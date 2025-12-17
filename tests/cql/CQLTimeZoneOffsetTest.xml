@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
-       name="CqlTimeZoneOffsetTest" reference="https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2" version="1.4">
+       name="" reference="https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2" version="1.4">
     <capability code="timezone-offset"/>
     <capability code="component-extraction"/>
     <capability code="timezone-offset-policy.no-default-offset"/>
@@ -16,6 +16,12 @@
             <capability code="timezone-offset"/>
             <capability code="component-extraction"/>
             <capability code="timezone-offset-policy.no-default-offset"/>
+            <!--
+            https://cql.hl7.org/02-authorsguide.html
+            Only DateTime values may specify a timezone offset, either as UTC (Z), or as a timezone offset. If no
+            timezone offset is specified, the timezone offset of the evaluation request timestamp is used.
+            Having true as expected is not correct with the current expression.
+            -->
             <expression>timezoneoffset from @2012-04-01T00:00</expression>
             <output>true</output>
         </test>
