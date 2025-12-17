@@ -31,13 +31,13 @@
 		</test>
 		<test name="CoalesceFirstList" version="1.0">
 			<capability code="nullological-operators" />
-			<expression>Coalesce({'a'},null, null)</expression>
-			<output>{'a'}</output>
+			<expression>Coalesce({'a'},null, null) = {'a'}</expression>
+			<output>true</output>
 		</test>
 		<test name="CoalesceLastList" version="1.0">
 			<capability code="nullological-operators" />
-			<expression>Coalesce(null, null, {'a'})</expression>
-			<output>{'a'}</output>
+			<expression>Coalesce(null, null, {'a'}) = {'a'}</expression>
+			<output>true</output>
 		</test>
 		<test name="DateTimeCoalesce" version="1.0">
 			<capability code="nullological-operators" />
