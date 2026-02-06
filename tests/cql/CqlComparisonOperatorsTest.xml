@@ -195,7 +195,7 @@
 		<test name="DateTimeEqNull" version="1.0">
 			<expression>DateTime(null) = DateTime(null)</expression>
 			<output>null</output>
-		</test>>
+		</test>
 		<test name="DateTimeEqTrue" version="1.0">
 			<expression>DateTime(2001, 1, 1, null) = DateTime(2001, 1, 1, null, null)</expression>
 			<output>true</output>
