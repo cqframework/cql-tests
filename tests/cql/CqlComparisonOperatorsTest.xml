@@ -100,8 +100,12 @@
 			<expression>1'cm':2'cm' = 1'cm':2'cm'</expression>
 			<output>true</output>
 		</test>
-		<test name="RatioNotEqual" version="1.0">
+		<test name="RatioNotEqualDiffNumerator" version="1.0">
 			<expression>1'cm':2'cm' = 1.1'cm':2'cm'</expression>
+			<output>false</output>
+		</test>
+		<test name="RatioNotEqualDiffDenominator" version="1.0">
+			<expression>1'cm':2'cm' = 1'cm':2.1'cm'</expression>
 			<output>false</output>
 		</test>
 		<test name="TupleEqJohnJohn" version="1.5">
