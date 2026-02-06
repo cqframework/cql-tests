@@ -48,6 +48,7 @@
 			<output>false</output>
 		</test>
 		<test name="SimpleEqLong1Long2" version="1.5">
+			<capability code="system.long"/>
 			<expression>1L = 2L</expression>
 			<output>false</output>
 		</test>
@@ -229,6 +230,7 @@
 			<output>false</output>
 		</test>
 		<test name="GreaterLong" version="1.5">
+			<capability code="system.long"/>
 			<expression>0L &gt; 10L</expression>
 			<output>false</output>
 		</test>
@@ -338,6 +340,7 @@
 			<output>false</output>
 		</test>
 		<test name="GreaterOrEqualZ1Long" version="1.5">
+			<capability code="system.long"/>
 			<expression>0L &gt;= 10L</expression>
 			<output>false</output>
 		</test>
@@ -455,10 +458,12 @@
 			<output>true</output>
 		</test>
 		<test name="LessLong" version="1.5">
+			<capability code="system.long"/>
 			<expression>0L &lt; 10L</expression>
 			<output>true</output>
 		</test>
 		<test name="LessLongNeg" version="1.5">
+			<capability code="system.long"/>
 			<expression>-30L &lt; -20L</expression>
 			<output>true</output>
 		</test>
@@ -568,6 +573,7 @@
 			<output>true</output>
 		</test>
 		<test name="LessOrEqualZ1Long" version="1.5">
+			<capability code="system.long"/>
 			<expression>0L &lt;= 10L</expression>
 			<output>true</output>
 		</test>
@@ -863,6 +869,7 @@
 			<output>true</output>
 		</test>
 		<test name="SimpleNotEqLong1Long2" version="1.5">
+			<capability code="system.long"/>
 			<expression>1L != 2L</expression>
 			<output>true</output>
 		</test>
