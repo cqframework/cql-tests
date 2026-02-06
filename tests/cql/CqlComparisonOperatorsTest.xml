@@ -768,7 +768,11 @@
 			<expression>1'cm':2'cm' ~ 1'cm':2'cm'</expression>
 			<output>true</output>
 		</test>
-		<test name="RatioNotEquivalent" version="1.0">
+		<test name="RatioNotEquivalentDiffNumerator" version="1.0">
+			<expression>1'cm':2'cm' ~ 3'cm':2'cm'</expression>
+			<output>false</output>
+		</test>
+		<test name="RatioNotEquivalentDiffDenominator" version="1.0">
 			<expression>1'cm':2'cm' ~ 1'cm':3'cm'</expression>
 			<output>false</output>
 		</test>
