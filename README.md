@@ -10,6 +10,10 @@ The test cases are expressed in an XML format that is common across the FHIRPath
 
 * [Test Schema](tests/testSchema.xsd)
 
+## Running the Tests
+
+In addition to being part of the CI Build for several implementations, these tests can be run using the [CQL Tests Runner](https://github.com/cqframework/cql-tests-runner)
+
 ## Change Management
 
 Changes to the tests maintained within this repository are managed using as lightweight a process as possible, while still ensuring stable, viable, production quality software. These processes are described in the [Change Management](CHANGE_MANAGEMENT.md) topic.
