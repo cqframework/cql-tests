@@ -47,8 +47,8 @@
 			<expression>1 = 2</expression>
 			<output>false</output>
 		</test>
-		<test name="SimpleEqInt1Int2Long" version="1.5">
-			<expression>10L = 20L</expression>
+		<test name="SimpleEqLong1Long2" version="1.5">
+			<expression>1L = 2L</expression>
 			<output>false</output>
 		</test>
 		<test name="SimpleEqStringAStringA" version="1.0">
@@ -224,7 +224,7 @@
 			<output>false</output>
 		</test>
 		<test name="GreaterLong" version="1.5">
-			<expression>00L > 10L</expression>
+			<expression>0L &gt; 10L</expression>
 			<output>false</output>
 		</test>
 		<test name="GreaterZNeg1" version="1.0">
@@ -333,7 +333,7 @@
 			<output>false</output>
 		</test>
 		<test name="GreaterOrEqualZ1Long" version="1.5">
-			<expression>00L &gt;= 10L</expression>
+			<expression>0L &gt;= 10L</expression>
 			<output>false</output>
 		</test>
 		<test name="GreaterOrEqualZNeg1" version="1.0">
@@ -450,7 +450,7 @@
 			<output>true</output>
 		</test>
 		<test name="LessLong" version="1.5">
-			<expression>00L &lt; 10L</expression>
+			<expression>0L &lt; 10L</expression>
 			<output>true</output>
 		</test>
 		<test name="LessLongNeg" version="1.5">
@@ -563,7 +563,7 @@
 			<output>true</output>
 		</test>
 		<test name="LessOrEqualZ1Long" version="1.5">
-			<expression>00L &lt;= 10L</expression>
+			<expression>0L &lt;= 10L</expression>
 			<output>true</output>
 		</test>
 		<test name="LessOrEqualZNeg1" version="1.0">
@@ -778,11 +778,13 @@
 			<expression>Tuple { Id : 1, Name : 'John', Position: null } ~ Tuple { Id : 1, Name : 'John', Position: null }</expression>
 			<output>true</output>
 		</test>
-		<test name="EquivTupleJohnJohnFalse">
+		<test name="EquivTupleJohnJohnFalse" version="1.5">
+			<capability code="tuple"/>
 			<expression invalid="true">Tuple { Id : 1, Name : 'John', Position: 'Shift Manager' } ~ Tuple { Id : 1, Name : 'John' }</expression>
 			<!-- EXPECT: Could not resolve call to operator Equivalent with signature (tuple{Id:System.Integer,Name:System.String,Position:System.String},tuple{Id:System.Integer,Name:System.String}). -->
 		</test>
-		<test name="EquivTupleJohnJohnFalse2">
+		<test name="EquivTupleJohnJohnFalse2" version="1.5">
+			<capability code="tuple"/>
 			<expression invalid="true">Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 1, Name : 'John', Position: 'Shift Manager' }</expression>
 			<!-- EXPECT: Could not resolve call to operator Equivalent with signature (tuple{Id:System.Integer,Name:System.String},tuple{Id:System.Integer,Name:System.String,Position:System.String}). -->
 		</test>
@@ -851,8 +853,8 @@
 			<expression>1 != 2</expression>
 			<output>true</output>
 		</test>
-		<test name="SimpleNotEqInt1Int2Long" version="1.5">
-			<expression>10L != 20L</expression>
+		<test name="SimpleNotEqLong1Long2" version="1.5">
+			<expression>1L != 2L</expression>
 			<output>true</output>
 		</test>
 		<test name="SimpleNotEqStringAStringA" version="1.0">
