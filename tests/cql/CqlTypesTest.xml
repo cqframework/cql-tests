@@ -164,8 +164,8 @@
 		</test>
 		<test name="QuantityTest2" version="1.0">
 			<capability code="types" />
-			<expression>2.5589 '{eskimo kisses}'</expression>
-			<output>2.5589 '{eskimo kisses}'</output>
+			<expression>2.5589 '{eskimo_kisses}'</expression>
+			<output>2.5589 '{eskimo_kisses}'</output>
 		</test>
 		<test name="QuantityFractionalTooBig" version="1.0">
 			<capability code="types" />
