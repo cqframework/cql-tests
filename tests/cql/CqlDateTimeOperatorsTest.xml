@@ -838,7 +838,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>days between DateTime(2014, 1, 15) and DateTime(2014, 2)</expression>
-			<output>Interval[ 16, 44 ]</output>
+			<output>Interval[17, 44]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -848,7 +848,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>months between DateTime(2005) and DateTime(2006, 5)</expression>
-			<output>Interval[ 4, 16 ]</output>
+			<output>Interval[4, 16]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -859,18 +859,24 @@
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				+ (days between DateTime(2014, 1, 15) and DateTime(2014, 2))</expression>
-			<output>Interval[ 32, 88 ]</output>
+			<output>Interval[34, 88]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
-			currently Equivalent() results in null from comparing with an Interval. -->
+			currently Equivalent() results in null from comparing with an Interval.
+			NOTE: this should pass when this issue is fixed https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="DateTimeDurationBetweenUncertainSubtract" version="1.4">
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				- (months between DateTime(2005) and DateTime(2006, 5))</expression>
-			<output>Interval[ 0, 40 ]</output>
+			<output>Interval[13, 28]</output>
+			<!-- NOTE: output was Interval[0, 40]. Changed to Interval[13, 28] because underlining intervals should be Interval[4, 16] - Interval[17, 44]. And then
+			 https://cql.hl7.org/05-languagesemantics.html#arithmetic-operators 1.5.1.2 Arithmetic Operators shows low + low, high + high so subtraction should be
+			 low - low, high - high
+			 THis one is also dependent on https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176
+			 -->
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -881,7 +887,8 @@
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				* (days between DateTime(2014, 1, 15) and DateTime(2014, 2))</expression>
-			<output>Interval[ 256, 1936 ]</output>
+			<output>Interval[256, 1936]</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;

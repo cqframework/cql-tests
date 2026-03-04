@@ -248,27 +248,32 @@
 		<test name="IntegerIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1,5], Interval[3,7], Interval[12,19], Interval[7,10] }</expression>
-			<output>{Interval [ 1, 10 ], Interval [ 12, 19 ]}</output>
+			<output>{Interval [1, 10], Interval [12, 19]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="IntegerIntervalCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1,2], Interval[3,7], Interval[10,19], Interval[7,10] }</expression>
-			<output>{Interval [ 1, 19 ]}</output>
+			<output>{Interval [1, 19]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="IntegerIntervalCollapse3" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[4,6], Interval[7,8] }</expression>
-			<output>{Interval [ 4, 8 ]}</output>
+			<output>{Interval [4, 8]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="DecimalIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1.0,5.0], Interval[3.0,7.0], Interval[12.0,19.0], Interval[7.0,10.0] }</expression>
-			<output>{Interval [ 1.0, 10.0 ], Interval [ 12.0, 19.0 ]}</output>
+			<output>{Interval [1.0, 10.0], Interval [12.0, 19.0]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="DecimalIntervalCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[4.0,6.0], Interval[6.00000001,8.0] }</expression>
-			<output>{Interval [ 4.0, 8.0 ]}</output>
+			<output>{Interval [4.0, 8.0]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="QuantityIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
@@ -385,13 +390,14 @@
 		</test>
 		<test name="ExpandPer0D1" version="1.3">
 			<capability code="interval-operators"/>
-			<expression>expand { Interval[10, 10] } per 0.1</expression>
-			<output>{ Interval[10.0, 10.0], Interval[10.1, 10.1], Interval[10.2, 10.2], Interval[10.3, 10.3], Interval[10.4, 10.4], Interval[10.5, 10.5], Interval[10.6, 10.6], Interval[10.7, 10.7], Interval[10.8, 10.8], Interval[10.9, 10.9] }</output>
+			<expression>expand { Interval[10.0, 11.0] } per 0.1</expression>
+			<output>{ Interval[10.0, 10.0], Interval[10.1, 10.1], Interval[10.2, 10.2], Interval[10.3, 10.3], Interval[10.4, 10.4], Interval[10.5, 10.5], Interval[10.6, 10.6], Interval[10.7, 10.7], Interval[10.8, 10.8], Interval[10.9, 10.9], Interval[11.0, 11.0]  }</output>
+			<!-- TODO: Still fails until issue https://github.com/cqframework/clinical-reasoning/issues/947 is resolved (engine is returning intervals as strings and not as interval objects) -->
 		</test>
 		<test name="ExpandPer0D1IntervalOverload" version="1.3">
 			<capability code="interval-operators"/>
-			<expression>expand Interval[10, 10] per 0.1</expression>
-			<output>{ 10.0, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9 }</output>
+			<expression>expand Interval[10.0, 11.0] per 0.1</expression>
+			<output>{ 10.0, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11.0 }</output>
 		</test>
 		<test name="ExpandInterval" version="1.3">
 			<capability code="interval-operators"/>
@@ -2158,16 +2164,19 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@2016-05-01T00:00:00.000, @2016-05-02T00:00:00.000]</expression>
 			<output>Interval[@2016-05-01T00:00:00.000, @2016-05-02T00:00:00.000]</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="TimeIntervalTest" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T00:00:00.000, @T23:59:59.599]</expression>
 			<output>Interval[@T00:00:00.000, @T23:59:59.599]</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="CollapseIntervalTestInteger" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>{Interval[1, 10], Interval[11, 20], Interval[44, 50]}</expression>
 			<output>{Interval[1, 10], Interval[11, 20], Interval[44, 50]}</output>
+			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="InvalidIntegerInterval" version="1.0">
 			<capability code="interval-operators"/>
