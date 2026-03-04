@@ -809,7 +809,7 @@
 		<test name="DateTimeDurationBetweenYear" version="1.4">
 		  	<capability code="duration-between"/>
 			<expression>years between DateTime(2005) and DateTime(2010)</expression>
-			<output>Interval[ 4, 5 ]</output>
+			<output>Interval[4, 5]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;

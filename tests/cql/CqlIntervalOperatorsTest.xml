@@ -248,57 +248,57 @@
 		<test name="IntegerIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1,5], Interval[3,7], Interval[12,19], Interval[7,10] }</expression>
-			<output>{Interval [1, 10], Interval [12, 19]}</output>
+			<output>{interval [1, 10], interval [12, 19]}</output>
 			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="IntegerIntervalCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1,2], Interval[3,7], Interval[10,19], Interval[7,10] }</expression>
-			<output>{Interval [1, 19]}</output>
+			<output>{interval [1, 19]}</output>
 			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="IntegerIntervalCollapse3" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[4,6], Interval[7,8] }</expression>
-			<output>{Interval [4, 8]}</output>
+			<output>{interval [4, 8]}</output>
 			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="DecimalIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1.0,5.0], Interval[3.0,7.0], Interval[12.0,19.0], Interval[7.0,10.0] }</expression>
-			<output>{Interval [1.0, 10.0], Interval [12.0, 19.0]}</output>
+			<output>{interval [1.0, 10.0], interval [12.0, 19.0]}</output>
 			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="DecimalIntervalCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[4.0,6.0], Interval[6.00000001,8.0] }</expression>
-			<output>{Interval [4.0, 8.0]}</output>
+			<output>{interval [4.0, 8.0]}</output>
 			<!-- NOTE depends on issue https://github.com/cqframework/clinical-reasoning/issues/947#issue-4013077176 -->
 		</test>
 		<test name="QuantityIntervalCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1.0 'g',5.0 'g'], Interval[3.0 'g',7.0 'g'], Interval[12.0 'g',19.0 'g'], Interval[7.0 'g',10.0 'g'] }</expression>
-			<output>{Interval [ 1.0 'g', 10.0 'g' ], Interval [ 12.0 'g', 19.0 'g' ]}</output>
+			<output>{interval [1.0 'g', 10.0 'g'], interval [12.0 'g', 19.0 'g']}</output>
 		</test>
 		<test name="DateTimeCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[DateTime(2012, 1, 1), DateTime(2012, 1, 15)], Interval[DateTime(2012, 1, 10), DateTime(2012, 1, 25)], Interval[DateTime(2012, 5, 10), DateTime(2012, 5, 25)], Interval[DateTime(2012, 5, 20), DateTime(2012, 5, 30)] }</expression>
-			<output>{Interval [ @2012-01-01T, @2012-01-25T ], Interval [ @2012-05-10T, @2012-05-30T ]}</output>
+			<output>{interval [@2012-01-01T, @2012-01-25T], interval [@2012-05-10T, @2012-05-30T]}</output>
 		</test>
 		<test name="DateTimeCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[DateTime(2012, 1, 1), DateTime(2012, 1, 15)], Interval[DateTime(2012, 1, 16), DateTime(2012, 5, 25)] }</expression>
-			<output>{Interval [ @2012-01-01T, @2012-05-25T ]}</output>
+			<output>{interval [@2012-01-01T, @2012-05-25T]}</output>
 		</test>
 		<test name="TimeCollapse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[@T01:59:59.999, @T10:59:59.999], Interval[@T08:59:59.999, @T15:59:59.999], Interval[@T17:59:59.999, @T20:59:59.999], Interval[@T18:59:59.999, @T22:59:59.999] }</expression>
-			<output>{Interval [ @T01:59:59.999, @T15:59:59.999 ], Interval [ @T17:59:59.999, @T22:59:59.999 ]}</output>
+			<output>{interval [@T01:59:59.999, @T15:59:59.999], interval [@T17:59:59.999, @T22:59:59.999]}</output>
 		</test>
 		<test name="TimeCollapse2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[@T01:59:59.999, @T10:59:59.999], Interval[@T11:00:00.000, @T15:59:59.999] }</expression>
-			<output>{Interval [ @T01:59:59.999, @T15:59:59.999 ]}</output>
+			<output>{interval [@T01:59:59.999, @T15:59:59.999]}</output>
 		</test>
 	</group>
 	<group name="Expand" version="1.3">
@@ -667,7 +667,7 @@
 		<test name="IntegerIntervalExcept1to3" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 10] except Interval[4, 10]</expression>
-			<output>Interval [ 1, 3 ]</output>
+			<output>interval [1, 3]</output>
 		</test>
 		<test name="IntegerIntervalExceptNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -677,7 +677,7 @@
 		<test name="DecimalIntervalExcept1to3" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0, 10.0] except Interval[4.0, 10.0]</expression>
-			<output>Interval [ 1.0, 3.99999999 ]</output>
+			<output>interval [1.0, 3.99999999]</output>
 		</test>
 		<test name="DecimalIntervalExceptNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -687,32 +687,32 @@
 		<test name="QuantityIntervalExcept1to4" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0 'g', 10.0 'g'] except Interval[5.0 'g', 10.0 'g']</expression>
-			<output>Interval [ 1.0 'g', 4.99999999 'g' ]</output>
+			<output>interval [1.0 'g', 4.99999999 'g']</output>
 		</test>
 		<test name="Except12" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 4] except Interval[3, 6]</expression>
-			<output>Interval [ 1, 2 ]</output>
+			<output>interval [1, 2]</output>
 		</test>
 		<test name="ExceptDateTimeInterval" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[DateTime(2012, 1, 5), DateTime(2012, 1, 15)] except Interval[DateTime(2012, 1, 7), DateTime(2012, 1, 15)]</expression>
-			<output>Interval [ @2012-01-05T, @2012-01-06T ]</output>
+			<output>interval [@2012-01-05T, @2012-01-06T]</output>
 		</test>
 		<test name="ExceptDateTime2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[DateTime(2012, 1, 7), DateTime(2012, 1, 16)] except Interval[DateTime(2012, 1, 5), DateTime(2012, 1, 12)]</expression>
-			<output>Interval [ @2012-01-13T, @2012-01-16T ]</output>
+			<output>interval [@2012-01-13T, @2012-01-16T]</output>
 		</test>
 		<test name="ExceptTimeInterval" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T05:59:59.999, @T10:59:59.999] except Interval[@T08:59:59.999, @T10:59:59.999]</expression>
-			<output>Interval [ @T05:59:59.999, @T08:59:59.998 ]</output>
+			<output>interval [@T05:59:59.999, @T08:59:59.998]</output>
 		</test>
 		<test name="ExceptTime2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T08:59:59.999, @T11:59:59.999] except Interval[@T05:59:59.999, @T10:59:59.999]</expression>
-			<output>Interval [ @T11:00:00.000, @T11:59:59.999 ]</output>
+			<output>interval [@T11:00:00.000, @T11:59:59.999]</output>
 		</test>
 	</group>
 	<group name="In" version="1.0">
@@ -785,12 +785,12 @@
 		<test name="TestPeriod1" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@2017-12-20T11:00:00, @2017-12-21T21:00:00]</expression>
-			<output>Interval [ @2017-12-20T11:00:00, @2017-12-21T21:00:00 ]</output>
+			<output>interval [@2017-12-20T11:00:00, @2017-12-21T21:00:00]</output>
 		</test>
 		<test name="TestPeriod2" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@2017-12-20T10:30:00, @2017-12-20T12:00:00]</expression>
-			<output>Interval [ @2017-12-20T10:30:00, @2017-12-20T12:00:00 ]</output>
+			<output>interval [@2017-12-20T10:30:00, @2017-12-20T12:00:00]</output>
 		</test>
 		<test name="Issue32Interval" version="1.0">
 			<capability code="interval-operators"/>
@@ -963,7 +963,7 @@
 		<test name="IntegerIntervalIntersectTest4to10" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 10] intersect Interval[4, 10]</expression>
-			<output>Interval [ 4, 10 ]</output>
+			<output>interval [4, 10]</output>
 		</test>
 		<test name="IntegerIntervalIntersectTestNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -973,7 +973,7 @@
 		<test name="DecimalIntervalIntersectTest4to10" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0, 10.0] intersect Interval[4.0, 10.0]</expression>
-			<output>Interval [ 4.0, 10.0 ]</output>
+			<output>interval [4.0, 10.0]</output>
 		</test>
 		<test name="DecimalIntervalIntersectTestNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -983,7 +983,7 @@
 		<test name="QuantityIntervalIntersectTest5to10" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0 'g', 10.0 'g'] intersect Interval[5.0 'g', 10.0 'g']</expression>
-			<output>Interval [ 5.0 'g', 10.0 'g' ]</output>
+			<output>interval [5.0 'g', 10.0 'g']</output>
 		</test>
 		<test name="QuantityIntervalIntersectTestNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -993,12 +993,12 @@
 		<test name="DateTimeIntersect" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[DateTime(2012, 1, 7), DateTime(2012, 1, 14)] intersect Interval[DateTime(2012, 1, 7), DateTime(2012, 1, 10)]</expression>
-			<output>Interval [ @2012-01-07T, @2012-01-10T ]</output>
+			<output>interval [@2012-01-07T, @2012-01-10T]</output>
 		</test>
 		<test name="TimeIntersect" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] intersect Interval[@T04:59:59.999, @T06:59:59.999]</expression>
-			<output>Interval [ @T04:59:59.999, @T06:59:59.999 ]</output>
+			<output>interval [@T04:59:59.999, @T06:59:59.999]</output>
 		</test>
 	</group>
 	<group name="Equivalent" version="1.0">
@@ -2004,7 +2004,7 @@
 		<test name="IntegerIntervalUnion1To15" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 10] union Interval[4, 15]</expression>
-			<output>Interval [ 1, 15 ]</output>
+			<output>interval [1, 15]</output>
 		</test>
 		<test name="IntegerIntervalUnionNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -2014,7 +2014,7 @@
 		<test name="DecimalIntervalUnion1To15" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0, 10.0] union Interval[4.0, 15.0]</expression>
-			<output>Interval [ 1.0, 15.0 ]</output>
+			<output>interval [1.0, 15.0]</output>
 		</test>
 		<test name="DecimalIntervalUnionNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -2024,7 +2024,7 @@
 		<test name="QuantityIntervalUnion1To15" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1.0 'g', 10.0 'g'] union Interval[5.0 'g', 15.0 'g']</expression>
-			<output>Interval [ 1.0 'g', 15.0 'g' ]</output>
+			<output>interval [1.0 'g', 15.0 'g']</output>
 		</test>
 		<test name="QuantityIntervalUnionNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -2034,7 +2034,7 @@
 		<test name="DateTimeUnion" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[DateTime(2012, 1, 5), DateTime(2012, 1, 25)] union Interval[DateTime(2012, 1, 25), DateTime(2012, 1, 28)]</expression>
-			<output>Interval [ @2012-01-05T, @2012-01-28T ]</output>
+			<output>interval [@2012-01-05T, @2012-01-28T]</output>
 		</test>
 		<test name="DateTimeUnionNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -2044,7 +2044,7 @@
 		<test name="TimeUnion" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T05:59:59.999, @T15:59:59.999] union Interval[@T10:59:59.999, @T20:59:59.999]</expression>
-			<output>Interval [ @T05:59:59.999, @T20:59:59.999 ]</output>
+			<output>interval [@T05:59:59.999, @T20:59:59.999]</output>
 		</test>
 		<test name="TimeUnionNull" version="1.0">
 			<capability code="interval-operators"/>
