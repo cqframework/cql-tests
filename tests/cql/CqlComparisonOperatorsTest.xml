@@ -47,6 +47,11 @@
 			<expression>1 = 2</expression>
 			<output>false</output>
 		</test>
+		<test name="SimpleEqLong1Long2" version="1.5">
+			<capability code="system.long"/>
+			<expression>1L = 2L</expression>
+			<output>false</output>
+		</test>
 		<test name="SimpleEqStringAStringA" version="1.0">
 			<expression>'a' = 'a'</expression>
 			<output>true</output>
@@ -61,6 +66,14 @@
 		</test>
 		<test name="SimpleEqFloat1Float2" version="1.0">
 			<expression>1.0 = 2.0</expression>
+			<output>false</output>
+		</test>
+		<test name="SimpleEqFloat1Float1WithZ" version="1.0">
+			<expression>1.0 = 1.00</expression>
+			<output>true</output>
+		</test>
+		<test name="SimpleEqFloat1Float1WithPrecisionAndZ" version="1.0">
+			<expression>1.50 = 1.55</expression>
 			<output>false</output>
 		</test>
 		<test name="SimpleEqFloat1Int1" version="1.0">
@@ -83,6 +96,18 @@
 		<test name="QuantityEqDiffPrecision" version="1.0">
 			<expression>2.0'cm' = 2.00'cm'</expression>
 			<output>true</output>
+		</test>
+		<test name="RatioEqual" version="1.0">
+			<expression>1'cm':2'cm' = 1'cm':2'cm'</expression>
+			<output>true</output>
+		</test>
+		<test name="RatioNotEqualDiffNumerator" version="1.0">
+			<expression>1'cm':2'cm' = 1.1'cm':2'cm'</expression>
+			<output>false</output>
+		</test>
+		<test name="RatioNotEqualDiffDenominator" version="1.0">
+			<expression>1'cm':2'cm' = 1'cm':2.1'cm'</expression>
+			<output>false</output>
 		</test>
 		<test name="TupleEqJohnJohn" version="1.5">
 			<capability code="tuple"/>
@@ -134,6 +159,11 @@
 			<expression>Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) } = Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 5, 0, 0, 0) }</expression>
 			<output>false</output>
 		</test>
+		<test name="TupleEqDateTimeTrue2" version="1.0">
+			<capability code="tuple"/>
+			<expression>Tuple { dateId: 12, Date: DateTime(2012, 1, 1) } = Tuple { dateId: 12, Date: DateTime(2012, 1, 1) }</expression>
+			<output>true</output>
+		</test>
 		<test name="TupleEqTimeTrue" version="1.0">
 			<capability code="tuple"/>
 			<expression>Tuple { timeId: 55, TheTime: @T05:15:15.541 } = Tuple { timeId: 55, TheTime: @T05:15:15.541 }</expression>
@@ -160,9 +190,17 @@
 			<expression>DateTime(2014, 1, 5, 5, 0, 0, 0, 0) = DateTime(2014, 7, 5, 5, 0, 0, 0, 0)</expression>
 			<output>false</output>
 		</test>
+		<test name="DateTimeEqMissingArg" version="1.0">
+			<expression>DateTime(2015, 1, 5, 5, 0, 0) = DateTime(2015, 1, 5, 5, 0, 0)</expression>
+			<output>true</output>
+		</test>
 		<test name="DateTimeEqNull" version="1.0">
 			<expression>DateTime(null) = DateTime(null)</expression>
 			<output>null</output>
+		</test>
+		<test name="DateTimeEqTrue" version="1.0">
+			<expression>DateTime(2001, 1, 1, null) = DateTime(2001, 1, 1, null, null)</expression>
+			<output>true</output>
 		</test>
 		<test name="DateTimeUTC" version="1.0">
 			<expression>@2014-01-25T14:30:14.559+01:00 = @2014-01-25T14:30:14.559+01:00</expression>
@@ -189,6 +227,11 @@
 		</test>
 		<test name="GreaterZ1" version="1.0">
 			<expression>0 &gt; 1</expression>
+			<output>false</output>
+		</test>
+		<test name="GreaterLong" version="1.5">
+			<capability code="system.long"/>
+			<expression>0L &gt; 10L</expression>
 			<output>false</output>
 		</test>
 		<test name="GreaterZNeg1" version="1.0">
@@ -294,6 +337,11 @@
 		</test>
 		<test name="GreaterOrEqualZ1" version="1.0">
 			<expression>0 &gt;= 1</expression>
+			<output>false</output>
+		</test>
+		<test name="GreaterOrEqualZ1Long" version="1.5">
+			<capability code="system.long"/>
+			<expression>0L &gt;= 10L</expression>
 			<output>false</output>
 		</test>
 		<test name="GreaterOrEqualZNeg1" version="1.0">
@@ -409,6 +457,16 @@
 			<expression>0 &lt; 1</expression>
 			<output>true</output>
 		</test>
+		<test name="LessLong" version="1.5">
+			<capability code="system.long"/>
+			<expression>0L &lt; 10L</expression>
+			<output>true</output>
+		</test>
+		<test name="LessLongNeg" version="1.5">
+			<capability code="system.long"/>
+			<expression>-30L &lt; -20L</expression>
+			<output>true</output>
+		</test>
 		<test name="LessZNeg1" version="1.0">
 			<expression>0 &lt; -1</expression>
 			<output>false</output>
@@ -512,6 +570,11 @@
 		</test>
 		<test name="LessOrEqualZ1" version="1.0">
 			<expression>0 &lt;= 1</expression>
+			<output>true</output>
+		</test>
+		<test name="LessOrEqualZ1Long" version="1.5">
+			<capability code="system.long"/>
+			<expression>0L &lt;= 10L</expression>
 			<output>true</output>
 		</test>
 		<test name="LessOrEqualZNeg1" version="1.0">
@@ -663,6 +726,10 @@
 			<expression>'a' ~ 'b'</expression>
 			<output>false</output>
 		</test>
+		<test name="EquivStringIgnoreCase" version="1.0">
+			<expression>'Abel' ~ 'abel'</expression>
+			<output>true</output>
+		</test>
 		<test name="EquivFloat1Float1" version="1.0">
 			<expression>1.0 ~ 1.0</expression>
 			<output>true</output>
@@ -670,6 +737,22 @@
 		<test name="EquivFloat1Float2" version="1.0">
 			<expression>1.0 ~ 2.0</expression>
 			<output>false</output>
+		</test>
+		<test name="EquivFloat1Float1WithZ" version="1.0">
+			<expression>1.0 ~ 1.00</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivFloat1Float1WithPrecision" version="1.0">
+			<expression>1.5 ~ 1.55</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivFloat1Float1WithPrecisionAndZ" version="1.0">
+			<expression>1.50 ~ 1.55</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivFloatTrailingZero" version="1.0">
+			<expression>1.001 ~ 1.000</expression>
+			<output>true</output>
 		</test>
 		<test name="EquivFloat1Int1" version="1.0">
 			<expression>1.0 ~ 1</expression>
@@ -688,6 +771,18 @@
 			<expression>1'cm' ~ 0.01'm'</expression>
 			<output>true</output>
 		</test>
+		<test name="RatioEquivalent" version="1.0">
+			<expression>1'cm':2'cm' ~ 1'cm':2'cm'</expression>
+			<output>true</output>
+		</test>
+		<test name="RatioNotEquivalentDiffNumerator" version="1.0">
+			<expression>1'cm':2'cm' ~ 3'cm':2'cm'</expression>
+			<output>false</output>
+		</test>
+		<test name="RatioNotEquivalentDiffDenominator" version="1.0">
+			<expression>1'cm':2'cm' ~ 1'cm':3'cm'</expression>
+			<output>false</output>
+		</test>
 		<test name="EquivTupleJohnJohn" version="1.5">
 			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 1, Name : 'John' }</expression>
@@ -697,6 +792,16 @@
 			<capability code="tuple"/>
 			<expression>Tuple { Id : 1, Name : 'John', Position: null } ~ Tuple { Id : 1, Name : 'John', Position: null }</expression>
 			<output>true</output>
+		</test>
+		<test name="EquivTupleJohnJohnFalse" version="1.5">
+			<capability code="tuple"/>
+			<expression invalid="true">Tuple { Id : 1, Name : 'John', Position: 'Shift Manager' } ~ Tuple { Id : 1, Name : 'John' }</expression>
+			<!-- EXPECT: Could not resolve call to operator Equivalent with signature (tuple{Id:System.Integer,Name:System.String,Position:System.String},tuple{Id:System.Integer,Name:System.String}). -->
+		</test>
+		<test name="EquivTupleJohnJohnFalse2" version="1.5">
+			<capability code="tuple"/>
+			<expression invalid="true">Tuple { Id : 1, Name : 'John' } ~ Tuple { Id : 1, Name : 'John', Position: 'Shift Manager' }</expression>
+			<!-- EXPECT: Could not resolve call to operator Equivalent with signature (tuple{Id:System.Integer,Name:System.String},tuple{Id:System.Integer,Name:System.String,Position:System.String}). -->
 		</test>
 		<test name="EquivTupleJohnJane" version="1.5">
 			<capability code="tuple"/>
@@ -761,6 +866,11 @@
 		</test>
 		<test name="SimpleNotEqInt1Int2" version="1.0">
 			<expression>1 != 2</expression>
+			<output>true</output>
+		</test>
+		<test name="SimpleNotEqLong1Long2" version="1.5">
+			<capability code="system.long"/>
+			<expression>1L != 2L</expression>
 			<output>true</output>
 		</test>
 		<test name="SimpleNotEqStringAStringA" version="1.0">
