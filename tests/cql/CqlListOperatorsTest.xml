@@ -846,14 +846,64 @@
 	</group>
 	<group name="ProperContains" version="1.0">
 		<capability code="list-operators" />
+		<test name="ProperContains1" version="1.0">
+			<capability code="list-operators" />
+			<expression>null as List&lt;String&gt; properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains2" version="1.0">
+			<capability code="list-operators" />
+			<expression>{} properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains3" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a' } properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains4" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ null } properly includes null as String</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperContainsNullRightFalse" version="1.0">
 			<capability code="list-operators" />
 			<expression>{'s', 'u', 'n'} properly includes null</expression>
 			<output>false</output>
 		</test>
+		<test name="ProperContains5" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ null, null } properly includes null as String</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperContainsNullRightTrue" version="1.0">
 			<capability code="list-operators" />
 			<expression>{'s', 'u', 'n', null} properly includes null</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperContains6" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'b' } properly includes 'a'</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperContains7" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'a' } properly includes 'a'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains8" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'b' } properly includes 'c'</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperContains9" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', null } properly includes 'a'</expression>
+			<output>null</output>
+		</test>
+		<test name="ProperContains10" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'b', null } properly includes 'a'</expression>
 			<output>true</output>
 		</test>
 		<test name="ProperContainsTimeTrue" version="1.0">
@@ -869,14 +919,64 @@
 	</group>
 	<group name="ProperIn" version="1.0">
 		<capability code="list-operators" />
+		<test name="ProperIn1" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in null as List&lt;String&gt;</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn2" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in {}</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn3" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in { 'a' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn4" version="1.0">
+			<capability code="list-operators" />
+			<expression>null as String properly included in { null }</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperInNullRightFalse" version="1.0">
 			<capability code="list-operators" />
 			<expression>null properly included in {'s', 'u', 'n'}</expression>
 			<output>false</output>
 		</test>
+		<test name="ProperIn5" version="1.0">
+			<capability code="list-operators" />
+			<expression>null as String properly included in { null, null }</expression>
+			<output>false</output>
+		</test>
 		<test name="ProperInNullRightTrue" version="1.0">
 			<capability code="list-operators" />
 			<expression>null properly included in {'s', 'u', 'n', null}</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperIn6" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in { 'a', 'b' }</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperIn7" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in { 'a', 'a' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn8" version="1.0">
+			<capability code="list-operators" />
+			<expression>'c' properly included in { 'a', 'b' }</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperIn9" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in { 'a', null }</expression>
+			<output>null</output>
+		</test>
+		<test name="ProperIn10" version="1.0">
+			<capability code="list-operators" />
+			<expression>'a' properly included in { 'a', 'b', null }</expression>
 			<output>true</output>
 		</test>
 		<test name="ProperInTimeTrue" version="1.0">
