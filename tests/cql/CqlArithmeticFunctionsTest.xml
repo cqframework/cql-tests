@@ -100,6 +100,46 @@
 			<expression>Ceiling(1)</expression>
 			<output>1</output>
 		</test>
+		<test name="CeilingMaxInteger" version="1.0">
+			<expression>Ceiling(2147483647)</expression>
+			<output>2147483647</output>
+		</test>
+		<test name="CeilingMaxIntegerAsDecimal" version="1.0">
+			<expression>Ceiling(2147483647.0)</expression>
+			<output>2147483647</output>
+		</test>
+		<test name="CeilingMaxIntegerAsDecimalWhereDecimalIsNonZero" version="1.0">
+			<expression>Ceiling(2147483647.2)</expression>
+			<output>null</output>
+		</test>
+		<test name="CeilingIntegerGreaterThanMaxInteger" version="1.0">
+			<expression>Ceiling(2147483648)</expression>
+			<output>null</output>
+		</test>
+		<test name="CeilingDecimalGreaterThanMaxInteger" version="1.0">
+			<expression>Ceiling(2147483648.2)</expression>
+			<output>null</output>
+		</test>
+		<test name="CeilingMinInteger" version="1.0">
+			<expression>Ceiling(-2147483648)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="CeilingMinIntegerAsDecimal" version="1.0">
+			<expression>Ceiling(-2147483648.0)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="CeilingMinIntegerAsDecimalWhereDecimalIsNonZero" version="1.0">
+			<expression>Ceiling(-2147483648.2)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="CeilingIntegerLessThanMinInteger" version="1.0">
+			<expression>Ceiling(-2147483649)</expression>
+			<output>null</output>
+		</test>
+		<test name="CeilingDecimalLessThanMinInteger" version="1.0">
+			<expression>Ceiling(-2147483649.2)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Divide" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -201,6 +241,46 @@
 		<test name="Floor2I" version="1.0">
 			<expression>Floor(2)</expression>
 			<output>2</output>
+		</test>
+		<test name="FloorMaxInteger" version="1.0">
+			<expression>Floor(2147483647)</expression>
+			<output>2147483647</output>
+		</test>
+		<test name="FloorMaxIntegerAsDecimal" version="1.0">
+			<expression>Floor(2147483647.0)</expression>
+			<output>2147483647</output>
+		</test>
+		<test name="FloorMaxIntegerAsDecimalWhereDecimalIsNonZero" version="1.0">
+			<expression>Floor(2147483647.2)</expression>
+			<output>2147483647</output>
+		</test>
+		<test name="FloorIntegerGreaterThanMaxInteger" version="1.0">
+			<expression>Floor(2147483648)</expression>
+			<output>null</output>
+		</test>
+		<test name="FloorDecimalGreaterThanMaxInteger" version="1.0">
+			<expression>Floor(2147483648.2)</expression>
+			<output>null</output>
+		</test>
+		<test name="FloorMinInteger" version="1.0">
+			<expression>Floor(-2147483648)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="FloorMinIntegerAsDecimal" version="1.0">
+			<expression>Floor(-2147483648.0)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="FloorMinIntegerAsDecimalWhereDecimalIsNonZero" version="1.0">
+			<expression>Floor(-2147483648.2)</expression>
+			<output>-2147483648</output>
+		</test>
+		<test name="FloorIntegerLessThanMinInteger" version="1.0">
+			<expression>Floor(-2147483649)</expression>
+			<output>null</output>
+		</test>
+		<test name="FloorDecimalLessThanMinInteger" version="1.0">
+			<expression>Floor(-2147483649.2)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Exp" version="1.0">
