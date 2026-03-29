@@ -838,7 +838,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>days between DateTime(2014, 1, 15) and DateTime(2014, 2)</expression>
-			<output>Interval[ 16, 44 ]</output>
+			<output>Interval[ 17, 44 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
