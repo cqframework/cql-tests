@@ -113,7 +113,7 @@
 			<output>null</output>
 		</test>
 		<test name="CeilingIntegerGreaterThanMaxInteger" version="1.0">
-			<expression>Ceiling(2147483648)</expression>
+			<expression invalid="syntax">Ceiling(2147483648)</expression>
 			<output>null</output>
 		</test>
 		<test name="CeilingDecimalGreaterThanMaxInteger" version="1.0">
