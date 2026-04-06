@@ -133,7 +133,7 @@
 			<output>-2147483648</output>
 		</test>
 		<test name="CeilingIntegerLessThanMinInteger" version="1.0">
-			<expression>Ceiling(-2147483649)</expression>
+			<expression invalid="syntax">Ceiling(-2147483649)</expression>
 			<output>null</output>
 		</test>
 		<test name="CeilingDecimalLessThanMinInteger" version="1.0">
