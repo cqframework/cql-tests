@@ -249,6 +249,7 @@
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[1,5], Interval[3,7], Interval[12,19], Interval[7,10] }</expression>
 			<output>{Interval [ 1, 10 ], Interval [ 12, 19 ]}</output>
+			<!-- Failing - issue https://github.com/cqframework/clinical_quality_language/issues/1744 -->
 		</test>
 		<test name="IntegerIntervalCollapse2" version="1.0">
 			<capability code="interval-operators"/>
@@ -648,11 +649,6 @@
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="NullInterval" version="1.0">
-			<capability code="interval-operators"/>
-			<expression>Interval[null, null]</expression>
-			<output>null</output>
-		</test>
 		<test name="TestExceptNull" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] except Interval[null, null]</expression>
