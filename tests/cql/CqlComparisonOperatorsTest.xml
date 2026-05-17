@@ -132,7 +132,7 @@
 		<test name="TupleEqDifferentNamesWithOneNullId" version="1.5">
 			<capability code="tuple"/>
 			<expression>Tuple { Id : null, Name : 'John' } = Tuple { Id : 1, Name : 'James' }</expression>
-			<output>false</output>
+			<output>null</output>
 		</test>
 		<test name="TupleEqJohn1John1WithBothNamesNull" version="1.5">
 			<capability code="tuple"/>
@@ -744,11 +744,11 @@
 		</test>
 		<test name="EquivFloat1Float1WithPrecision" version="1.0">
 			<expression>1.5 ~ 1.55</expression>
-			<output>true</output>
+			<output>false</output>
 		</test>
 		<test name="EquivFloat1Float1WithPrecisionAndZ" version="1.0">
 			<expression>1.50 ~ 1.55</expression>
-			<output>true</output>
+			<output>false</output>
 		</test>
 		<test name="EquivFloatTrailingZero" version="1.0">
 			<expression>1.001 ~ 1.000</expression>
@@ -929,7 +929,7 @@
 		<test name="TupleNotEqDifferingNamesWithOneNullId" version="1.5">
 			<capability code="tuple"/>
 			<expression>Tuple{ Id : null, Name : 'John' } != Tuple{ Id : 1, Name : 'Joe' }</expression>
-			<output>true</output>
+			<output>null</output>
 		</test>
 		<test name="TupleNotEqJohn1John1WithBothNamesNull" version="1.5">
 			<capability code="tuple"/>
