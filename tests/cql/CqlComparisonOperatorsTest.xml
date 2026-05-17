@@ -1100,7 +1100,7 @@
 		</test>
 		<test name="TestMonthEquivalentDays" version="1.0">
 			<expression>1 month ~ 30 days</expression>
-			<output>false</output>
+			<output>true</output>
 		</test>
 		<test name="TestWeekEqualDays" version="1.0">
 			<expression>1 week = 7 days</expression>
