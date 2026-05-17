@@ -30,7 +30,7 @@
 			<expression>Abs(-1.0'cm')</expression>
 			<output>1.0'cm'</output>
 		</test>
-		<test name="AbsLong" version="1.0">
+		<test name="AbsLong" version="1.5">
 			<capability code="system.long"/>
 			<expression>Abs(-1L)</expression>
 			<output>1L</output>
@@ -46,7 +46,7 @@
 			<expression>1 + 1</expression>
 			<output>2</output>
 		</test>
-		<test name="Add1L2L" version="1.0">
+		<test name="Add1L2L" version="1.5">
 			<capability code="system.long"/>
 			<expression>1L + 2L</expression>
 			<output>3L</output>
@@ -64,7 +64,7 @@
 			<expression>1 + 2.0</expression>
 			<output>3.0</output>
 		</test>
-		<test name="Add1L1L" version="1.0">
+		<test name="Add1L1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>1L + 1L</expression>
 			<output>2L</output>
@@ -119,7 +119,7 @@
 			<expression>1 / 1</expression>
 			<output>1.0</output>
 		</test>
-		<test name="Divide1L1L" version="1.0">
+		<test name="Divide1L1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>1L / 1L</expression>
 			<output>1.0</output>
@@ -222,7 +222,7 @@
 			<expression>Round(Exp(1), 8)</expression>
 			<output>2.71828183</output>
 		</test>
-		<test name="Exp1L" version="1.0">
+		<test name="Exp1L" version="1.5">
 			<capability code="system.long"/>
 			<capability code="precision-operators-for-decimal-and-date-time-types"/>
 			<expression>Round(Exp(1L), 8)</expression>
@@ -296,7 +296,7 @@
 			<expression>Log(1, 100)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Log1Base100L" version="1.4">
+		<test name="Log1Base100L" version="1.5">
 			<capability code="system.long"/>
 			<expression>Log(1L, 100L)</expression>
 			<output>0.0</output>
@@ -356,7 +356,7 @@
 			<expression>Ln(1)</expression>
 			<output>0.0</output>
 		</test>
-		<test name="Ln1L" version="1.4">
+		<test name="Ln1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>Ln(1L)</expression>
 			<output>0.0</output>
@@ -517,7 +517,7 @@
 			<expression>1 * 1</expression>
 			<output>1</output>
 		</test>
-		<test name="Multiply2LBy3L" version="1.0">
+		<test name="Multiply2LBy3L" version="1.5">
 			<capability code="system.long"/>
 			<expression>2L * 3L</expression>
 			<output>6L</output>
@@ -526,7 +526,7 @@
 			<expression>1.0 * 2.0</expression>
 			<output>2.0</output>
 		</test>
-		<test name="Multiply1By1L" version="1.0">
+		<test name="Multiply1By1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>1 * 1L</expression>
 			<output>1L</output>
@@ -560,12 +560,12 @@
 			<expression>-1</expression>
 			<output>-1</output>
 		</test>
-		<test name="Negate1L" version="1.0">
+		<test name="Negate1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>-1L</expression>
 			<output>-1L</output>
 		</test>
-		<test name="NegateMaxLong" version="1.0">
+		<test name="NegateMaxLong" version="1.5">
 			<capability code="system.long"/>
 			<expression>-9223372036854775807L</expression>
 			<output>-9223372036854775807L</output>
@@ -574,7 +574,7 @@
 			<expression>-(-1)</expression>
 			<output>1</output>
 		</test>
-		<test name="NegateNeg1L" version="1.0">
+		<test name="NegateNeg1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>-(-1L)</expression>
 			<output>1L</output>
@@ -640,7 +640,7 @@
 			<expression>predecessor of 1</expression>
 			<output>0</output>
 		</test>
-		<test name="PredecessorOf1L" version="1.0">
+		<test name="PredecessorOf1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>predecessor of 1L</expression>
 			<output>0L</output>
@@ -697,7 +697,7 @@
 			<expression>Power(2, -2)</expression>
 			<output>0.25</output>
 		</test>
-		<test name="Power2LTo2L" version="1.0">
+		<test name="Power2LTo2L" version="1.5">
 			<capability code="system.long"/>
 			<expression>Power(2L, 2L)</expression>
 			<output>4L</output>
@@ -726,7 +726,7 @@
 			<expression>2^4</expression>
 			<output>16</output>
 		</test>
-		<test name="Power2LTo3L" version="1.0">
+		<test name="Power2LTo3L" version="1.5">
 			<capability code="system.long"/>
 			<expression>2L^3L</expression>
 			<output>8L</output>
@@ -797,7 +797,7 @@
 			<expression>1 - 1</expression>
 			<output>0</output>
 		</test>
-		<test name="Subtract1LAnd1L" version="1.0">
+		<test name="Subtract1LAnd1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>1L - 1L</expression>
 			<output>0L</output>
@@ -831,7 +831,7 @@
 			<expression>successor of 1</expression>
 			<output>2</output>
 		</test>
-		<test name="SuccessorOf1L" version="1.0">
+		<test name="SuccessorOf1L" version="1.5">
 			<capability code="system.long"/>
 			<expression>successor of 1L</expression>
 			<output>2L</output>
@@ -930,12 +930,12 @@
 			<expression>10 div 3</expression>
 			<output>3</output>
 		</test>
-		<test name="TruncatedDivide10LBy3L" version="1.0">
+		<test name="TruncatedDivide10LBy3L" version="1.5">
 			<capability code="system.long"/>
 			<expression>10L div 3L</expression>
 			<output>3L</output>
 		</test>
-		<test name="TruncatedDivide10LBy0L" version="1.0">
+		<test name="TruncatedDivide10LBy0L" version="1.5">
 			<capability code="system.long"/>
 			<expression>10L div 0L</expression>
 			<output>null</output>
