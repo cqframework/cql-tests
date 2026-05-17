@@ -203,10 +203,11 @@
 			<expression invalid="semantic">@T23:59:60.999</expression>
 			<!--Translation Error: Invalid date-time input (T23:59:60.999). Use ISO 8601 date time representation (yyyy-MM-ddThh:mm:ss.mmmmZhh:mm).  -->
 		</test>
-		<test name="TimeUpperBoundMillis" version="1.0">
+		<test name="TimeMillisParsing" version="1.0">
 			<capability code="types" />
-			<expression invalid="semantic">@T23:59:59.10000</expression>
-			<!-- Value 10000 for millisOfSecond must not be larger than 999 -->
+			<expression>@T23:59:59.10000</expression>
+			<output>@T23:59:59.100</output>
+			<!-- ".10000" in the time literal means "0.10000 seconds". -->
 		</test>
 		<test name="TimeProper" version="1.0">
 			<capability code="types" />
