@@ -272,7 +272,7 @@
 		</test>
 		<test name="FloorMinIntegerAsDecimalWhereDecimalIsNonZero" version="1.0">
 			<expression>Floor(-2147483648.2)</expression>
-			<output>-2147483648</output>
+			<output>null</output>
 		</test>
 		<test name="FloorIntegerLessThanMinInteger" version="1.0">
 			<expression>Floor(-2147483649)</expression>
