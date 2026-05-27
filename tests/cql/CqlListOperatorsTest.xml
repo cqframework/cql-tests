@@ -209,17 +209,17 @@
 		</test>
 		<test name="Equal12And123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2 } as List&lt;Any&gt; = { 1, 2, 3 } as List&lt;Any&gt;</expression>
+			<expression>{ 1, 2 } = { 1, 2, 3 }</expression>
 			<output>false</output>
 		</test>
 		<test name="Equal123And12" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } as List&lt;Any&gt; = { 1, 2 } as List&lt;Any&gt;</expression>
+			<expression>{ 1, 2, 3 } = { 1, 2 }</expression>
 			<output>false</output>
 		</test>
 		<test name="Equal123And123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } as List&lt;Any&gt; = { 1, 2, 3 } as List&lt;Any&gt;</expression>
+			<expression>{ 1, 2, 3 } = { 1, 2, 3 }</expression>
 			<output>true</output>
 		</test>
 		<test name="EqualDateTimeTrue" version="1.0">
