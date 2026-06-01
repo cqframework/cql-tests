@@ -194,17 +194,17 @@
 		</test>
 		<test name="EqualABCAnd123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 'a', 'b', 'c' } = { 1, 2, 3 }</expression>
+			<expression>{ 'a', 'b', 'c' } as List&lt;Any&gt; ~ { 1, 2, 3 } as List&lt;Any&gt;</expression>
 			<output>false</output>
 		</test>
 		<test name="Equal123AndABC" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } = { 'a', 'b', 'c' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; = { 'a', 'b', 'c' } as List&lt;Any&gt;</expression>
 			<output>false</output>
 		</test>
 		<test name="Equal123AndString123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } = { '1', '2', '3' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; = { '1', '2', '3' } as List&lt;Any&gt;</expression>
 			<output>false</output>
 		</test>
 		<test name="Equal12And123" version="1.0">
@@ -741,19 +741,19 @@
 		</test>
 		<test name="EquivalentABCAnd123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 'a', 'b', 'c' } ~ { 1, 2, 3 }</expression>
+			<expression>{ 'a', 'b', 'c' } as List&lt;Any&gt; ~ { 1, 2, 3 } as List&lt;Any&gt;</expression>
 			<output>false</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="Equivalent123AndABC" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } ~ { 'a', 'b', 'c' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; ~ { 'a', 'b', 'c' } as List&lt;Any&gt;</expression>
 			<output>false</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="Equivalent123AndString123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } ~ { '1', '2', '3' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; ~ { '1', '2', '3' } as List&lt;Any&gt;</expression>
 			<output>false</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
@@ -807,19 +807,19 @@
 		</test>
 		<test name="NotEqualABCAnd123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 'a', 'b', 'c' } != { 1, 2, 3 }</expression>
+			<expression>{ 'a', 'b', 'c' } as List&lt;Any&gt; != { 1, 2, 3 } as List&lt;Any&gt;</expression>
 			<output>true</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="NotEqual123AndABC" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } != { 'a', 'b', 'c' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; != { 'a', 'b', 'c' } as List&lt;Any&gt;</expression>
 			<output>true</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
 		<test name="NotEqual123AndString123" version="1.0">
 			<capability code="list-operators" />
-			<expression>{ 1, 2, 3 } != { '1', '2', '3' }</expression>
+			<expression>{ 1, 2, 3 } as List&lt;Any&gt; != { '1', '2', '3' } as List&lt;Any&gt;</expression>
 			<output>true</output>
 			<!-- TODO: make Translator resolve isolated Equivalent operator signatures -->
 		</test>
