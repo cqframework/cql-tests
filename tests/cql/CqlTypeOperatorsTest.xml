@@ -85,12 +85,7 @@
 		<test name="CodeToConcept1" version="1.0">
 			<capability code="type-operators" />
 			<expression>ToConcept(Code { code: '8480-6' })</expression>
-			<output>
-				Concept {
-					codes: Code { code: '8480-6' }
-				}
-			</output>
-		</test>
+			<output>Concept { codes: { Code { code: '8480-6' } } }</output>		</test>
 	</group>
 	<group name="ToDateTime" version="1.0">
 		<capability code="type-operators" />
