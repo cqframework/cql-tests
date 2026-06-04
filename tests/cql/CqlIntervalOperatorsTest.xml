@@ -533,7 +533,17 @@
 	</group>
 	<group name="Ends" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestEndsNull" version="1.0">
+		<test name="TestNullEndsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 10] ends null</expression>
+			<output>null</output>
+		</test>
+		<test name="TestMaxIntervalEndsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 10] ends Interval[null, null]</expression>
+			<output>false</output>
+		</test>
+		<test name="TestUnknownIntervalEndsNull" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 10] ends Interval(null, null)</expression>
 			<output>null</output>
@@ -649,9 +659,14 @@
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestExceptNull" version="1.0">
+		<test name="TestMaxIntervalExceptNull" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] except Interval[null, null]</expression>
+			<output>null</output>
+		</test>
+		<test name="TextUnitIntervalExceptNull" version="1.0">
+		    <capability code="interval-operators"/>
+			<expression>Interval[1, 1] except Interval[1, 1]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalExcept1to3" version="1.0">
@@ -707,10 +722,15 @@
 	</group>
 	<group name="In" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestInNullBoundaries" version="1.0">
+		<test name="TestIntegerInMaxIntervalTrue" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>5 in Interval[null, null]</expression>
-			<output>false</output>
+			<output>true</output>
+		</test>
+		<test name="TestIntegerInUnknownIntervalNull" version="1.0">
+		    <capability code="interval-operators"/>
+			<expression>5 in Interval(null, null)</expression>
+			<output>null</output>
 		</test>
 		<test name="IntegerIntervalInTrue" version="1.0">
 			<capability code="interval-operators"/>
@@ -1359,9 +1379,14 @@
 	</group>
 	<group name="Overlaps" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestOverlapsNull" version="1.0">
+		<test name="TestMaxIntervalOverlapsTrue" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] overlaps Interval[1, 10]</expression>
+			<output>true</output>
+		</test>
+		<test name="TestUnknownIntervalOverlapsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval(null, null) overlaps Interval[1, 10]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalOverlapsTrue" version="1.0">
@@ -1497,9 +1522,14 @@
 	</group>
 	<group name="OverlapsBefore" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestOverlapsBeforeNull" version="1.0">
+		<test name="TestMaxIntervalOverlapsBeforeTrue" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] overlaps before Interval[1, 10]</expression>
+			<output>true</output>
+		</test>
+		<test name="TestUnknownIntervalOverlapsBeforeNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval(null, null) overlaps before Interval[1, 10]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalOverlapsBeforeTrue" version="1.0">
@@ -1596,9 +1626,14 @@
 	</group>
 	<group name="OverlapsAfter" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestOverlapsAfterNull" version="1.0">
+		<test name="TestMaxIntervalOverlapsAfterTrue" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] overlaps after Interval[1, 10]</expression>
+			<output>true</output>
+		</test>
+		<test name="TestUnknownIntervalOverlapsAfterNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval(null, null) overlaps after Interval[1, 10]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalOverlapsAfterTrue" version="1.0">
@@ -1697,7 +1732,16 @@
 		<capability code="interval-operators"/>
 		<test name="TestPointFromNull" version="1.0">
 			<capability code="interval-operators"/>
-			<expression>point from Interval[null, null]</expression>
+			<expression>point from (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
+		<test name="TestPointFromMaxIntervalError" version="1.0">
+			<capability code="interval-operators"/>
+			<expression invalid="true">point from Interval[null, null]</expression>
+		</test>
+		<test name="TestPointFromUnknownIntervalNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>point from Interval(null, null)</expression>
 			<output>null</output>
 		</test>
 		<test name="TestPointFromInteger" version="1.0">
@@ -1842,7 +1886,7 @@
 	</group>
 	<group name="ProperlyIncludedIn" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="IntegerIntervalProperlyIncludedInNullBoundaries" version="1.0">
+		<test name="IntegerIntervalProperlyIncludedInMaxIntervalTrue" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[1, 10] properly included in Interval[null, null]</expression>
 			<output>true</output>
@@ -1928,9 +1972,19 @@
 	</group>
 	<group name="Starts" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestStartsNull" version="1.0">
+		<test name="TestNullStartsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>null starts Interval[1, 10]</expression>
+			<output>null</output>
+		</test>
+		<test name="TestMaxIntervalStartsFalse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] starts Interval[1, 10]</expression>
+			<output>false</output>
+		</test>
+		<test name="TestUnknownIntervalStartsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval(null, null) starts Interval[1, 10]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalStartsTrue" version="1.0">
@@ -1986,9 +2040,14 @@
 	</group>
 	<group name="Union" version="1.0">
 		<capability code="interval-operators"/>
-		<test name="TestUnionNull" version="1.0">
+		<test name="TestUnionMaxInterval" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[null, null] union Interval[1, 10]</expression>
+			<output>Interval[null, null]</output>
+		</test>
+		<test name="TestUnionUnknownInterval" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval(null, null) union Interval[1, 10]</expression>
 			<output>null</output>
 		</test>
 		<test name="IntegerIntervalUnion1To15" version="1.0">
