@@ -664,7 +664,7 @@
 			<expression>Interval[null, null] except Interval[null, null]</expression>
 			<output>null</output>
 		</test>
-		<test name="TextUnitIntervalExceptNull" version="1.0">
+		<test name="TestUnitIntervalExceptNull" version="1.0">
 		    <capability code="interval-operators"/>
 			<expression>Interval[1, 1] except Interval[1, 1]</expression>
 			<output>null</output>
