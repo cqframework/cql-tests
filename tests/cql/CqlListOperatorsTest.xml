@@ -180,7 +180,7 @@
 		<test name="EqualEmptyListAndEmptyList" version="1.0">
 			<capability code="list-operators" />
 			<expression>{} = {}</expression>
-			<output>true</output>
+			<output>null</output>
 		</test>
 		<test name="EqualABCAndABC" version="1.0">
 			<capability code="list-operators" />
