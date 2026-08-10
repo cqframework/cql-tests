@@ -138,7 +138,7 @@
 			<expression>LastPositionOf('hi', 'Say hi to Ohio!')</expression>
 			<output>11</output>
 		</test>
-		<test name="LastPositionOf3" version="1.0">
+		<test name="LastPositionOfEmptyIsStringLength15" version="1.0">
 			<capability code="string-operators" />
 			<expression>LastPositionOf('', 'Say hi to Ohio!')</expression>
 			<output>15</output>
@@ -271,7 +271,7 @@
 			<expression>PositionOf('c', 'ab')</expression>
 			<output>-1</output>
 		</test>
-		<test name="PositionOf3" version="1.0">
+		<test name="PositionOfEmptyIs0" version="1.0">
 			<capability code="string-operators" />
 			<expression>PositionOf('', 'Say hi to Ohio!')</expression>
 			<output>0</output>
