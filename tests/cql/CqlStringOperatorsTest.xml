@@ -317,6 +317,24 @@
 			<expression>Split('a,b', ',')</expression>
 			<output>{'a','b'}</output>
 		</test>
+		<test name="SplitEmptyStringComma" version="1.0">
+			<capability code="string-operators" />
+			<!-- separator does not appear in the string => single-element list containing the string; per CQL spec "Split" (https://cql.hl7.org/09-b-cqlreference.html#split): "a list of strings containing one element that is the value of the stringToSplit argument" -->
+			<expression>Split('', ',')</expression>
+			<output>{ '' }</output>
+		</test>
+		<test name="SplitABCEmptySeparator" version="1.0">
+			<capability code="string-operators" />
+			<!-- empty separator => string split into individual characters; per CQL spec "Split" (https://cql.hl7.org/09-b-cqlreference.html#split) -->
+			<expression>Split('ABC', '')</expression>
+			<output>{ 'A', 'B', 'C' }</output>
+		</test>
+		<test name="SplitEmptyStringEmptySeparator" version="1.0">
+			<capability code="string-operators" />
+			<!-- empty string with empty separator => single-element list containing the empty string; per CQL spec "Split" (https://cql.hl7.org/09-b-cqlreference.html#split) -->
+			<expression>Split('', '')</expression>
+			<output>{ '' }</output>
+		</test>
 	</group>
 	<group name="StartsWith" version="1.0">
 		<capability code="string-operators" />
