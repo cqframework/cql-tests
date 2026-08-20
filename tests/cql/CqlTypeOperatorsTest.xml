@@ -199,7 +199,7 @@
 			<expression>ToTime('T14:30:00.0+05:30')</expression>
 			<output>null</output>
 		</test>
-		<test name="ToTime3" version="1.4">
+		<test name="ToTimeIsNullBecauseNegativeOffset" version="1.4">
 			<capability code="type-operators" />
 			<expression>ToTime('T14:30:00.0-05:45')</expression>
 			<output>null</output>
