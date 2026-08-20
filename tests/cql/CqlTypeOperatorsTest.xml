@@ -204,7 +204,7 @@
 			<expression>ToTime('T14:30:00.0-05:45')</expression>
 			<output>null</output>
 		</test>
-		<test name="ToTime4" version="1.4">
+		<test name="ToTimeIsNullBecauseOffsetZ" version="1.4">
 			<capability code="type-operators" />
 			<expression>ToTime('T14:30:00.0Z')</expression>
 			<output>null</output>
