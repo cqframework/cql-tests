@@ -826,7 +826,7 @@
 			<expression>years between @2012-02-29 and @2014-02-28</expression>
 			<output>2</output>
 		</test>
-		<test name="YearsBetweenLeapYears2" version="1.4">
+		<test name="YearsBetweenLeapYearDateTimesEquals2" version="1.4">
 			<capability code="duration-between"/>
 			<expression>years between @2012-02-29T12:34:56 and @2014-02-28T12:34:56</expression>
 			<output>2</output>
