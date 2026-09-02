@@ -741,10 +741,15 @@
 			<expression>predecessor of 1.01</expression>
 			<output>1.00</output>
 		</test>
-		<test name="PredecessorOf1QCM" version="1.0">
+		<test name="PredecessorOf1QCM" version="1.0" versionTo="1.5.3">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>predecessor of 1.0 'cm'</expression>
 			<output>0.99999999'cm'</output>
+		</test>
+		<test name="PredecessorOf1QCMPrecision" version="2.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>predecessor of 1.0 'cm'</expression>
+			<output>0.9'cm'</output>
 		</test>
 		<test name="PredecessorOfJan12000" version="1.0">
 			<expression>predecessor of DateTime(2000,1,1)</expression>
