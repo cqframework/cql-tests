@@ -1071,17 +1071,17 @@
 		<test name="TruncatedDivide10d1ByNeg3D1Quantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10.1 'cm' div -3.1 'cm'</expression>
-			<output>-3.0 'cm'</output>
+			<output>-3.0 '1'</output>
 		</test>
 		<test name="TruncatedDivide10By5DQuantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10.0 'g' div 5.0 'g'</expression>
-			<output>2.0 'g'</output>
+			<output>2.0 '1'</output>
 		</test>
 		<test name="TruncatedDivide414By206DQuantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>4.14 'm' div 2.06 'm'</expression>
-			<output>2.0 'm'</output>
+			<output>2.0 '1'</output>
 		</test>
 		<test name="TruncatedDivide10By0DQuantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
