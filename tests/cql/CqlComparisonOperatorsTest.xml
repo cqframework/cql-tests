@@ -1055,7 +1055,7 @@
 			<output>true</output>
 		</test>
 		<test name="NotEquivalentNullNull" version="1.0">
-			<expression>null !~ null</expression>
+			<expression invalid="semantic">null !~ null</expression>
 			<output>false</output>
 		</test>
 	</group>
