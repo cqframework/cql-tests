@@ -1056,7 +1056,6 @@
 		</test>
 		<test name="NotEquivalentNullNull" version="1.0">
 			<expression invalid="semantic">null !~ null</expression>
-			<output>false</output>
 		</test>
 	</group>
 	<group name="Unit Comparison" version="1.0">
