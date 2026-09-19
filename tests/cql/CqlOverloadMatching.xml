@@ -1,0 +1,77 @@
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../testSchema.xsd"
+	name="OverloadMatching" reference="https://cql.hl7.org/03-developersguide.html#conversion-precedence">
+    <group name="OverloadMatching">
+        <test name="ExactIntegerOverThanConversion">
+            <!-- An exact type match takes precedence over an implicit Integer->Decimal conversion: https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library>
+                library ExactIntegerOverThanConversion version '1.0.0'
+
+                define function A(foo Integer): 'IntegerOverload'
+                define function A(foo Decimal): 'DecimalOverload'
+
+                define output: A(1)
+            </library>
+            <output name="output">'IntegerOverload'</output>
+        </test>
+        <test name="ImplicitIntegerToDecimal">
+            <!-- With no exact match, the Integer argument is implicitly converted to Decimal: https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library>
+                library ImplicitIntegerToDecimal version '1.0.0'
+
+                define function A(foo Decimal): 'DecimalOverload'
+
+                define output: A(1)
+            </library>
+            <output name="output">'DecimalOverload'</output>
+        </test>
+        <test name="ExactLongOverload">
+            <capability code="system.long" />
+            <!-- A Long argument exactly matches the Long overload rather than converting to Decimal: https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library>
+                library ExactLongOverload version '1.0.0'
+
+                define function A(foo Integer): 'IntegerOverload'
+                define function A(foo Long): 'LongOverload'
+
+                define output: A(1L)
+            </library>
+            <output name="output">'LongOverload'</output>
+        </test>
+        <test name="ImplicitIntegerToLong">
+            <capability code="system.long" />
+            <!-- With no exact match, the Integer argument is implicitly converted to Long: https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library>
+                library ImplicitIntegerToLong version '1.0.0'
+
+                define function A(foo Long): 'LongOverload'
+
+                define output: A(1)
+            </library>
+            <output name="output">'LongOverload'</output>
+        </test>
+        <test name="ExactDecimalOverQuantity">
+            <!-- An exact Decimal match takes precedence over an implicit Decimal->Quantity conversion: https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library>
+                library ExactDecimalOverQuantity version '1.0.0'
+
+                define function A(foo Decimal): 'DecimalOverload'
+                define function A(foo Quantity): 'QuantityOverload'
+
+                define output: A(1.0)
+            </library>
+            <output name="output">'DecimalOverload'</output>
+        </test>
+        <test name="AmbiguousOverload">
+            <capability code="system.long" />
+            <!-- The Integer argument can convert to both Long and Decimal with equal precedence, so the call is ambiguous and fails to translate (semantic error): https://cql.hl7.org/03-developersguide.html#conversion-precedence -->
+            <library invalid="semantic">
+                library AmbiguousOverload version '1.0.0'
+
+                define function A(foo Long): 'LongOverload'
+                define function A(foo Decimal): 'DecimalOverload'
+
+                define output: A(1)
+            </library>
+        </test>
+    </group>
+</tests>
