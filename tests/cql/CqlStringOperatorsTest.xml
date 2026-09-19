@@ -330,7 +330,7 @@
 			<expression>PositionOf('c', 'ab')</expression>
 			<output>-1</output>
 		</test>
-		<test name="PositionOfEmpty" version="1.0">
+		<test name="PositionOfEmpty" version="2.0">
 			<capability code="string-operators" />
 			<!-- empty pattern matches at the beginning, so the result is 0; per CQL spec "PositionOf" (https://cql.hl7.org/09-b-cqlreference.html#positionof) -->
 			<expression>PositionOf('', 'ABCDE')</expression>
