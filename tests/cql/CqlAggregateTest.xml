@@ -19,7 +19,7 @@
 				  Interval[@2012-02-01, @2012-03-31],
 				  Interval[@2012-03-01, @2012-04-30]
 				}) M
-				  aggregate R starting (null as List&lt;Interval&lt;DateTime>>): R union ({
+				  aggregate R starting (null as List&lt;Interval&lt;Date>>): R union ({
 				    M X
 				      let S: Max({ end of Last(R) + 1 day, start of X }),
 				        E: S + Quantity{ value: duration in days of X, unit: 'days' }
