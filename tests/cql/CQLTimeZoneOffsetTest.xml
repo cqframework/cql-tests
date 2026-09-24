@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CQLTimeZoneOffsetTest.xml
+  Reference: https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2
+             https://cql.hl7.org/02-authorsguide.html#date-time-literals
+
+  CQL spec mandate (§5.8 / Author's Guide):
+    "If no timezone offset is specified, the timezone offset of the evaluation
+     request timestamp is used."
+  This is not optional. An offset-less DateTime ALWAYS carries the evaluation
+  request timestamp's offset at runtime. Therefore:
+    • timezoneoffset from <offset-less datetime> MUST return a Decimal, never null.
+    • Comparing an offset-less datetime to an offset-bearing one MUST yield
+      true or false, never null.
+
+  Tests that expected null for offset-less expressions have been removed as
+  they validated non-conformant behavior.
+
+  {{SERVER_OFFSET_ISO}} is substituted at runtime with the configured server
+  timezone offset string (e.g. "-05:00", "+05:30"). Defaults to "+00:00".
+
+  Policy gating (test-runner skips tests whose required capability does not
+  match the active server policy):
+    timezone-offset-policy.no-default-offset
+      → engine preserves offset-less datetimes without applying a default;
+        tests here use ONLY explicit offsets so results are deterministic.
+    timezone-offset-policy.default-server-offset
+      → engine applies the server's offset to offset-less datetimes;
+        tests here use {{SERVER_OFFSET_ISO}} for deterministic results.
+
+  Group 3 (Policy-Independent) uses only explicit offsets and runs regardless
+  of which policy the server implements.
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://hl7.org/fhirpath/tests"
+       xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd"
+       name="CQLTimeZoneOffsetTest"
+       reference="https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2"
+       version="1.5">
+
+    <capability code="timezone-offset"/>
+    <capability code="component-extraction"/>
+    <capability code="timezone-offset-policy.no-default-offset"/>
+
+    <!-- ================================================================
+         GROUP 1 – No Default Offset Policy
+         All expressions use EXPLICIT offsets so expected values are
+         deterministic regardless of runtime context. Offset-less datetime
+         tests that expected null have been removed; they tested non-conformant
+         behavior contradicted by the CQL specification.
+         ================================================================ -->
+    <group name="Policy: No default offset (explicit offsets only)" version="1.5">
+        <capability code="timezone-offset-policy.no-default-offset"/>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_ExplicitUTCReturnsZero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              Z is UTC (+00:00). Explicit offset is present → result is 0.0
+              regardless of any default-offset policy.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00Z</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_ExplicitPlusZeroEqualsUTC" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +00:00 and Z are equivalent; both return 0.0.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+00:00</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_PositiveWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00+05:00</expression>
+            <output>5.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_PositiveHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +05:30 = 5 + 30/60 = 5.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+05:30</expression>
+            <output>5.5</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_NegativeWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00-05:00</expression>
+            <output>-5.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_NegativeHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              -09:30 = -(9 + 30/60) = -9.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00-09:30</expression>
+            <output>-9.5</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_NoDefaultOffset_NullInput" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              null propagation: timezoneoffset from a null DateTime → null.
+              This is the only correct path to a null result for timezoneoffset.
+            -->
+            <expression>timezoneoffset from (null as DateTime)</expression>
+            <output>null</output>
+        </test>
+
+        <test name="DateTimeEquality_NoDefaultOffset_SameExplicitOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+00:00 = @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_NoDefaultOffset_DifferentOffsetsSameInstant_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T06:00+06:00 = 2012-04-01T00:00Z
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z
+              Same instant → true.
+            -->
+            <expression>@2012-04-01T06:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_NoDefaultOffset_DifferentOffsetsDifferentInstant_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 = 2012-03-31T18:00Z
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z
+              Different instants → false.
+            -->
+            <expression>@2012-04-01T00:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_NoDefaultOffset_UTCplusSixBeforeUTC_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 normalises to 2012-03-31T18:00Z
+              @2012-04-01T00:00+00:00 normalises to 2012-04-01T00:00Z
+              18:00Z is before 00:00Z (next day) → true.
+            -->
+            <expression>@2012-04-01T00:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_NoDefaultOffset_SameInstantNotLessThan_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              Same instant expressed with different offsets → not strictly less → false.
+            -->
+            <expression>@2012-04-01T06:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_NoDefaultOffset_ChronologicalSameOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+00:00 &lt; @2012-04-01T01:00+00:00</expression>
+            <output>true</output>
+        </test>
+    </group>
+
+    <!-- ================================================================
+         GROUP 2 – Default Server Offset Policy
+         Offset-less DateTime literals are normalised to the server's
+         evaluation-request timezone offset at runtime.
+         {{SERVER_OFFSET_ISO}} is substituted with that ISO offset string
+         (configured via SERVER_OFFSET_ISO env var / config; defaults to
+         +00:00). Tests use {{SERVER_OFFSET_ISO}} to produce deterministic
+         expected values without hard-coding a timezone.
+
+         The original circular test —
+           (timezoneoffset from @…T00:00) = (timezoneoffset from @…T00:00{{SERVER_OFFSET_ISO}})
+         — has been removed. It was tautological (offset equals itself) and
+         fragile if SERVER_OFFSET_ISO was mis-configured.
+         ================================================================ -->
+    <group name="Policy: Default to server offset (normalize offset-less to server)" version="1.5">
+        <capability code="timezone-offset-policy.default-server-offset"/>
+
+        <test name="DateTimeEquality_DefaultServerOffset_OffsetlessEqualsExplicitServer_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Under default-server-offset, the offset-less left side is
+              normalised to the server's offset. The right side carries that
+              same offset explicitly → same instant → true.
+            -->
+            <expression>@2012-04-01T00:00 = @2012-04-01T00:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_DefaultServerOffset_SameInstantNotLess_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Both sides represent the same instant after normalisation → false.
+            -->
+            <expression>@2012-04-01T00:00 &lt; @2012-04-01T00:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_DefaultServerOffset_OffsetlessBeforeLaterExplicit_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Offset-less normalises to server offset; the right side is one
+              hour later with the same explicit server offset → true.
+            -->
+            <expression>@2012-04-01T00:00 &lt; @2012-04-01T01:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_DefaultServerOffset_OffsetlessAfterEarlierExplicit_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Right side is one hour EARLIER than the offset-less left side.
+              Left > right → left is NOT less → false for <.
+              Tests the asymmetric direction not covered by the existing tests.
+            -->
+            <expression>@2012-04-01T01:00 &lt; @2012-04-01T00:00{{SERVER_OFFSET_ISO}}</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeEquality_DefaultServerOffset_TwoOffsetlessEqual_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Both offset-less operands receive the same server offset and
+              represent the same instant → true.
+            -->
+            <expression>@2012-04-01T00:00 = @2012-04-01T00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_DefaultServerOffset_TwoOffsetlessDifferentTime_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Both receive the server offset; different wall-clock times → false.
+            -->
+            <expression>@2012-04-01T00:00 = @2012-04-01T01:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_DefaultServerOffset_TwoOffsetlessChronological_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <expression>@2012-04-01T00:00 &lt; @2012-04-01T01:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_DefaultServerOffset_ExplicitUTC_Zero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Explicit UTC (Z) overrides any default → 0.0 regardless of server offset.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00Z</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_DefaultServerOffset_ExplicitPositiveHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <!--
+              Explicit +05:30 on the literal; default-server-offset policy does
+              not override an already-stated offset → 5.5.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+05:30</expression>
+            <output>5.5</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_DefaultServerOffset_ExplicitNegative" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <expression>timezoneoffset from @2012-04-01T00:00-05:00</expression>
+            <output>-5.0</output>
+        </test>
+
+        <test name="TimezoneOffsetExtraction_DefaultServerOffset_NullInput" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <capability code="timezone-offset-policy.default-server-offset"/>
+            <expression>timezoneoffset from (null as DateTime)</expression>
+            <output>null</output>
+        </test>
+    </group>
+
+    <!-- ================================================================
+         GROUP 3 – Policy-Independent Tests
+         All expressions use explicit timezone offsets. These tests run and
+         produce the same result regardless of the server's timezone policy.
+         ================================================================ -->
+    <group name="Policy-independent: explicit offsets only" version="1.5">
+        <capability code="timezone-offset"/>
+        <capability code="component-extraction"/>
+
+        <test name="TimezoneOffset_ExplicitUTC_IsZero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00Z</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPlusZero_IsZero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +00:00 and Z are equivalent; both return 0.0.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+00:00</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPositiveWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00+05:00</expression>
+            <output>5.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPositiveHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +05:30 = 5 + 30/60 = 5.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+05:30</expression>
+            <output>5.5</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitNegativeWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00-05:00</expression>
+            <output>-5.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitNegativeHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              -09:30 = -(9 + 30/60) = -9.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00-09:30</expression>
+            <output>-9.5</output>
+        </test>
+
+        <test name="TimezoneOffset_NullDateTime_ReturnsNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              Null propagation: the only correct source of a null result
+              for timezoneoffset is a null input DateTime.
+            -->
+            <expression>timezoneoffset from (null as DateTime)</expression>
+            <output>null</output>
+        </test>
+
+        <test name="TimezoneOffset_UTCandPlusZero_Equal" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              Z and +00:00 both yield 0.0 → equal → true.
+            -->
+            <expression>(timezoneoffset from @2012-04-01T00:00Z) = (timezoneoffset from @2012-04-01T00:00+00:00)</expression>
+            <output>true</output>
+        </test>
+
+        <test name="TimezoneOffset_PositiveGreaterThanNegative_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>(timezoneoffset from @2012-04-01T00:00+05:00) > (timezoneoffset from @2012-04-01T00:00-05:00)</expression>
+            <output>true</output>
+        </test>
+
+        <test name="TimezoneOffset_ArithmeticOnExtractedOffsets" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              5.5 + (-5.0) = 0.5 (decimal-hour arithmetic on extracted offsets).
+            -->
+            <expression>(timezoneoffset from @2012-04-01T00:00+05:30) + (timezoneoffset from @2012-04-01T00:00-05:00)</expression>
+            <output>0.5</output>
+        </test>
+
+        <test name="DateTimeEquality_ExplicitSameOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+05:00 = @2012-04-01T00:00+05:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_DifferentOffsetsSameInstant_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T06:00+06:00 and @2012-04-01T00:00+00:00 both
+              normalise to 2012-04-01T00:00Z → true.
+            -->
+            <expression>@2012-04-01T06:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_DifferentOffsetsDifferentInstant_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 = 2012-03-31T18:00Z
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z
+              Different instants → false.
+            -->
+            <expression>@2012-04-01T00:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_UTCplusSixBeforeUTC_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 = 2012-03-31T18:00Z  (earlier)
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z  (later)
+              → true.
+            -->
+            <expression>@2012-04-01T00:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_SameInstantNotLessThan_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T06:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_ChronologicalSameOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+00:00 &lt; @2012-04-01T01:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_NullInput_ReturnsNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              Any comparison involving null → null (null propagation).
+            -->
+            <expression>(null as DateTime) &lt; @2012-04-01T00:00+00:00</expression>
+            <output>null</output>
+        </test>
+    </group>
+
+</tests>

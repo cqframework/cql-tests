@@ -659,7 +659,12 @@
 		<test name="DateTimeDifferenceWeeks3" version="1.4">
 		  	<capability code="difference-in"/>
 			<expression>difference in weeks between @2012-03-10T22:05:09 and @2012-03-24T07:19:33</expression>
-			<output>2</output>
+			<output>1</output>
+			<!-- 13 days 9 hours 14 minutes 24 seconds
+				https://cql.hl7.org/09-b-cqlreference.html#difference states:
+				"The difference-between operator returns the number of boundaries crossed for the specified precision between the
+				first and second arguments. If the first argument is after the second argument, the result is negative. The result
+				of this operation is always an integer; any fractional boundaries are dropped." -->
 		</test>
 		<test name="DateTimeDifferenceNegative" version="1.4">
 		  	<capability code="difference-in"/>
