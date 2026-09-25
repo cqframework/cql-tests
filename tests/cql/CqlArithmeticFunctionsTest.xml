@@ -314,12 +314,12 @@
 			<output>0.36787944</output>
 		</test>
 		<test name="Exp1000" version="1.0">
-			<expression invalid="true">Exp(1000)</expression>
-			<!-- EXPECT: Results in positive infinity -->
+			<expression>Exp(1000)</expression>
+			<output>null</output>
 		</test>
 		<test name="Exp1000D" version="1.0">
-			<expression invalid="true">Exp(1000.0)</expression>
-			<!-- EXPECT: Results in positive infinity -->
+			<expression>Exp(1000.0)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="HighBoundary" version="1.0">
@@ -425,12 +425,12 @@
 			<output>null</output>
 		</test>
 		<test name="Ln0" version="1.4">
-			<expression invalid="true">Ln(0)</expression>
-			<!-- EXPECT: Results in negative infinity -->
+			<expression>Ln(0)</expression>
+			<output>null</output>
 		</test>
 		<test name="LnNeg0" version="1.4">
-			<expression invalid="true">Ln(-0)</expression>
-			<!-- EXPECT: Results in negative infinity -->
+			<expression>Ln(-0)</expression>
+			<output>null</output>
 		</test>
 		<test name="Ln1" version="1.4">
 			<expression>Ln(1)</expression>
@@ -760,12 +760,12 @@
 			<output>@T11:59:59.999</output>
 		</test>
 		<test name="PredecessorUnderflowDt" version="1.0">
-			<expression invalid="true">predecessor of DateTime(0001, 1, 1, 0, 0, 0, 0)</expression>
-			<!-- EXPECT: The result of the predecessor operation precedes the minimum value allowed for the type -->
+			<expression>predecessor of DateTime(0001, 1, 1, 0, 0, 0, 0)</expression>
+			<output>null</output>
 		</test>
 		<test name="PredecessorUnderflowT" version="1.0">
-			<expression invalid="true">predecessor of @T00:00:00.000</expression>
-			<!-- EXPECT: The result of the predecessor operation precedes the minimum value allowed for the type -->
+			<expression>predecessor of @T00:00:00.000</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Power" version="1.0">
@@ -954,12 +954,12 @@
 			<output>@T12:00:00.001</output>
 		</test>
 		<test name="SuccessorOverflowDt" version="1.0">
-			<expression invalid="true">successor of DateTime(9999, 12, 31, 23, 59, 59, 999)</expression>
-			<!-- EXPECT: The result of the successor operation exceeds the maximum value allowed for the type -->
+			<expression>successor of DateTime(9999, 12, 31, 23, 59, 59, 999)</expression>
+			<output>null</output>
 		</test>
 		<test name="SuccessorOverflowT" version="1.0">
-			<expression invalid="true">successor of @T23:59:59.999</expression>
-			<!-- EXPECT: The result of the successor operation exceeds the maximum value allowed for the type -->
+			<expression>successor of @T23:59:59.999</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Truncate" version="1.0">
