@@ -1767,10 +1767,12 @@
 			<expression>Interval[@T12:00:00.000, @T21:59:59.999] properly includes @T12:00:00.001</expression>
 			<output>true</output>
 		</test>
-		<test name="TimeProperContainsFalse" version="1.0">
+		<test name="TimeProperContainsStart" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T12:00:00.000, @T21:59:59.999] properly includes @T12:00:00.000</expression>
-			<output>false</output>
+			<output>true</output>
+			<!-- The closed start boundary includes the point, and the interval is not a unit interval.
+			See https://cql.hl7.org/09-b-cqlreference.html#properly-includes -->
 		</test>
 		<test name="TimeProperContainsNull" version="1.0">
 			<capability code="interval-operators"/>
@@ -1800,10 +1802,12 @@
 			<expression>@T12:00:00.001 properly included in Interval[@T12:00:00.000, @T21:59:59.999]</expression>
 			<output>true</output>
 		</test>
-		<test name="TimeProperInFalse" version="1.0">
+		<test name="TimeProperInStart" version="1.0">
 			<capability code="interval-operators"/>
-			<expression>@T12:00:00.000 properly included in  Interval[@T12:00:00.000, @T21:59:59.999]</expression>
-			<output>false</output>
+			<expression>@T12:00:00.000 properly included in Interval[@T12:00:00.000, @T21:59:59.999]</expression>
+			<output>true</output>
+			<!-- The closed start boundary includes the point, and the interval is not a unit interval.
+			See https://cql.hl7.org/09-b-cqlreference.html#properly-included-in -->
 		</test>
 		<test name="TimeProperInNull" version="1.0">
 			<capability code="interval-operators"/>
