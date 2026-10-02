@@ -207,6 +207,88 @@
 			<expression>10.0 'g' / 5</expression>
 			<output>2.0'g'</output>
 		</test>
+		<test name="Divide12CM2By3CM" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>12 'cm2' / 3 'cm'</expression>
+			<output>4.0'cm'</output>
+			<!-- "For example: 12 'cm2' / 3 'cm' In this example, the result will have a unit of 'cm'."
+			See https://cql.hl7.org/09-b-cqlreference.html#divide -->
+		</test>
+		<test name="Divide10MGBy2D" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'mg' / 2 'd'</expression>
+			<output>5.0'mg/d'</output>
+			<!-- "For division operations involving quantities, the resulting quantity will have the appropriate unit."
+			See https://cql.hl7.org/09-b-cqlreference.html#divide -->
+			<!-- The expected unit combines the operand units without converting to UCUM base units.
+			See https://github.com/cqframework/clinical_quality_language/issues/1690 and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Divide10MGBy5ML" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'mg' / 5 'mL'</expression>
+			<output>2.0'mg/mL'</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#divide and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="Divide1MGBy1DL" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>1 'mg' / 1 'dL'</expression>
+			<output>1.0'mg/dL'</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#divide and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="Divide10MGBy2DEqual" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>(10 'mg' / 2 'd') = 5 'mg/d'</expression>
+			<output>true</output>
+			<!-- Holds whatever unit the quotient is expressed in, as long as the value is not truncated.
+			"When comparing quantities with different units, convert to the least granular unit and then
+			compare the resulting decimal values using decimal semantics."
+			See https://cql.hl7.org/09-b-cqlreference.html#equal -->
+		</test>
+		<test name="DivideAverageDailyDoseTablets" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>(60 '1' * 10 'mg') / 30 'd'</expression>
+			<output>20.0'mg/d'</output>
+			<!-- Total dose (quantity dispensed times strength) divided by days supplied.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="DivideAverageDailyDoseSolution" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>(150 'mL' * 2 'mg/mL') / 30 'd'</expression>
+			<output>10.0'mg/d'</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#divide and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="DivideAverageDailyDoseEqual" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>((60 '1' * 10 'mg') / 30 'd') = 20 'mg/d'</expression>
+			<output>true</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#equal -->
+		</test>
+		<test name="Divide120MBy60S" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>120 'm' / 60 's'</expression>
+			<output>2.0'm/s'</output>
+			<!-- Different dimensions, so the units compose.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Divide4MBy2CM" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>4 'm' / 2 'cm'</expression>
+			<output>200.0'1'</output>
+			<!-- 4 'm' converts to 400 'cm', the more granular unit, and cm cancels.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Divide2MBy3CM" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="precision-operators-for-decimal-and-date-time-types"/>
+			<expression>Round((2 'm' / 3 'cm').value, 8)</expression>
+			<output>66.66666667</output>
+			<!-- 2 'm' converts to 200 'cm', the more granular unit, then 200 / 3 with cm cancelling.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
 	</group>
 	<group name="Floor" version="1.0">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
@@ -620,6 +702,49 @@
 			<expression>1.0 'cm' * 2.0 'cm'</expression>
 			<output>2.0'cm2'</output>
 			<!-- TODO: make the units multiply -->
+		</test>
+		<test name="Multiply3CMBy12CM2" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>3 'cm' * 12 'cm2'</expression>
+			<output>36.0'cm3'</output>
+			<!-- "For example: 12 'cm' * 3 'cm' 3 'cm' * 12 'cm2' In this example, the first result will have
+			a unit of 'cm2', and the second result will have a unit of 'cm3'."
+			See https://cql.hl7.org/09-b-cqlreference.html#multiply -->
+		</test>
+		<test name="Multiply10MGPerMLBy5ML" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'mg/mL' * 5 'mL'</expression>
+			<output>50.0'mg'</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#multiply and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="Multiply5MGPerDBy2D" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>5 'mg/d' * 2 'd'</expression>
+			<output>10.0'mg'</output>
+			<!-- See https://cql.hl7.org/09-b-cqlreference.html#multiply and
+			https://github.com/cqframework/clinical_quality_language/issues/1690 -->
+		</test>
+		<test name="Multiply10MPerSBy10S" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'm/s' * 10 's'</expression>
+			<output>100.0'm'</output>
+			<!-- s cancels (exponent -1 + 1 = 0).
+			See https://cql.hl7.org/09-b-cqlreference.html#multiply and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Multiply2MBy3CM" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>2 'm' * 3 'cm'</expression>
+			<output>600.0'cm2'</output>
+			<!-- 2 'm' converts to 200 'cm', the more granular unit, before the units combine.
+			See https://cql.hl7.org/09-b-cqlreference.html#multiply and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Multiply10MGPerMLBy5L" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'mg/mL' * 5 'L'</expression>
+			<output>50000.0'mg'</output>
+			<!-- 5 'L' converts to 5000 'mL', the more granular unit, and mL cancels.
+			See https://cql.hl7.org/09-b-cqlreference.html#multiply and https://jira.hl7.org/browse/FHIR-58137 -->
 		</test>
 	</group>
 	<group name="Negate" version="1.0">
