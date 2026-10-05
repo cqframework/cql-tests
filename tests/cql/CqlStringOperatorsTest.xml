@@ -174,7 +174,7 @@
 			<expression>LastPositionOf('hi', 'Say hi to Ohio!')</expression>
 			<output>11</output>
 		</test>
-		<test name="LastPositionOfEmpty" version="1.0">
+		<test name="LastPositionOfEmpty" version="2.0">
 			<capability code="string-operators" />
 			<!-- empty pattern matches after the final character, so the result is the length of the argument; per CQL spec "LastPositionOf" (https://cql.hl7.org/09-b-cqlreference.html#lastpositionof) -->
 			<expression>LastPositionOf('', 'ABCDE')</expression>
