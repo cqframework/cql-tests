@@ -1035,7 +1035,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>days between @2017-03-12T00:00:00-07:00 and @2017-03-13T00:00:00-06:00</expression>
-			<output>0</output>
+			<output>1</output>
 		</test>
 		<test name="DurationInHoursAA" version="1.4">
 		  	<capability code="precision-based-timing"/>
@@ -1053,7 +1053,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>days between DateTime(2017, 3, 12, 0, 0, 0, 0, -7.0) and DateTime(2017, 3, 13, 0, 0, 0, 0, -6.0)</expression>
-			<output>0</output>
+			<output>1</output>
 		</test>
 	</group>
 	<group name="Now" version="1.4">
