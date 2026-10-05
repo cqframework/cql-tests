@@ -115,6 +115,33 @@
 			<expression>hour from @2015-02-10T is null</expression>
 			<output>true</output>
 		</test>
+		<test name="DateTimeMillisParsing1Digit" version="1.0">
+			<capability code="types" />
+			<capability code="component-extraction"/>
+			<expression>millisecond from @2017-12-21T02:00:00.1</expression>
+			<output>100</output>
+			<!-- ".1" is a fractional second: 0.1 seconds, which is 100 milliseconds, not 1.
+			"fff - A millisecond value, represented as a fractional second (e.g. .1 = 100 milliseconds)"
+			See https://cql.hl7.org/09-b-cqlreference.html#formatting-strings and the ISO-8601 literal format in
+			https://cql.hl7.org/02-authorsguide.html#date-datetime-and-time -->
+		</test>
+		<test name="DateTimeMillisParsing2Digits" version="1.0">
+			<capability code="types" />
+			<capability code="component-extraction"/>
+			<expression>millisecond from @2017-12-21T02:00:00.12</expression>
+			<output>120</output>
+			<!-- ".12" is 0.12 seconds, which is 120 milliseconds.
+			See https://cql.hl7.org/09-b-cqlreference.html#formatting-strings -->
+		</test>
+		<test name="DateTimeMillisParsing4Digits" version="1.0">
+			<capability code="types" />
+			<capability code="component-extraction"/>
+			<expression>millisecond from @2017-12-21T02:00:00.1234</expression>
+			<output>123</output>
+			<!-- ".1234" is 0.1234 seconds, which quantizes to 123 milliseconds, as in TimeMillisParsing.
+			"systems that support more than millisecond precision will need to quantize to the millisecond"
+			See https://cql.hl7.org/05-languagesemantics.html#definitions -->
+		</test>
 	</group>
 	<group name="Decimal" version="1.0">
 		<capability code="types" />
@@ -208,6 +235,22 @@
 			<expression>@T23:59:59.10000</expression>
 			<output>@T23:59:59.100</output>
 			<!-- ".10000" in the time literal means "0.10000 seconds". -->
+		</test>
+		<test name="TimeMillisParsing1Digit" version="1.0">
+			<capability code="types" />
+			<expression>@T23:59:59.1</expression>
+			<output>@T23:59:59.100</output>
+			<!-- ".1" is a fractional second: 0.1 seconds, which is 100 milliseconds, not 1.
+			"fff - A millisecond value, represented as a fractional second (e.g. .1 = 100 milliseconds)"
+			See https://cql.hl7.org/09-b-cqlreference.html#formatting-strings and the ISO-8601 literal format in
+			https://cql.hl7.org/02-authorsguide.html#date-datetime-and-time -->
+		</test>
+		<test name="TimeMillisParsing2Digits" version="1.0">
+			<capability code="types" />
+			<expression>@T23:59:59.12</expression>
+			<output>@T23:59:59.120</output>
+			<!-- ".12" is 0.12 seconds, which is 120 milliseconds.
+			See https://cql.hl7.org/09-b-cqlreference.html#formatting-strings -->
 		</test>
 		<test name="TimeProper" version="1.0">
 			<capability code="types" />
