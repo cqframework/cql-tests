@@ -586,6 +586,19 @@
 			<expression>10.0 'g' mod 0.0 'g'</expression>
 			<output>null</output>
 		</test>
+		<!-- The result's unit is not specified for mixed units (10 'cm' or 0.1 'm'), so these compare with = -->
+		<test name="Modulo1MBy30CMQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="modular-arithmetic-for-quantities"/>
+			<expression>(1.0 'm' mod 30.0 'cm') = 10.0 'cm'</expression>
+			<output>true</output>
+		</test>
+		<test name="Modulo1KGBy300GQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="modular-arithmetic-for-quantities"/>
+			<expression>(1.0 'kg' mod 300.0 'g') = 100.0 'g'</expression>
+			<output>true</output>
+		</test>
 	</group>
 	<group name="Multiply" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -1108,6 +1121,26 @@
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10.0 'g' div 0.0 'g'</expression>
 			<output>null</output>
+		</test>
+		<test name="TruncatedDivide250CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>250.0 'cm' div 1.0 'm'</expression>
+			<output>2.0 '1'</output>
+		</test>
+		<test name="TruncatedDivideNeg250CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>-250.0 'cm' div 1.0 'm'</expression>
+			<output>-2.0 '1'</output>
+		</test>
+		<test name="TruncatedDivide10CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10.0 'cm' div 1.0 'm'</expression>
+			<output>0.0 '1'</output>
+		</test>
+		<test name="TruncatedDivide7KGBy2GQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>7.0 'kg' div 2.0 'g'</expression>
+			<output>3500.0 '1'</output>
 		</test>
 	</group>
 </tests>
