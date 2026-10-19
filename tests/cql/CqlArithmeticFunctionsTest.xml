@@ -255,8 +255,11 @@
 			<output>2147483647</output>
 		</test>
 		<test name="FloorIntegerGreaterThanMaxInteger" version="1.0">
-			<expression>Floor(2147483648)</expression>
+			<expression invalid="syntax">Floor(2147483648)</expression>
 			<output>null</output>
+			<!-- 2147483648 is outside the Integer range, so the literal is invalid, as in CeilingIntegerGreaterThanMaxInteger.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 		</test>
 		<test name="FloorDecimalGreaterThanMaxInteger" version="1.0">
 			<expression>Floor(2147483648.2)</expression>
@@ -275,8 +278,11 @@
 			<output>null</output>
 		</test>
 		<test name="FloorIntegerLessThanMinInteger" version="1.0">
-			<expression>Floor(-2147483649)</expression>
+			<expression invalid="syntax">Floor(-2147483649)</expression>
 			<output>null</output>
+			<!-- -2147483649 is outside the Integer range, so the literal is invalid, as in CeilingIntegerLessThanMinInteger.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 		</test>
 		<test name="FloorDecimalLessThanMinInteger" version="1.0">
 			<expression>Floor(-2147483649.2)</expression>
