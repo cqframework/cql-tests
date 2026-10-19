@@ -19,7 +19,7 @@
 				  Interval[@2012-02-01, @2012-03-31],
 				  Interval[@2012-03-01, @2012-04-30]
 				}) M
-				  aggregate R starting (null as List&lt;Interval&lt;DateTime>>): R union ({
+				  aggregate R starting (null as List&lt;Interval&lt;Date>>): R union ({
 				    M X
 				      let S: Max({ end of Last(R) + 1 day, start of X }),
 				        E: S + Quantity{ value: duration in days of X, unit: 'days' }
@@ -102,6 +102,26 @@
 			</expression>
 			<output>37</output>
 			<!-- 1 + (1+1+1)+(1+1+2)+(1+2+1)+(1+2+2)+(2+1+1)+(2+1+2)+(2+2+1)+(2+2+2) -->
+		</test>
+		<test name="AggregateEmptySourceWithStart" version="1.5">
+			<capability code="single-source-query"/>
+			<capability code="aggregate-clause-query"/>
+			<!-- empty source: no iterations, so the accumulator keeps its starting value -->
+			<expression>({ } as List&lt;Integer&gt;) Num aggregate Result starting 5: Result + Num</expression>
+			<output>5</output>
+		</test>
+		<test name="AggregateEmptySourceNoStart" version="1.5">
+			<capability code="single-source-query"/>
+			<capability code="aggregate-clause-query"/>
+			<!-- empty source with no starting clause: accumulator stays at its initial null -->
+			<expression>({ } as List&lt;Integer&gt;) Num aggregate Result: Coalesce(Result, 0) + Num</expression>
+			<output>null</output>
+		</test>
+		<test name="AggregateDecimal" version="1.5">
+			<capability code="single-source-query"/>
+			<capability code="aggregate-clause-query"/>
+			<expression>({ 1.0, 2.0, 3.0 }) Num aggregate Result starting 0.0: Result + Num</expression>
+			<output>6.0</output>
 		</test>
 	</group>
 </tests>
