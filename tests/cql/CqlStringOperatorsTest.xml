@@ -174,11 +174,10 @@
 			<expression>LastPositionOf('hi', 'Say hi to Ohio!')</expression>
 			<output>11</output>
 		</test>
-		<test name="LastPositionOfEmpty" version="2.0">
+		<test name="LastPositionOfEmptyIsStringLength15" version="1.0">
 			<capability code="string-operators" />
-			<!-- empty pattern matches after the final character, so the result is the length of the argument; per CQL spec "LastPositionOf" (https://cql.hl7.org/09-b-cqlreference.html#lastpositionof) -->
-			<expression>LastPositionOf('', 'ABCDE')</expression>
-			<output>5</output>
+			<expression>LastPositionOf('', 'Say hi to Ohio!')</expression>
+			<output>15</output>
 		</test>
 	</group>
 	<group name="Length" version="1.0">
@@ -330,10 +329,9 @@
 			<expression>PositionOf('c', 'ab')</expression>
 			<output>-1</output>
 		</test>
-		<test name="PositionOfEmpty" version="2.0">
+		<test name="PositionOfEmptyIs0" version="1.0">
 			<capability code="string-operators" />
-			<!-- empty pattern matches at the beginning, so the result is 0; per CQL spec "PositionOf" (https://cql.hl7.org/09-b-cqlreference.html#positionof) -->
-			<expression>PositionOf('', 'ABCDE')</expression>
+			<expression>PositionOf('', 'Say hi to Ohio!')</expression>
 			<output>0</output>
 		</test>
 	</group>
