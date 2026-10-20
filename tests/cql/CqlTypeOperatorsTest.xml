@@ -129,11 +129,7 @@
 		<test name="CodeToConcept1" version="1.0">
 			<capability code="type-operators" />
 			<expression>ToConcept(Code { code: '8480-6' })</expression>
-			<output>
-				Concept {
-					codes: Code { code: '8480-6' }
-				}
-			</output>
+			<output>Concept { codes: { Code { code: '8480-6' } } }</output>
 		</test>
 		<test name="NullCodeToConcept" version="1.0">
 			<capability code="type-operators" />

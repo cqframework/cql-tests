@@ -24,5 +24,23 @@
 			<expression invalid="true">Message(3 + 1, true, '400', 'Error', 'This is an error!')</expression>
 			<!-- EXPECT: 400: This is an error! -->
 		</test>
+		<test name="TestMessageConditionFalse" version="1.0">
+			<capability code="diagnostic-operators"/>
+			<!-- condition false: message is not generated, source is returned -->
+			<expression>Message(5, false, '100', 'Message', 'not generated')</expression>
+			<output>5</output>
+		</test>
+		<test name="TestMessageErrorConditionFalse" version="1.0">
+			<capability code="diagnostic-operators"/>
+			<!-- condition false: even Error severity does not stop evaluation; source is returned (contrast with TestMessageError) -->
+			<expression>Message(5, false, '400', 'Error', 'not raised')</expression>
+			<output>5</output>
+		</test>
+		<test name="TestMessageNullSource" version="1.0">
+			<capability code="diagnostic-operators"/>
+			<!-- source is returned unchanged, including null -->
+			<expression>Message(null as Integer, true, '100', 'Message', 'null source')</expression>
+			<output>null</output>
+		</test>
 	</group>
 </tests>
