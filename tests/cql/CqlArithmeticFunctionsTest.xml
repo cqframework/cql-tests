@@ -289,6 +289,29 @@
 			<!-- 2 'm' converts to 200 'cm', the more granular unit, then 200 / 3 with cm cancelling.
 			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
 		</test>
+		<test name="Divide10M2By2CM" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'm2' / 2 'cm'</expression>
+			<output>50000.0'cm'</output>
+			<!-- 10 'm2' converts to 100000 'cm2', the more granular unit, then 100000 / 2 with exponent 2 - 1 = 1.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Divide10CM2By2M" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 'cm2' / 2 'm'</expression>
+			<output>0.05'cm'</output>
+			<!-- 2 'm' converts to 200 'cm', the more granular unit, then 10 / 200 with exponent 2 - 1 = 1.
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
+		<test name="Divide10PerCMBy2M" version="1.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10 '/cm' / 2 'm'</expression>
+			<output>0.05'/cm2'</output>
+			<!-- 2 'm' converts to 200 'cm', the more granular atom, then 10 / 200 with exponent -1 - 1 = -2.
+			This takes "most granular" to compare unit atoms (cm finer than m) regardless of exponent sign;
+			the equivalent result 500 '/m2' would follow from comparing whole units ('/m' finer than '/cm').
+			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
+		</test>
 	</group>
 	<group name="Floor" version="1.0">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
