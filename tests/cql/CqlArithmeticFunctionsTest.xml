@@ -306,10 +306,9 @@
 		<test name="Divide10PerCMBy2M" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10 '/cm' / 2 'm'</expression>
-			<output>0.05'/cm2'</output>
-			<!-- 2 'm' converts to 200 'cm', the more granular atom, then 10 / 200 with exponent -1 - 1 = -2.
-			This takes "most granular" to compare unit atoms (cm finer than m) regardless of exponent sign;
-			the equivalent result 500 '/m2' would follow from comparing whole units ('/m' finer than '/cm').
+			<output>500.0'/m2'</output>
+			<!-- Granularity considers the sign of the exponent: with a negative exponent the larger atom is more
+			granular, so '/m' is finer than '/cm'. 10 '/cm' converts to 1000 '/m', then 1000 / 2 with exponent -1 - 1 = -2.
 			See https://cql.hl7.org/09-b-cqlreference.html#divide and https://jira.hl7.org/browse/FHIR-58137 -->
 		</test>
 	</group>
