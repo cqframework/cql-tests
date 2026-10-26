@@ -839,15 +839,15 @@
 		</test>
 		<test name="Power0To0" version="1.0">
 			<expression>Power(0, 0)</expression>
-			<output>1</output>
+			<output type="decimal">1</output>
 		</test>
 		<test name="Power2To2" version="1.0">
 			<expression>Power(2, 2)</expression>
-			<output>4</output>
+			<output type="decimal">4</output>
 		</test>
 		<test name="PowerNeg2To2" version="1.0">
 			<expression>Power(-2, 2)</expression>
-			<output>4</output>
+			<output type="decimal">4</output>
 		</test>
 		<test name="Power2ToNeg2" version="1.0">
 			<expression>Power(2, -2)</expression>
@@ -856,7 +856,7 @@
 		<test name="Power2LTo2L" version="1.5">
 			<capability code="system.long"/>
 			<expression>Power(2L, 2L)</expression>
-			<output>4L</output>
+			<output type="decimal">4</output>
 		</test>
 		<test name="Power2DTo2D" version="1.0">
 			<expression>Power(2.0, 2.0)</expression>
@@ -880,12 +880,12 @@
 		</test>
 		<test name="Power2To4" version="1.0">
 			<expression>2^4</expression>
-			<output>16</output>
+			<output type="decimal">16</output>
 		</test>
 		<test name="Power2LTo3L" version="1.5">
 			<capability code="system.long"/>
 			<expression>2L^3L</expression>
-			<output>8L</output>
+			<output type="decimal">8</output>
 		</test>
 		<test name="Power2DTo4D" version="1.0">
 			<expression>2.0^4.0</expression>
@@ -904,15 +904,15 @@
 		</test>
 		<test name="Round1" version="1.0">
 			<expression>Round(1)</expression>
-			<output>1.0</output>
+			<output type="decimal">1</output>
 		</test>
 		<test name="Round0D5" version="1.0">
 			<expression>Round(0.5)</expression>
-			<output>1.0</output>
+			<output type="decimal">1</output>
 		</test>
 		<test name="Round0D4" version="1.0">
 			<expression>Round(0.4)</expression>
-			<output>0.0</output>
+			<output type="decimal">0</output>
 		</test>
 		<test name="Round3D14159" version="1.0">
 			<expression>Round(3.14159, 2)</expression>
@@ -920,27 +920,27 @@
 		</test>
 		<test name="RoundNeg0D5" version="1.0">
 			<expression>Round(-0.5)</expression>
-			<output>-1.0</output>
+			<output type="decimal">-1</output>
 		</test>
 		<test name="RoundNeg0D4" version="1.0">
 			<expression>Round(-0.4)</expression>
-			<output>0.0</output>
+			<output type="decimal">0</output>
 		</test>
 		<test name="RoundNeg0D6" version="1.0">
 			<expression>Round(-0.6)</expression>
-			<output>-1.0</output>
+			<output type="decimal">-1</output>
 		</test>
 		<test name="RoundNeg1D1" version="1.0">
 			<expression>Round(-1.1)</expression>
-			<output>-1.0</output>
+			<output type="decimal">-1</output>
 		</test>
 		<test name="RoundNeg1D5" version="1.0">
 			<expression>Round(-1.5)</expression>
-			<output>-2.0</output>
+			<output type="decimal">-2</output>
 		</test>
 		<test name="RoundNeg1D6" version="1.0">
 			<expression>Round(-1.6)</expression>
-			<output>-2.0</output>
+			<output type="decimal">-2</output>
 		</test>
 		<test name="RoundPos2D5" version="1.0">
 			<!-- traditional rounding: 2.5 rounds away from zero to 3, not banker's 2 -->
@@ -1127,7 +1127,7 @@
 		</test>
 		<test name="TruncatedDivide10d1By3D1" version="1.0">
 			<expression>10.1 div 3.1</expression>
-			<output>3.0</output>
+			<output type="decimal">3</output>
 		</test>
 		<test name="TruncatedDivide10D1By0D" version="1.0">
 			<expression>10.1 div 0.0</expression>
@@ -1143,7 +1143,7 @@
 		</test>
 		<test name="TruncatedDivideNeg10d1ByNeg3D1" version="1.0">
 			<expression>-10.1 div -3.1</expression>
-			<output>3.0</output>
+			<output type="decimal">3</output>
 		</test>
 		<test name="TruncatedDivideNeg2By1" version="1.0">
 			<expression>-2 div 1</expression>
@@ -1155,7 +1155,7 @@
 		</test>
 		<test name="TruncatedDivideNeg10d1By3D1" version="1.0">
 			<expression>-10.1 div 3.1</expression>
-			<output>-3.0</output>
+			<output type="decimal">-3</output>
 		</test>
 		<test name="TruncatedDivide2ByNeg1" version="1.0">
 			<expression>2 div -1</expression>
@@ -1167,11 +1167,11 @@
 		</test>
 		<test name="TruncatedDivide10d1ByNeg3D1" version="1.0">
 			<expression>10.1 div -3.1</expression>
-			<output>-3.0</output>
+			<output type="decimal">-3</output>
 		</test>
 		<test name="TruncatedDivide10By5D" version="1.0">
 			<expression>10 div 5.0</expression>
-			<output>2.0</output>
+			<output type="decimal">2</output>
 		</test>
 		<test name="TruncatedDivide10d1ByNeg3D1Quantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
