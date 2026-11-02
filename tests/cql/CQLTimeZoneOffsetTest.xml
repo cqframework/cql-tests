@@ -183,9 +183,11 @@
          ================================================================ -->
     <group name="Default timezone offset (evaluation request)" version="1.5">
         <capability code="timezone-offset"/>
+        <capability code="default-timezone-offset-to-request"/>
 
         <test name="DefaultOffset_LiteralOffsetIsNotNull" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="component-extraction"/>
             <!--
               The literal has no offset, so it takes the evaluation request's
@@ -197,6 +199,7 @@
 
         <test name="DefaultOffset_LiteralOffsetEqualsNowOffset" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="component-extraction"/>
             <capability code="function.Now"/>
             <expression>(timezoneoffset from @2012-04-01T00:00) = (timezoneoffset from Now())</expression>
@@ -205,6 +208,7 @@
 
         <test name="DefaultOffset_ConstructorOffsetEqualsNowOffset" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="component-extraction"/>
             <capability code="constructor.datetime"/>
             <capability code="function.Now"/>
@@ -217,6 +221,7 @@
 
         <test name="DefaultOffset_LiteralEqualsExplicitEvaluationOffset_True" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="constructor.datetime"/>
             <capability code="function.Now"/>
             <!--
@@ -230,6 +235,7 @@
 
         <test name="DefaultOffset_LiteralBeforeLaterExplicitEvaluationOffset_True" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="constructor.datetime"/>
             <capability code="function.Now"/>
             <expression>@2012-04-01T00:00:00.000 &lt; DateTime(2012, 4, 1, 1, 0, 0, 0, timezoneoffset from Now())</expression>
@@ -238,6 +244,7 @@
 
         <test name="DefaultOffset_LiteralAfterEarlierExplicitEvaluationOffset_False" version="1.5">
             <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
             <capability code="constructor.datetime"/>
             <capability code="function.Now"/>
             <expression>@2012-04-01T01:00:00.000 &lt; DateTime(2012, 4, 1, 0, 0, 0, 0, timezoneoffset from Now())</expression>
