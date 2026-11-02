@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../../testSchema/testSchema.xsd" name="CqlQueryTest" reference="https://cql.hl7.org/02-authorsguide.html#queries" version="1.0">
+    xmlns="http://hl7.org/fhirpath/tests" xsi:schemaLocation="http://hl7.org/fhirpath/tests ../testSchema.xsd" name="CqlQueryTest" reference="https://cql.hl7.org/02-authorsguide.html#queries" version="1.0">
     <capability code="queries" />
     <group name="SimpleQueries" version="1.0">
         <capability code="queries" />
