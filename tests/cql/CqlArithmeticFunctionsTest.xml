@@ -629,6 +629,31 @@
 			<expression>10.0 'g' mod 0.0 'g'</expression>
 			<output>null</output>
 		</test>
+		<!-- "Modulo should have the same units as its operands after converting to common units in the same way as for division"
+		     (FHIR-59659, https://jira.hl7.org/browse/FHIR-59659), and division converts to the most granular unit (FHIR-58137),
+		     so mixed units give the remainder in the smaller unit.
+		     See https://cql.hl7.org/09-b-cqlreference.html#modulo -->
+		<test name="Modulo1MBy30CMQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="modular-arithmetic-for-quantities"/>
+			<expression>1.0 'm' mod 30.0 'cm'</expression>
+			<output>10.0 'cm'</output>
+		</test>
+		<test name="Modulo1KGBy300GQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="modular-arithmetic-for-quantities"/>
+			<expression>1.0 'kg' mod 300.0 'g'</expression>
+			<output>100.0 'g'</output>
+		</test>
+		<!-- The Integer converts implicitly to the Quantity 3 '1'. As in division (10.0 'g' / 3 is 3.33 'g'), the unit '1'
+		     has no dimension to convert, so the remainder keeps the unit of the left operand (FHIR-59659).
+		     See https://cql.hl7.org/09-b-cqlreference.html#modulo -->
+		<test name="Modulo10GBy3Quantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<capability code="modular-arithmetic-for-quantities"/>
+			<expression>10.0 'g' mod 3</expression>
+			<output>1.0 'g'</output>
+		</test>
 	</group>
 	<group name="Multiply" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -1192,6 +1217,29 @@
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10.0 'g' div 0.0 'g'</expression>
 			<output>null</output>
+		</test>
+		<!-- "Div should be unitless after converting arguments to common units in the same way as for division"
+		     (FHIR-59659, https://jira.hl7.org/browse/FHIR-59659): it counts how many times one quantity fits into the other.
+		     See https://cql.hl7.org/09-b-cqlreference.html#truncated-divide -->
+		<test name="TruncatedDivide250CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>250.0 'cm' div 1.0 'm'</expression>
+			<output>2.0 '1'</output>
+		</test>
+		<test name="TruncatedDivideNeg250CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>-250.0 'cm' div 1.0 'm'</expression>
+			<output>-2.0 '1'</output>
+		</test>
+		<test name="TruncatedDivide10CMBy1MQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>10.0 'cm' div 1.0 'm'</expression>
+			<output>0.0 '1'</output>
+		</test>
+		<test name="TruncatedDivide7KGBy2GQuantity" version="1.5">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>7.0 'kg' div 2.0 'g'</expression>
+			<output>3500.0 '1'</output>
 		</test>
 	</group>
 </tests>
