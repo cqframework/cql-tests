@@ -282,6 +282,14 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999, @T20:59:59.999 } = { @T10:59:59.999, @T20:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
 		</test>
+		<test name="Equal12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } = { 2, 1 }</expression>
+			<output>false</output>
+			<!-- List equality stays order dependent; FHIR-59734 changes only equivalence.
+			"for each element in the lists, in order, the elements are equal"
+			See https://cql.hl7.org/09-b-cqlreference.html#equal and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="list-operators" />
@@ -886,6 +894,76 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } ~ { @T15:59:59.999, @T20:59:59.995 }</expression>
 			<output>false</output>
 		</test>
+		<test name="Equivalent12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } ~ { 2, 1 }</expression>
+			<output>true</output>
+			<!-- The same items in a different order are equivalent.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="Equivalent112And122" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 1, 2 } ~ { 1, 2, 2 }</expression>
+			<output>false</output>
+			<!-- Duplicates count: the second 1 on the left has no unpaired 1 on the right.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="Equivalent111And112" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 1, 1 } ~ { 1, 1, 2 }</expression>
+			<output>false</output>
+			<!-- Each left item has some equivalent item on the right, but the third 1 has no unpaired match.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="Equivalent112And111" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 1, 2 } ~ { 1, 1, 1 }</expression>
+			<output>false</output>
+			<!-- The reverse of Equivalent111And112; equivalence is symmetric, so this is also false.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="Equivalent122And212" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2, 2 } ~ { 2, 1, 2 }</expression>
+			<output>true</output>
+			<!-- Duplicates and reordering together: each item pairs with one equivalent item.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="EquivalentOneNullAndNullOne" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, null } ~ { null, 1 }</expression>
+			<output>true</output>
+			<!-- Reordered nulls pair with each other, since null ~ null is true.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
+		<test name="EquivalentaBAndbA" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'B' } ~ { 'b', 'A' }</expression>
+			<output>true</output>
+			<!-- Reordering combines with string equivalence, which ignores case.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
+		</test>
 	</group>
 	<group name="NotEqual" version="1.0">
 		<capability code="list-operators" />
@@ -971,6 +1049,16 @@
 			<capability code="list-operators" />
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } !~ { @T15:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
+		</test>
+		<test name="NotEquivalent12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } !~ { 2, 1 }</expression>
+			<output>false</output>
+			<!-- Not equivalent negates equivalent, so lists that differ only in order give false.
+			FHIR-59734 corrects CQL list equivalence, which currently says "in order", to match FHIRPath:
+			"Each item must be equivalent. Comparison is not order dependent." Items are paired one to one, in any order.
+			See https://cql.hl7.org/09-b-cqlreference.html#not-equivalent-2, https://hl7.org/fhirpath/N1/#equivalent
+			and https://jira.hl7.org/browse/FHIR-59734 -->
 		</test>
 	</group>
 	<group name="ProperContains" version="1.0">
