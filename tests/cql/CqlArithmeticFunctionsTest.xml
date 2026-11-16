@@ -148,7 +148,9 @@
 			<output>null</output>
 		</test>
 		<test name="CeilingIntegerGreaterThanMaxInteger" version="1.0">
-			<!-- 2147483648 exceeds maximum Integer (2^31-1); an out-of-range Integer literal is a translation (semantic) error -->
+			<!-- 2147483648 exceeds maximum Integer (2^31-1); an out-of-range Integer literal is a translation (semantic) error.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 			<expression invalid="semantic">Ceiling(2147483648)</expression>
 		</test>
 		<test name="CeilingDecimalGreaterThanMaxInteger" version="1.0">
@@ -168,7 +170,9 @@
 			<output>-2147483648</output>
 		</test>
 		<test name="CeilingIntegerLessThanMinInteger" version="1.0">
-			<!-- -2147483649 is below minimum Integer (-2^31); an out-of-range Integer literal is a translation (semantic) error -->
+			<!-- -2147483649 is below minimum Integer (-2^31); an out-of-range Integer literal is a translation (semantic) error.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 			<expression invalid="semantic">Ceiling(-2147483649)</expression>
 		</test>
 		<test name="CeilingDecimalLessThanMinInteger" version="1.0">
@@ -296,7 +300,9 @@
 			<output>2147483647</output>
 		</test>
 		<test name="FloorIntegerGreaterThanMaxInteger" version="1.0">
-			<!-- 2147483648 exceeds maximum Integer (2^31-1); an out-of-range Integer literal is a translation (semantic) error -->
+			<!-- 2147483648 exceeds maximum Integer (2^31-1); an out-of-range Integer literal is a translation (semantic) error.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 			<expression invalid="semantic">Floor(2147483648)</expression>
 		</test>
 		<test name="FloorDecimalGreaterThanMaxInteger" version="1.0">
@@ -316,7 +322,9 @@
 			<output>null</output>
 		</test>
 		<test name="FloorIntegerLessThanMinInteger" version="1.0">
-			<!-- -2147483649 is below minimum Integer (-2^31); an out-of-range Integer literal is a translation (semantic) error -->
+			<!-- -2147483649 is below minimum Integer (-2^31); an out-of-range Integer literal is a translation (semantic) error.
+			"CQL supports integer values in the range -2^31 to 2^31-1 with a step size of 1."
+			See https://cql.hl7.org/09-b-cqlreference.html#integer-1 -->
 			<expression invalid="semantic">Floor(-2147483649)</expression>
 		</test>
 		<test name="FloorDecimalLessThanMinInteger" version="1.0">
