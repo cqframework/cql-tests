@@ -877,7 +877,7 @@
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
 			<expression>months between DateTime(2005) and DateTime(2006, 5)</expression>
-			<output>Interval[ 4, 16 ]</output>
+			<output>Interval[ 5, 16 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -888,7 +888,7 @@
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				+ (days between DateTime(2014, 1, 15) and DateTime(2014, 2))</expression>
-			<output>Interval[ 32, 88 ]</output>
+			<output>Interval[ 34, 88 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -899,7 +899,7 @@
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				- (months between DateTime(2005) and DateTime(2006, 5))</expression>
-			<output>Interval[ 0, 40 ]</output>
+			<output>Interval[ 12, 28 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -910,7 +910,7 @@
 		  	<capability code="uncertainty-intervals"/>
 			<expression>(days between DateTime(2014, 1, 15) and DateTime(2014, 2))
 				* (days between DateTime(2014, 1, 15) and DateTime(2014, 2))</expression>
-			<output>Interval[ 256, 1936 ]</output>
+			<output>Interval[ 289, 1936 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
