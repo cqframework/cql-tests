@@ -274,6 +274,18 @@
 			<expression>Matches(' \n\t', '\\s+')</expression>
 			<output>true</output>
 		</test>
+		<test name="MatchesPartialTrue" version="1.5">
+			<capability code="string-operators" />
+			<!-- partial match: the pattern matches part of the string; per CQL spec "Matches" (https://cql.hl7.org/09-b-cqlreference.html#matches), regular expressions "use partial matching" (1.5+; MatchesFull, 2.0, matches the entire string) -->
+			<expression>Matches('abc', 'b')</expression>
+			<output>true</output>
+		</test>
+		<test name="MatchesPartialAnchoredFalse" version="1.5">
+			<capability code="string-operators" />
+			<!-- the start/end of line markers ^ and $ "can be used to match the entire string"; per CQL spec "Matches" (https://cql.hl7.org/09-b-cqlreference.html#matches) -->
+			<expression>Matches('abc', '^b$')</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="MatchesFull" version="2.0" reference="https://cql.hl7.org/09-b-cqlreference.html#matchesfull">
 		<!-- MatchesFull was introduced in CQL 2.0 with trial-use status -->
