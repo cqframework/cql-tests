@@ -109,7 +109,8 @@
 		<test name="NullToBoolean" version="1.0">
 			<capability code="type-operators" />
 			<!-- If the argument is null, the result is null: https://cql.hl7.org/09-b-cqlreference.html#toboolean -->
-			<expression>ToBoolean(null)</expression>
+			<!-- The null is typed because an untyped null matches every ToBoolean overload equally, which is an ambiguous call: https://cql.hl7.org/03-developersguide.html#function-resolution -->
+			<expression>ToBoolean(null as String)</expression>
 			<output>null</output>
 		</test>
 		<test name="Integer1ToBoolean" version="1.5">
