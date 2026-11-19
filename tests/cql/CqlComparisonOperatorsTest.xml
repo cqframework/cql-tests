@@ -190,6 +190,36 @@
 			<expression>Tuple { Id : 1, Name : 'John' } = Tuple { Id : 1, Name : null }</expression>
 			<output>null</output>
 		</test>
+		<test name="TupleEqualBothNullTrue" version="1.5">
+			<capability code="tuple"/>
+			<!-- Spec example (https://cql.hl7.org/09-b-cqlreference.html#equal): elements null on both sides are skipped -->
+			<expression>{ x: 1, y: null } = { x: 1, y: null }</expression>
+			<output>true</output>
+		</test>
+		<test name="TupleEqualBothNullFalse" version="1.5">
+			<capability code="tuple"/>
+			<!-- Spec example (https://cql.hl7.org/09-b-cqlreference.html#equal) -->
+			<expression>{ x: 1, y: null } = { x: 2, y: null }</expression>
+			<output>false</output>
+		</test>
+		<test name="TupleEqualMixedNullNull" version="1.5">
+			<capability code="tuple"/>
+			<!-- Spec example (https://cql.hl7.org/09-b-cqlreference.html#equal): null and true is null -->
+			<expression>{ x: 1, y: 1 } = { x: null, y: 1 }</expression>
+			<output>null</output>
+		</test>
+		<test name="TupleEqualMixedNullFalse" version="1.5">
+			<capability code="tuple"/>
+			<!-- Spec example (https://cql.hl7.org/09-b-cqlreference.html#equal): equality is "a conjunction of equality comparisons", and null and false is false -->
+			<expression>{ x: 1, y: 1 } = { x: null, y: 2 }</expression>
+			<output>false</output>
+		</test>
+		<test name="TupleEqualMixedNullFalseReversed" version="1.5">
+			<capability code="tuple"/>
+			<!-- TupleEqualMixedNullFalse with the elements in the other order; the result does not depend on element order -->
+			<expression>{ y: 1, x: 1 } = { y: 2, x: null }</expression>
+			<output>false</output>
+		</test>
 		<test name="TupleEqDateTimeTrue" version="1.0">
 			<capability code="tuple"/>
 			<expression>Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) } = Tuple { dateId: 1, Date: DateTime(2012, 10, 5, 0, 0, 0, 0) }</expression>
@@ -1002,6 +1032,18 @@
 			<capability code="tuple"/>
 			<expression>Tuple{ Id : 1, Name : 'John' } != Tuple{ Id : 1, Name : null }</expression>
 			<output>null</output>
+		</test>
+		<test name="TupleNotEqualMixedNullFalse" version="1.5">
+			<capability code="tuple"/>
+			<!-- not (TupleEqualMixedNullFalse) = not false = true -->
+			<expression>{ x: 1, y: 1 } != { x: null, y: 2 }</expression>
+			<output>true</output>
+		</test>
+		<test name="TupleNotEqualMixedNullFalseReversed" version="1.5">
+			<capability code="tuple"/>
+			<!-- TupleNotEqualMixedNullFalse with the elements in the other order -->
+			<expression>{ y: 1, x: 1 } != { y: 2, x: null }</expression>
+			<output>true</output>
 		</test>
 		<test name="DateTimeNotEqTodayToday" version="1.0">
 			<expression>Today() != Today()</expression>
