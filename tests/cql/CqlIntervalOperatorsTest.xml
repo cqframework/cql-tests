@@ -1185,9 +1185,9 @@
 		<capability code="interval-operators"/>
 		<test name="TestMeetsAfterNull" version="1.0">
 			<capability code="interval-operators"/>
-			<!-- open/unknown null boundaries make the boundary comparison indeterminate -> null; per CQL spec "meets after" (https://cql.hl7.org/09-b-cqlreference.html#meets-after) -->
+			<!-- An open null boundary is an uncertainty: the start of Interval(null, 5] is at most 5 and the end of Interval[11, null) is at least 11, so the first interval can't start immediately after the second ends: https://cql.hl7.org/09-b-cqlreference.html#start, https://cql.hl7.org/09-b-cqlreference.html#end, https://cql.hl7.org/09-b-cqlreference.html#meets -->
 			<expression>Interval(null, 5] meets after Interval[11, null)</expression>
-			<output>null</output>
+			<output>false</output>
 		</test>
 		<test name="IntegerIntervalMeetsAfterTrue" version="1.0">
 			<capability code="interval-operators"/>
