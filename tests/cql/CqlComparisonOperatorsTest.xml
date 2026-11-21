@@ -71,6 +71,11 @@
 			<expression>null as String = null</expression>
 			<output>null</output>
 		</test>
+		<test name="SimpleEqUntypedNullNull" version="1.0">
+			<!-- untyped nulls; per CQL spec "Equal" (https://cql.hl7.org/09-b-cqlreference.html#equal): define "NullEqualIsNull": null = null -->
+			<expression>null = null</expression>
+			<output>null</output>
+		</test>
 		<test name="SimpleEqTrueNull" version="1.0">
 			<expression>true = null</expression>
 			<output>null</output>
@@ -748,6 +753,11 @@
 			<expression>null as String ~ null</expression>
 			<output>true</output>
 		</test>
+		<test name="EquivUntypedNullNull" version="1.0">
+			<!-- untyped nulls; per CQL spec "Equivalent" (https://cql.hl7.org/09-b-cqlreference.html#equivalent): define "NullEquivalentIsTrue": null ~ null -->
+			<expression>null ~ null</expression>
+			<output>true</output>
+		</test>
 		<test name="EquivTrueNull" version="1.0">
 			<expression>true ~ null</expression>
 			<output>false</output>
@@ -908,6 +918,11 @@
 			<expression>null as String != null</expression>
 			<output>null</output>
 		</test>
+		<test name="SimpleNotEqUntypedNullNull" version="1.0">
+			<!-- untyped nulls; != is not(=), and null = null is null; per CQL spec "Not Equal" (https://cql.hl7.org/09-b-cqlreference.html#not-equal) -->
+			<expression>null != null</expression>
+			<output>null</output>
+		</test>
 		<test name="SimpleNotEqTrueNull" version="1.0">
 			<expression>true != null</expression>
 			<output>null</output>
@@ -1055,7 +1070,9 @@
 			<output>true</output>
 		</test>
 		<test name="NotEquivalentNullNull" version="1.0">
-			<expression invalid="semantic">null !~ null</expression>
+			<!-- untyped nulls are equivalent, so !~ is false; per CQL spec "Not Equivalent" (https://cql.hl7.org/09-b-cqlreference.html#not-equivalent): define "NullNotEquivalentIsFalse": null !~ null -->
+			<expression>null !~ null</expression>
+			<output>false</output>
 		</test>
 	</group>
 	<group name="Unit Comparison" version="1.0">
