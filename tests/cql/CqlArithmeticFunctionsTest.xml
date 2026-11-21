@@ -1036,6 +1036,16 @@
 			<expression>successor of 1.01</expression>
 			<output>1.02</output>
 		</test>
+		<test name="SuccessorOf1QCM" version="1.0" versionTo="1.5.3">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>successor of 1.0 'cm'</expression>
+			<output>1.00000001'cm'</output>
+		</test>
+		<test name="SuccessorOf1QCMPrecision" version="2.0">
+			<capability code="ucum-unit-conversion-support"/>
+			<expression>successor of 1.0 'cm'</expression>
+			<output>1.1'cm'</output>
+		</test>
 		<test name="SuccessorOfJan12000" version="1.0">
 			<expression>successor of DateTime(2000,1,1)</expression>
 			<output>@2000-01-02T</output>
