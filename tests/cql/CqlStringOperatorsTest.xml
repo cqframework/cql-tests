@@ -547,13 +547,19 @@
 		</test>
 		<test name="DateTimeToString2" version="1.0">
 			<capability code="string-operators" />
-			<expression>ToString(DateTime(2000, 1, 1, 15, 25, 25, 300))</expression>
-			<output>'2000-01-01T15:25:25.300'</output>
+			<!-- With no offset given, the offset defaults to the evaluation request's (https://cql.hl7.org/02-authorsguide.html#constructing-datetime-values), and ToString always includes it (https://cql.hl7.org/09-b-cqlreference.html#tostring). The pattern accepts any offset, so the result doesn't depend on the evaluation timestamp. -->
+			<expression>Matches(ToString(DateTime(2000, 1, 1, 15, 25, 25, 300)), '^2000-01-01T15:25:25[.]300[+-][0-9][0-9]:[0-9][0-9]$')</expression>
+			<output>true</output>
 		</test>
 		<test name="DateTimeToString3" version="1.0">
 			<capability code="string-operators" />
 			<expression>ToString(DateTime(2000, 1, 1, 8, 25, 25, 300, -7))</expression>
 			<output>'2000-01-01T08:25:25.300-07:00'</output>
+		</test>
+		<test name="DateTimeToString4" version="1.0">
+			<capability code="string-operators" />
+			<expression>ToString(DateTime(2000, 1, 1, 15, 25, 25, 300, 0))</expression>
+			<output>'2000-01-01T15:25:25.300+00:00'</output>
 		</test>
 		<test name="TimeToString1" version="1.0">
 			<capability code="string-operators" />
