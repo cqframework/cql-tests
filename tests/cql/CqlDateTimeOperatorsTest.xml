@@ -866,8 +866,9 @@
 		<test name="DateTimeDurationBetweenUncertainInterval" version="1.4">
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
+			<!-- DateTime(2014, 1, 15) can be as late as 2014-01-15T23:59:59.999, so the shortest duration to February 2014 is 16 whole days: https://github.com/cqframework/cql-tests/issues/67 -->
 			<expression>days between DateTime(2014, 1, 15) and DateTime(2014, 2)</expression>
-			<output>Interval[ 17, 44 ]</output>
+			<output>Interval[ 16, 44 ]</output>
 			<!-- TODO: How to handle the fact the question is resulting in an
 			undertainty interval and that CQL/ELM seem to provide no direct way of
 			selecting the same value, conceptually an implementation internal;
@@ -1015,8 +1016,9 @@
 		<test name="TimeDurationBetweenHourDiffPrecision2" version="1.4">
 		  	<capability code="precision-based-timing"/>
 		  	<capability code="uncertainty-intervals"/>
+			<!-- @T06 is any time from 06:00:00.000 to 06:59:59.999, so the duration is 0 or 1 whole hours: https://github.com/cqframework/cql-tests/issues/67 -->
 			<expression>hours between @T06 and @T07:00:00</expression>
-			<output>1</output>
+			<output>Interval[ 0, 1 ]</output>
 		</test>
 		<test name="TimeDurationBetweenMinute" version="1.4">
 		  	<capability code="precision-based-timing"/>
