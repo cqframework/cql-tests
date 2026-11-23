@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CQLTimeZoneOffsetTest.xml
+  Reference: https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2
+             https://cql.hl7.org/02-authorsguide.html#date-time-literals
+
+  If no timezone offset is specified, the timezone offset of the evaluation
+  request timestamp is used (Author's Guide, Date and Time Literals; the
+  DateTime constructor defaults the same way). Extracting the timezone offset
+  from such a value returns the evaluation request's offset, not null
+  (Author's Guide, Extracting Date and Time Components).
+
+  The tests in the "Default timezone offset" group do not depend on which
+  offset the evaluation request carries: they compare offset-less values
+  against Now(), which returns the evaluation request timestamp and so carries
+  the same offset.
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://hl7.org/fhirpath/tests"
+       xsi:schemaLocation="http://hl7.org/fhirpath/tests ../testSchema.xsd"
+       name="CQLTimeZoneOffsetTest"
+       reference="https://cql.hl7.org/09-b-cqlreference.html#datetime-operators-2"
+       version="1.5">
+
+    <capability code="timezone-offset"/>
+
+    <!-- ================================================================
+         Explicit timezone offsets
+         Every DateTime carries an offset, so results do not depend on the
+         evaluation request.
+         ================================================================ -->
+    <group name="Explicit timezone offsets" version="1.5">
+        <capability code="timezone-offset"/>
+
+        <test name="TimezoneOffset_ExplicitUTC_IsZero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00Z</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPlusZero_IsZero" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +00:00 and Z are equivalent; both return 0.0.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+00:00</expression>
+            <output>0.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPositiveWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00+05:00</expression>
+            <output>5.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitPositiveHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              +05:30 = 5 + 30/60 = 5.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00+05:30</expression>
+            <output>5.5</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitNegativeWholeHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from @2012-04-01T00:00-05:00</expression>
+            <output>-5.0</output>
+        </test>
+
+        <test name="TimezoneOffset_ExplicitNegativeHalfHour" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              -09:30 = -(9 + 30/60) = -9.5 decimal hours.
+            -->
+            <expression>timezoneoffset from @2012-04-01T00:00-09:30</expression>
+            <output>-9.5</output>
+        </test>
+
+        <test name="TimezoneOffset_NullDateTime_ReturnsNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>timezoneoffset from (null as DateTime)</expression>
+            <output>null</output>
+        </test>
+
+        <test name="TimezoneOffset_UTCandPlusZero_Equal" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>(timezoneoffset from @2012-04-01T00:00Z) = (timezoneoffset from @2012-04-01T00:00+00:00)</expression>
+            <output>true</output>
+        </test>
+
+        <test name="TimezoneOffset_PositiveGreaterThanNegative_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <expression>(timezoneoffset from @2012-04-01T00:00+05:00) > (timezoneoffset from @2012-04-01T00:00-05:00)</expression>
+            <output>true</output>
+        </test>
+
+        <test name="TimezoneOffset_ArithmeticOnExtractedOffsets" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="component-extraction"/>
+            <!--
+              5.5 + (-5.0) = 0.5 (decimal-hour arithmetic on extracted offsets).
+            -->
+            <expression>(timezoneoffset from @2012-04-01T00:00+05:30) + (timezoneoffset from @2012-04-01T00:00-05:00)</expression>
+            <output>0.5</output>
+        </test>
+
+        <test name="DateTimeEquality_ExplicitSameOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+05:00 = @2012-04-01T00:00+05:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_DifferentOffsetsSameInstant_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T06:00+06:00 and @2012-04-01T00:00+00:00 both
+              normalise to 2012-04-01T00:00Z → true.
+            -->
+            <expression>@2012-04-01T06:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeEquality_DifferentOffsetsDifferentInstant_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 = 2012-03-31T18:00Z
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z
+              Different instants → false.
+            -->
+            <expression>@2012-04-01T00:00+06:00 = @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_UTCplusSixBeforeUTC_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              @2012-04-01T00:00+06:00 = 2012-03-31T18:00Z  (earlier)
+              @2012-04-01T00:00+00:00 = 2012-04-01T00:00Z  (later)
+              → true.
+            -->
+            <expression>@2012-04-01T00:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_SameInstantNotLessThan_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T06:00+06:00 &lt; @2012-04-01T00:00+00:00</expression>
+            <output>false</output>
+        </test>
+
+        <test name="DateTimeOrdering_ChronologicalSameOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <expression>@2012-04-01T00:00+00:00 &lt; @2012-04-01T01:00+00:00</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DateTimeOrdering_NullInput_ReturnsNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <!--
+              Any comparison involving null → null (null propagation).
+            -->
+            <expression>(null as DateTime) &lt; @2012-04-01T00:00+00:00</expression>
+            <output>null</output>
+        </test>
+    </group>
+
+    <!-- ================================================================
+         Default timezone offset
+         Offset-less DateTime values take the timezone offset of the
+         evaluation request timestamp. Each test compares against Now(),
+         which carries that offset, so the expected results hold whatever
+         offset the evaluation request uses.
+         ================================================================ -->
+    <group name="Default timezone offset (evaluation request)" version="1.5">
+        <capability code="timezone-offset"/>
+        <capability code="default-timezone-offset-to-request"/>
+
+        <test name="DefaultOffset_LiteralOffsetIsNotNull" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="component-extraction"/>
+            <!--
+              The literal has no offset, so it takes the evaluation request's
+              offset; extracting it returns that offset, not null.
+            -->
+            <expression>(timezoneoffset from @2012-04-01T00:00) is not null</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DefaultOffset_LiteralOffsetEqualsNowOffset" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="component-extraction"/>
+            <capability code="function.Now"/>
+            <expression>(timezoneoffset from @2012-04-01T00:00) = (timezoneoffset from Now())</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DefaultOffset_ConstructorOffsetEqualsNowOffset" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="component-extraction"/>
+            <capability code="constructor.datetime"/>
+            <capability code="function.Now"/>
+            <!--
+              The DateTime constructor defaults the timezone offset the same way.
+            -->
+            <expression>(timezoneoffset from DateTime(2012, 4, 1, 0, 0)) = (timezoneoffset from Now())</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DefaultOffset_LiteralEqualsExplicitEvaluationOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="constructor.datetime"/>
+            <capability code="function.Now"/>
+            <!--
+              The right side states the evaluation request's offset explicitly.
+              Both sides are at millisecond precision, so they are the same
+              instant → true.
+            -->
+            <expression>@2012-04-01T00:00:00.000 = DateTime(2012, 4, 1, 0, 0, 0, 0, timezoneoffset from Now())</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DefaultOffset_LiteralBeforeLaterExplicitEvaluationOffset_True" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="constructor.datetime"/>
+            <capability code="function.Now"/>
+            <expression>@2012-04-01T00:00:00.000 &lt; DateTime(2012, 4, 1, 1, 0, 0, 0, timezoneoffset from Now())</expression>
+            <output>true</output>
+        </test>
+
+        <test name="DefaultOffset_LiteralAfterEarlierExplicitEvaluationOffset_False" version="1.5">
+            <capability code="timezone-offset"/>
+            <capability code="default-timezone-offset-to-request"/>
+            <capability code="constructor.datetime"/>
+            <capability code="function.Now"/>
+            <expression>@2012-04-01T01:00:00.000 &lt; DateTime(2012, 4, 1, 0, 0, 0, 0, timezoneoffset from Now())</expression>
+            <output>false</output>
+        </test>
+    </group>
+
+</tests>
