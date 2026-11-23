@@ -83,32 +83,32 @@
 		<test name="Integer10Pow9" version="1.0">
 			<capability code="literals"/>
 			<expression>Power(10,9)</expression>
-			<output>1000000000</output>
+			<output type="decimal">1000000000</output>
 		</test>
 		<test name="IntegerPos10Pow9" version="1.0">
 			<capability code="literals"/>
 			<expression>+Power(10,9)</expression>
-			<output>1000000000</output>
+			<output type="decimal">1000000000</output>
 		</test>
 		<test name="IntegerNeg10Pow9" version="1.0">
 			<capability code="literals"/>
 			<expression>-Power(10,9)</expression>
-			<output>-1000000000</output>
+			<output type="decimal">-1000000000</output>
 		</test>
 		<test name="Integer2Pow31ToZero1IntegerMaxValue" version="1.0">
 			<capability code="literals"/>
 			<expression>Power(2,30)-1+Power(2,30)</expression>
-			<output>2147483647</output>
+			<output type="decimal">2147483647</output>
 		</test>
 		<test name="IntegerPos2Pow31ToZero1IntegerMaxValue" version="1.0">
 			<capability code="literals"/>
 			<expression>+Power(2,30)-1+Power(2,30)</expression>
-			<output>2147483647</output>
+			<output type="decimal">2147483647</output>
 		</test>
 		<test name="IntegerNeg2Pow31ToZero1" version="1.0">
 			<capability code="literals"/>
 			<expression>-Power(2,30)+1-Power(2,30)</expression>
-			<output>-2147483647</output>
+			<output type="decimal">-2147483647</output>
 		</test>
 		<test name="Integer2Pow31" version="1.0">
 			<capability code="literals"/>
@@ -125,7 +125,7 @@
 		<test name="IntegerNeg2Pow31IntegerMinValue" version="1.0">
 			<capability code="literals"/>
 			<expression>-Power(2,30)-Power(2,30)</expression>
-			<output>-2147483648</output>
+			<output type="decimal">-2147483648</output>
 			<!-- TODO: Fix evaluation failed in Engine: java.lang.NumberFormatException: For input string: "2147483648" -->
 		</test>
 		<test name="Integer2Pow31ToInf1" version="1.0">
