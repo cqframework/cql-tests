@@ -282,6 +282,14 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999, @T20:59:59.999 } = { @T10:59:59.999, @T20:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
 		</test>
+		<test name="Equal12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } = { 2, 1 }</expression>
+			<output>false</output>
+			<!-- List equality is order dependent:
+			"for each element in the lists, in order, the elements are equal"
+			See https://cql.hl7.org/09-b-cqlreference.html#equal -->
+		</test>
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="list-operators" />
@@ -886,6 +894,56 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } ~ { @T15:59:59.999, @T20:59:59.995 }</expression>
 			<output>false</output>
 		</test>
+		<test name="Equivalent12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } ~ { 2, 1 }</expression>
+			<output>false</output>
+			<!-- The same items in a different order are not equivalent. List equivalence is order dependent:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
+		</test>
+		<test name="Equivalent122And212" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2, 2 } ~ { 2, 1, 2 }</expression>
+			<output>false</output>
+			<!-- The same items, duplicates included, in a different order are not equivalent:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
+		</test>
+		<test name="EquivalentOneNullAndNullOne" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, null } ~ { null, 1 }</expression>
+			<output>false</output>
+			<!-- null ~ null is true, but a null in a different position doesn't pair with it:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
+		</test>
+		<test name="EquivalentaBAndbA" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'B' } ~ { 'b', 'A' }</expression>
+			<output>false</output>
+			<!-- String equivalence ignores case, but each item is compared with the item in the same position:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
+		</test>
+		<test name="EquivalentaBAndAb" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 'a', 'B' } ~ { 'A', 'b' }</expression>
+			<output>true</output>
+			<!-- Items in the same positions are equivalent, ignoring case, so the lists are equivalent:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
+		</test>
 	</group>
 	<group name="NotEqual" version="1.0">
 		<capability code="list-operators" />
@@ -971,6 +1029,16 @@
 			<capability code="list-operators" />
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } !~ { @T15:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
+		</test>
+		<test name="NotEquivalent12And21" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 2 } !~ { 2, 1 }</expression>
+			<output>true</output>
+			<!-- Not equivalent negates equivalent, so lists that differ only in order give true:
+			"for each element in the lists, in order, the elements are equivalent."
+			FHIRPath agrees since FHIR-59883: "Comparison is order dependent."
+			See https://cql.hl7.org/09-b-cqlreference.html#not-equivalent-2,
+			https://build.fhir.org/ig/HL7/FHIRPath/en/index.html#-equivalent and https://jira.hl7.org/browse/FHIR-59883 -->
 		</test>
 	</group>
 	<group name="ProperContains" version="1.0">
