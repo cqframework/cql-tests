@@ -48,6 +48,11 @@
 			<expression>DateTime(2012, 1, 1) between DateTime(2012, 1, 1, 12) and DateTime(2012, 1, 2, 12)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#between -->
+		<test name="DateTimeBetweenIsNull" version="1.0">
+			<expression>@2012-01-01 between @2012-01-01T12 and @2012-01-02T12</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Equal" version="1.0">
 		<capability code="comparison-operators"/>
@@ -264,6 +269,36 @@
 			<expression>DateTime(2012, 1, 1) = DateTime(2012, 1, 1, 12)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equal -->
+		<test name="IntegerEqualIsTrue" version="1.0">
+			<expression>4 = (2 + 2)</expression>
+			<output>true</output>
+		</test>
+		<test name="LongEqualIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L = (2L + 2L)</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalEqualIsFalse" version="1.0">
+			<expression>3.5 = (3.5 - 0.1)</expression>
+			<output>false</output>
+		</test>
+		<test name="StringEqualIsFalse" version="1.0">
+			<expression>'John Doe' = 'john doe'</expression>
+			<output>false</output>
+		</test>
+		<test name="QuantityEqualIsNull" version="1.0">
+			<expression>3.5 'cm2' = 3.5 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="RatioEqualIsTrue" version="1.0">
+			<expression>1:8 = 1:8</expression>
+			<output>true</output>
+		</test>
+		<test name="DateTimeEqualIsNull" version="1.0">
+			<expression>@2012-01-01 = @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Greater" version="1.0">
 		<capability code="comparison-operators"/>
@@ -373,6 +408,32 @@
 		<test name="UncertaintyGreaterFalse" version="1.0">
 			<expression>DateTime(2013) &gt; DateTime(2014, 2, 15)</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#greater -->
+		<test name="DateTimeGreaterIsNull" version="1.0">
+			<expression>@2012-01-01 &gt; @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
+		<test name="IntegerGreaterIsTrue" version="1.0">
+			<expression>4 &gt; 3</expression>
+			<output>true</output>
+		</test>
+		<test name="LongGreaterIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L &gt; 3L</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalGreaterIsFalse" version="1.0">
+			<expression>3.5 &gt; 3.5</expression>
+			<output>false</output>
+		</test>
+		<test name="QuantityGreaterIsNull" version="1.0">
+			<expression>3.6 'cm2' &gt; 3.5 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="NullGreaterIsNull" version="1.0">
+			<expression>null &gt; 5</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Greater Or Equal" version="1.0">
@@ -492,6 +553,32 @@
 			<expression>DateTime(2013) &gt;= DateTime(2014, 2, 15)</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#greater-or-equal -->
+		<test name="DateTimeGreaterOrEqualIsNull" version="1.0">
+			<expression>@2012-01-01 &gt;= @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
+		<test name="IntegerGreaterOrEqualIsTrue" version="1.0">
+			<expression>4 &gt;= (2 + 2)</expression>
+			<output>true</output>
+		</test>
+		<test name="LongGreaterOrEqualIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L &gt;= (2L + 2L)</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalGreaterOrEqualIsFalse" version="1.0">
+			<expression>3.5 &gt;= (3.5 + 0.1)</expression>
+			<output>false</output>
+		</test>
+		<test name="QuantityGreaterOrEqualIsNull" version="1.0">
+			<expression>3.6 'cm2' &gt;= 3.5 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="NullGreaterOrEqualIsNull" version="1.0">
+			<expression>null &gt;= 5</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Less" version="1.0">
 		<capability code="comparison-operators"/>
@@ -606,6 +693,32 @@
 		<test name="UncertaintyLessFalse" version="1.0">
 			<expression>DateTime(2015) &lt; DateTime(2014, 2, 15)</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#less -->
+		<test name="DateTimeLessIsNull" version="1.0">
+			<expression>@2012-01-01 &lt; @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
+		<test name="IntegerLessIsTrue" version="1.0">
+			<expression>4 &lt; (2 + 2 + 2)</expression>
+			<output>true</output>
+		</test>
+		<test name="LongLessIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L &lt; (2L + 2L + 2L)</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalLessIsFalse" version="1.0">
+			<expression>3.5 &lt; 3.5</expression>
+			<output>false</output>
+		</test>
+		<test name="QuantityLessIsNull" version="1.0">
+			<expression>3.6 'cm2' &lt; 3.5 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="NullLessIsNull" version="1.0">
+			<expression>null &lt; 5</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Less Or Equal" version="1.0">
@@ -724,6 +837,32 @@
 		<test name="UncertaintyLessEqualFalse" version="1.0">
 			<expression>DateTime(2015) &lt;= DateTime(2014, 2, 15)</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#less-or-equal -->
+		<test name="DateTimeLessOrEqualIsNull" version="1.0">
+			<expression>@2012-01-01 &lt;= @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
+		<test name="IntegerLessOrEqualIsTrue" version="1.0">
+			<expression>4 &lt;= (2 + 2)</expression>
+			<output>true</output>
+		</test>
+		<test name="LongLessOrEqualIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L &lt;= (2L + 2L)</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalLessOrEqualIsFalse" version="1.0">
+			<expression>3.5 &lt;= (3.5 - 0.1)</expression>
+			<output>false</output>
+		</test>
+		<test name="QuantityLessOrEqualIsNull" version="1.0">
+			<expression>3.6 'cm2' &lt;= 3.6 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="NullLessOrEqualIsNull" version="1.0">
+			<expression>null &lt;= 5</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Equivalent" version="1.0">
@@ -885,6 +1024,36 @@
 			<expression>1'cm2' ~ 1'cm'</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equivalent -->
+		<test name="IntegerEquivalentIsTrue" version="1.0">
+			<expression>4 ~ (2 + 2)</expression>
+			<output>true</output>
+		</test>
+		<test name="LongEquivalentIsTrue" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L ~ (2L + 2L)</expression>
+			<output>true</output>
+		</test>
+		<test name="DecimalEquivalentIsFalse" version="1.0">
+			<expression>3.5 ~ (3.5 - 0.1)</expression>
+			<output>false</output>
+		</test>
+		<test name="StringEquivalentIsTrue" version="1.0">
+			<expression>'John Doe' ~ 'john doe'</expression>
+			<output>true</output>
+		</test>
+		<test name="RatioEquivalentIsTrue" version="1.0">
+			<expression>1:8 ~ 2:16</expression>
+			<output>true</output>
+		</test>
+		<test name="ListEquivalentIsTrue" version="1.0">
+			<expression>{ null, 1, 2, 3 } ~ { null, 1, 2, 3 }</expression>
+			<output>true</output>
+		</test>
+		<test name="DateTimeEquivalentIsFalse" version="1.0">
+			<expression>@2012-01-01 ~ @2012-01-01T12</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Not Equal" version="1.0">
 		<capability code="comparison-operators"/>
@@ -1024,6 +1193,32 @@
 			<expression>DateTime(2012, 1, 1) != DateTime(2012, 1, 1, 12)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#not-equal -->
+		<test name="IntegerNotEqualIsFalse" version="1.0">
+			<expression>4 != (2 + 2)</expression>
+			<output>false</output>
+		</test>
+		<test name="LongNotEqualIsFalse" version="1.5">
+			<capability code="system.long"/>
+			<expression>4L != (2L + 2L)</expression>
+			<output>false</output>
+		</test>
+		<test name="DecimalNotEqualIsTrue" version="1.0">
+			<expression>3.5 != (3.5 - 0.1)</expression>
+			<output>true</output>
+		</test>
+		<test name="StringNotEqualIsTrue" version="1.0">
+			<expression>'John Doe' != 'john doe'</expression>
+			<output>true</output>
+		</test>
+		<test name="QuantityNotEqualIsNull" version="1.0">
+			<expression>3.5 'cm2' != 3.5 'cm'</expression>
+			<output>null</output>
+		</test>
+		<test name="DateTimeNotEqualIsNull" version="1.0">
+			<expression>@2012-01-01 != @2012-01-01T12</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="NotEquivalent" version="1.0">
 		<capability code="comparison-operators"/>
@@ -1056,6 +1251,15 @@
 		</test>
 		<test name="NotEquivalentNullNull" version="1.0">
 			<expression invalid="semantic">null !~ null</expression>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#not-equivalent -->
+		<test name="ListNotEquivalentIsFalse" version="1.0">
+			<expression>{ null, 1, 2, 3 } !~ { null, 1, 2, 3 }</expression>
+			<output>false</output>
+		</test>
+		<test name="DateTimeNotEquivalentIsTrue" version="1.0">
+			<expression>@2012-01-01 !~ @2012-01-01T12</expression>
+			<output>true</output>
 		</test>
 	</group>
 	<group name="Unit Comparison" version="1.0">
