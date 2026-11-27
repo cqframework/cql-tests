@@ -928,10 +928,16 @@
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] included in Interval[@T05:59:59.999, @T10:59:59.999]</expression>
 			<output>false</output>
 		</test>
-		<test name="DateTimeIncludedInNull" version="1.0">
+		<test name="DateTimeIncludedInNull" version="1.0" versionTo="1.3">
 			<capability code="interval-operators"/>
 			<expression>Interval [@2017-09-01T00:00:00, @2017-09-01T00:00:00] included in Interval [@2017-09-01T00:00:00.000, @2017-12-30T23:59:59.999]</expression>
 			<output>null</output>
+		</test>
+		<test name="DateTimeIncludedInNoMillisecondsTrue" version="1.4">
+			<capability code="interval-operators"/>
+			<!-- Seconds and milliseconds are a single precision: "Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics." https://cql.hl7.org/09-b-cqlreference.html#greater-or-equal and #less-or-equal (from 1.4). So @2017-09-01T00:00:00 compares as 00:00:00.000, the start of the second interval. -->
+			<expression>Interval [@2017-09-01T00:00:00, @2017-09-01T00:00:00] included in Interval [@2017-09-01T00:00:00.000, @2017-12-30T23:59:59.999]</expression>
+			<output>true</output>
 		</test>
 		<test name="DateTimeIncludedInPrecisionTrue" version="1.0">
 			<capability code="interval-operators"/>
@@ -1775,10 +1781,16 @@
 			<expression>Interval[@T12:00:00.000, @T21:59:59.999] properly includes @T12:00:00.000</expression>
 			<output>false</output>
 		</test>
-		<test name="TimeProperContainsNull" version="1.0">
+		<test name="TimeProperContainsNull" version="1.0" versionTo="1.3">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T12:00:00.001, @T21:59:59.999] properly includes @T12:00:00</expression>
 			<output>null</output>
+		</test>
+		<test name="TimeProperContainsNoMillisecondsFalse" version="1.4">
+			<capability code="interval-operators"/>
+			<!-- Seconds and milliseconds are a single precision: "Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics." https://cql.hl7.org/09-b-cqlreference.html#greater and #less (from 1.4). So @T12:00:00 compares as 12:00:00.000, before the start of the interval. -->
+			<expression>Interval[@T12:00:00.001, @T21:59:59.999] properly includes @T12:00:00</expression>
+			<output>false</output>
 		</test>
 		<test name="TimeProperContainsPrecisionTrue" version="1.0">
 			<capability code="interval-operators"/>
@@ -1808,10 +1820,16 @@
 			<expression>@T12:00:00.000 properly included in  Interval[@T12:00:00.000, @T21:59:59.999]</expression>
 			<output>false</output>
 		</test>
-		<test name="TimeProperInNull" version="1.0">
+		<test name="TimeProperInNull" version="1.0" versionTo="1.3">
 			<capability code="interval-operators"/>
 			<expression>@T12:00:00 properly included in Interval[@T12:00:00.001, @T21:59:59.999]</expression>
 			<output>null</output>
+		</test>
+		<test name="TimeProperInNoMillisecondsFalse" version="1.4">
+			<capability code="interval-operators"/>
+			<!-- Seconds and milliseconds are a single precision: "Note that for the purposes of comparison, seconds and milliseconds are combined as a single precision using a decimal, with decimal comparison semantics." https://cql.hl7.org/09-b-cqlreference.html#greater and #less (from 1.4). So @T12:00:00 compares as 12:00:00.000, before the start of the interval. -->
+			<expression>@T12:00:00 properly included in Interval[@T12:00:00.001, @T21:59:59.999]</expression>
+			<output>false</output>
 		</test>
 		<test name="TimeProperInPrecisionTrue" version="1.0">
 			<capability code="interval-operators"/>
