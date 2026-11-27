@@ -128,6 +128,12 @@
 			<expression>'abc' is null</expression>
 			<output>false</output>
 		</test>
+		<!-- Example "IsFalse" from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#isnull -->
+		<test name="IsNullIsFalse" version="1.0">
+			<capability code="nullological-operators" />
+			<expression>true is null</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="IsFalse" version="1.0">
 		<capability code="nullological-operators" />
