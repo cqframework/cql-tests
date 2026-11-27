@@ -102,6 +102,27 @@
 			<expression>null as List&lt;String&gt; contains 'a'</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#contains-1 -->
+		<test name="ContainsIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } contains 5</expression>
+			<output>true</output>
+		</test>
+		<test name="ContainsIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } contains 4</expression>
+			<output>false</output>
+		</test>
+		<test name="ContainsIsAlsoFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>null contains 4</expression>
+			<output>false</output>
+		</test>
+		<test name="ContainsNullIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } contains null</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="EquivalentContains" version="2.0" reference="https://cql.hl7.org/09-b-cqlreference.html#equivalentcontains">
 		<!-- ~contains was introduced in CQL 2.0 with trial-use status; converse of ~in -->
@@ -198,6 +219,12 @@
 			<expression>distinct (null as List&lt;Integer&gt;)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#distinct -->
+		<test name="DistinctIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>distinct null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Equal" version="1.0">
 		<capability code="list-operators" />
@@ -282,6 +309,22 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999, @T20:59:59.999 } = { @T10:59:59.999, @T20:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equal-2 -->
+		<test name="EqualIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } = { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="EqualIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } = { 1, 3, 5 }</expression>
+			<output>false</output>
+		</test>
+		<test name="EqualIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } = null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Except" version="1.0">
 		<capability code="list-operators" />
@@ -327,6 +370,12 @@
 			<expression>{ 1, 3, 5, 7, null } except { 1, 3, null }</expression>
 			<output>{ 5, 7 }</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#except-1 -->
+		<test name="ExceptIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>null except { 1, 3, 5 }</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Exists" version="1.0">
 		<capability code="list-operators" />
@@ -365,6 +414,27 @@
 			<expression>Exists(null)</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#exists -->
+		<test name="ExistsIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>exists { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="ExistsIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>exists { }</expression>
+			<output>false</output>
+		</test>
+		<test name="ExistsIsAlsoFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>exists { null }</expression>
+			<output>false</output>
+		</test>
+		<test name="ExistsIsAlsoAlsoFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>exists null</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Flatten" version="1.0">
 		<capability code="list-operators" />
@@ -396,6 +466,12 @@
 		<test name="FlattenNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>Flatten(null as List&lt;List&lt;Integer&gt;&gt;)</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#flatten -->
+		<test name="FlattenIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>flatten null</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -434,6 +510,17 @@
 		<test name="FirstNull" version="1.0">
 			<capability code="list-operators" />
 			<expression>First(null as List&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#first -->
+		<test name="First1" version="1.0">
+			<capability code="list-operators" />
+			<expression>First({ 1, 2, 5 })</expression>
+			<output>1</output>
+		</test>
+		<test name="FirstIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>First(null)</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -483,6 +570,27 @@
 			<capability code="list-operators" />
 			<expression>@T16:59:59.999 in { @T02:29:15.156, @T15:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#in-1 -->
+		<test name="InIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>5 in { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="InIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>5 in { 1, 3 }</expression>
+			<output>false</output>
+		</test>
+		<test name="InIsAlsoFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>5 in null</expression>
+			<output>false</output>
+		</test>
+		<test name="NullInIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>null in { 1, 3, 5, null }</expression>
+			<output>true</output>
 		</test>
 	</group>
 	<group name="EquivalentIn" version="2.0" reference="https://cql.hl7.org/09-b-cqlreference.html#equivalentin">
@@ -569,6 +677,17 @@
 			<expression>{'s', 'a', 'm'} includes null as List&lt;String&gt;</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#includes-1 -->
+		<test name="IncludesIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } includes 5</expression>
+			<output>true</output>
+		</test>
+		<test name="IncludesIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3 } includes { 1, 3, 5 }</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="IncludedIn" version="1.0">
 		<capability code="list-operators" />
@@ -627,6 +746,17 @@
 			<expression>{'s', 'a', 'm'} included in null as List&lt;String&gt;</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#included-in-1 -->
+		<test name="IncludedInIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>5 included in { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="IncludedInIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 } included in { 1, 3 }</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Indexer" version="1.0">
 		<capability code="list-operators" />
@@ -665,6 +795,22 @@
 			<capability code="list-operators" />
 			<expression>{ @T02:29:15.156, @T15:59:59.999, @T20:59:59.999 }[1]</expression>
 			<output>@T15:59:59.999</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#indexer-1 -->
+		<test name="Indexer" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 }[1]</expression>
+			<output>3</output>
+		</test>
+		<test name="IndexerIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 }[-1]</expression>
+			<output>null</output>
+		</test>
+		<test name="IndexerIsAlsoNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>(null as List&lt;Integer&gt;)[0]</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="IndexOf" version="1.0">
@@ -709,6 +855,22 @@
 			<expression>IndexOf({ @T02:29:15.156, @T15:59:59.999, @T20:59:59.999 }, @T15:59:59.999)</expression>
 			<output>1</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#indexof -->
+		<test name="IndexOfFound" version="1.0">
+			<capability code="list-operators" />
+			<expression>IndexOf({ 1, 3, 5, 7 }, 5)</expression>
+			<output>2</output>
+		</test>
+		<test name="IndexOfNotFound" version="1.0">
+			<capability code="list-operators" />
+			<expression>IndexOf({ 1, 3, 5, 7 }, 4)</expression>
+			<output>-1</output>
+		</test>
+		<test name="IndexOfIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>IndexOf(null, 4)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Intersect" version="1.0">
 		<capability code="list-operators" />
@@ -749,6 +911,12 @@
 			<expression>{ null, 1, 3, 5 } intersect { null, 3, 5, 7 }</expression>
 			<output>{ null, 3, 5 }</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#intersect-1 -->
+		<test name="IntersectIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 } intersect null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Last" version="1.0">
 		<capability code="list-operators" />
@@ -781,6 +949,17 @@
 			<capability code="list-operators" />
 			<expression>Last({ @T15:59:59.999, @T20:59:59.999 })</expression>
 			<output>@T20:59:59.999</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#last -->
+		<test name="Last5" version="1.0">
+			<capability code="list-operators" />
+			<expression>Last({ 1, 3, 5 })</expression>
+			<output>5</output>
+		</test>
+		<test name="LastIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>Last(null)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Length" version="1.0">
@@ -819,6 +998,12 @@
 			<capability code="list-operators" />
 			<expression>Length(null as List&lt;Any&gt;)</expression>
 			<output>0</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#length-1 -->
+		<test name="Length3" version="1.0">
+			<capability code="list-operators" />
+			<expression>Length({ 1, 3, 5 })</expression>
+			<output>3</output>
 		</test>
 	</group>
 	<group name="Equivalent" version="1.0">
@@ -886,6 +1071,22 @@
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } ~ { @T15:59:59.999, @T20:59:59.995 }</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equivalent-2 -->
+		<test name="EquivalentIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } ~ { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivalentIsAlsoTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, null } ~ { 1, 3, 5, null }</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivalentIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } ~ { 1, 3, 5 }</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="NotEqual" version="1.0">
 		<capability code="list-operators" />
@@ -942,6 +1143,22 @@
 			<capability code="list-operators" />
 			<expression>{ @T15:59:59.999, @T20:59:59.999 } != { @T15:59:59.999, @T20:59:59.999 }</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#not-equal-2 -->
+		<test name="NotEqualIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } != { 1, 3, 5, 7 }</expression>
+			<output>false</output>
+		</test>
+		<test name="NotEqualIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } != { 1, 3, 5 }</expression>
+			<output>true</output>
+		</test>
+		<test name="NotEqualIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } != null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="NotEquivalent" version="1.0" reference="https://cql.hl7.org/09-b-cqlreference.html#not-equivalent-2">
@@ -1171,6 +1388,22 @@
 			<expression>null as List&lt;Integer&gt; properly includes {2}</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#properly-includes-1 -->
+		<test name="ProperlyIncludesIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, 7 } properly includes { 1, 3, 5 }</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyIncludesIsAlsoTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5, null } properly includes null</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyIncludesIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 } properly includes { 1, 3, 5 }</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="ProperlyIncludedIn" version="1.0">
 		<capability code="list-operators" />
@@ -1223,6 +1456,17 @@
 			<capability code="list-operators" />
 			<expression>{'s', 'u', 'n'} properly included in null as List&lt;String&gt;</expression>
 			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#properly-included-in-1 -->
+		<test name="ProperlyIncludedInIsTrue" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 } properly included in { 1, 3, 5, 7 }</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyIncludedInIsFalse" version="1.0">
+			<capability code="list-operators" />
+			<expression>{ 1, 3, 5 } properly included in { 1, 3, 5 }</expression>
+			<output>false</output>
 		</test>
 	</group>
 	<group name="SingletonFrom" version="1.0">
@@ -1301,6 +1545,12 @@
 			<!-- number less than zero => empty list; per CQL spec "Skip" (https://cql.hl7.org/09-b-cqlreference.html#skip) -->
 			<expression>Skip({ 1, 2, 3 }, -1)</expression>
 			<output>{ }</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#skip -->
+		<test name="SkipIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>Skip(null, 2)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Slice" version="2.0" reference="http://cql.hl7.org/09-b-cqlreference.html#slice">
@@ -1427,6 +1677,12 @@
 			<!-- number 0 or less => empty list; per CQL spec "Take" (https://cql.hl7.org/09-b-cqlreference.html#take) -->
 			<expression>Take({1, 2, 3, 4}, -1)</expression>
 			<output>{}</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#take -->
+		<test name="TakeIsNull" version="1.0">
+			<capability code="list-operators" />
+			<expression>Take(null, 2)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Union" version="1.0">
