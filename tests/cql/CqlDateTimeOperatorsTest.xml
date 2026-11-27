@@ -346,6 +346,27 @@
 			<output>true</output>
 		</test>
 		<!-- TODO: do uncertainty tests for Time once the Time(x,x,x,x,x) format has been implemented -->
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#after -->
+		<test name="AfterIsTrue" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-02-01 after month of @2012-01-01</expression>
+			<output>true</output>
+		</test>
+		<test name="AfterIsFalse" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 after month of @2012-01-01</expression>
+			<output>false</output>
+		</test>
+		<test name="AfterUncertainIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 after month of @2012</expression>
+			<output>null</output>
+		</test>
+		<test name="AfterIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 after month of null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Before" version="1.4">
 		<capability code="timing-phrases.before-after"/>
@@ -475,6 +496,27 @@
 			<output>false</output>
 		</test>
 		<!-- TODO: do uncertainty tests for Time once the Time(x,x,x,x,x) format has been implemented -->
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#before -->
+		<test name="BeforeIsTrue" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 before month of @2012-02-01</expression>
+			<output>true</output>
+		</test>
+		<test name="BeforeIsFalse" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 before month of @2012-01-01</expression>
+			<output>false</output>
+		</test>
+		<test name="BeforeUncertainIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012 before month of @2012-02-01</expression>
+			<output>null</output>
+		</test>
+		<test name="BeforeIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 before month of null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="DateTime" version="1.4">
 		<capability code="constructor.datetime"/>
@@ -614,6 +656,19 @@
 			<expression>month from DateTime(2012)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#datetime-component-from -->
+		<test name="MonthFrom" version="1.4">
+		  	<capability code="component-extraction"/>
+		  	<capability code="timezone-offset"/>
+			<expression>month from DateTime(2012, 1, 1, 12, 30, 0, 0, -7)</expression>
+			<output>1</output>
+		</test>
+		<test name="TimeZoneOffsetFrom" version="1.4">
+		  	<capability code="component-extraction"/>
+		  	<capability code="timezone-offset"/>
+			<expression>timezoneoffset from DateTime(2012, 1, 1, 12, 30, 0, 0, -7)</expression>
+			<output>-7.0</output>
+		</test>
 	</group>
 	<group name="Difference" version="1.4">
 		<capability code="difference-in"/>
@@ -702,6 +757,17 @@
 			<!-- one year boundary is crossed though the dates are a day apart; contrast with Duration (years between) which is 0 -->
 			<expression>difference in years between @2011-12-31 and @2012-01-01</expression>
 			<output>1</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#difference -->
+		<test name="DifferenceInMonths" version="1.4">
+		  	<capability code="difference-in"/>
+			<expression>difference in months between @2012-01-01 and @2012-02-01</expression>
+			<output>1</output>
+		</test>
+		<test name="DifferenceIsNull" version="1.4">
+		  	<capability code="difference-in"/>
+			<expression>difference in months between @2012-01-01 and null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="From Github issue #29" version="1.4">
@@ -858,6 +924,17 @@
 			<!-- zero whole years between dates a day apart; contrast with Difference (difference in years) which is 1 -->
 			<expression>years between @2011-12-31 and @2012-01-01</expression>
 			<output>0</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#duration -->
+		<test name="DurationInMonths" version="1.4">
+		  	<capability code="duration-between"/>
+			<expression>months between @2012-01-01 and @2012-02-01</expression>
+			<output>1</output>
+		</test>
+		<test name="DurationIsNull" version="1.4">
+		  	<capability code="duration-between"/>
+			<expression>months between @2012-01-01 and null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Uncertainty tests" version="1.4">
@@ -1214,6 +1291,27 @@
 			<expression>@T23:25:25.555 same millisecond as @T23:25:25.554</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#same-as-1 -->
+		<test name="SameAsTrue" version="1.4">
+		  	<capability code="timing-phrases.same-as"/>
+			<expression>@2012-01-01 same day as @2012-01-01</expression>
+			<output>true</output>
+		</test>
+		<test name="SameAsFalse" version="1.4">
+		  	<capability code="timing-phrases.same-as"/>
+			<expression>@2012-01-01 same day as @2012-01-02</expression>
+			<output>false</output>
+		</test>
+		<test name="UncertainSameAsIsNull" version="1.4">
+		  	<capability code="timing-phrases.same-as"/>
+			<expression>@2012-01-01 same day as @2012-01</expression>
+			<output>null</output>
+		</test>
+		<test name="SameAsIsNull" version="1.4">
+		  	<capability code="timing-phrases.same-as"/>
+			<expression>@2012-01-01 same day as null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="SameOrAfter" version="1.4">
 		<capability code="timing-phrases.before-after"/>
@@ -1407,6 +1505,27 @@
 			<expression>@2017-12-21T02:00:00.0 same or after @2017-12-20T11:00:00.0</expression>
 			<output>true</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#same-or-after-1 -->
+		<test name="SameOrAfterTrue" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-02 same day or after @2012-01-01</expression>
+			<output>true</output>
+		</test>
+		<test name="SameOrAfterFalse" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 same day or after @2012-01-02</expression>
+			<output>false</output>
+		</test>
+		<test name="UncertainSameOrAfterIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-02 same day or after @2012-01</expression>
+			<output>null</output>
+		</test>
+		<test name="SameOrAfterIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 same day or after null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="SameOrBefore" version="1.4">
 		<capability code="timing-phrases.before-after"/>
@@ -1589,6 +1708,27 @@
 		  	<capability code="timing-phrases.before-after"/>
 			<expression>@T23:55:25.966 same millisecond or before @T23:55:25.900</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#same-or-before-1 -->
+		<test name="SameOrBeforeTrue" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 same day or before @2012-01-02</expression>
+			<output>true</output>
+		</test>
+		<test name="SameOrBeforeFalse" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-02 same day or before @2012-01-01</expression>
+			<output>false</output>
+		</test>
+		<test name="UncertainSameOrBeforeIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-02 same day or before @2012-01</expression>
+			<output>null</output>
+		</test>
+		<test name="SameOrBeforeIsNull" version="1.4">
+		  	<capability code="timing-phrases.before-after"/>
+			<expression>@2012-01-01 same day or before null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Subtract" version="1.4">
