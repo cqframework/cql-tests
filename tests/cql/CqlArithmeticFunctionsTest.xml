@@ -55,6 +55,15 @@
 			<expression>Abs(minimum Long)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#abs -->
+		<test name="IntegerAbs" version="1.0">
+			<expression>Abs(-5)</expression>
+			<output>5</output>
+		</test>
+		<test name="DecimalAbs" version="1.0">
+			<expression>Abs(-5.5)</expression>
+			<output>5.5</output>
+		</test>
 	</group>
 	<group name="Add" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -102,6 +111,19 @@
 		<test name="AddQuantityInvalidDimension" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>5.5'cm' + 2'cm2'</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#add -->
+		<test name="IntegerAddIsNull" version="1.0">
+			<expression>2 + null</expression>
+			<output>null</output>
+		</test>
+		<test name="DecimalAdd" version="1.0">
+			<expression>2.5 + 5</expression>
+			<output>7.5</output>
+		</test>
+		<test name="QuantityAddIsNull" version="1.0">
+			<expression>-5.5 'cm' + 2 'cm2'</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -252,6 +274,24 @@
 			<expression>5.0 'g' / 0</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#divide -->
+		<test name="IntegerDivide" version="1.0">
+			<expression>4.0 / 2</expression>
+			<output>2.0</output>
+		</test>
+		<test name="LongDivide" version="1.5">
+			<capability code="system.long"/>
+			<expression>4.0 / 2L</expression>
+			<output>2.0</output>
+		</test>
+		<test name="DecimalDivide" version="1.0">
+			<expression>9.9 / 3.0</expression>
+			<output>3.3</output>
+		</test>
+		<test name="DecimalDivideIsNull" version="1.0">
+			<expression>2.2 / null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Floor" version="1.0">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
@@ -331,6 +371,11 @@
 			<expression>Floor(-2147483649.2)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#floor -->
+		<test name="DecimalFloor" version="1.0">
+			<expression>Floor(2.1)</expression>
+			<output>2</output>
+		</test>
 	</group>
 	<group name="Exp" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -370,6 +415,16 @@
 		<test name="Exp1000D" version="1.0">
 			<expression>Exp(1000.0)</expression>
 			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#exp -->
+		<test name="LongExp" version="1.5">
+			<capability code="system.long"/>
+			<expression>Exp(0L)</expression>
+			<output>1.0</output>
+		</test>
+		<test name="DecimalExp" version="1.0">
+			<expression>Exp(-0.0)</expression>
+			<output>1.0</output>
 		</test>
 	</group>
 	<group name="HighBoundary" version="1.0">
@@ -439,6 +494,20 @@
 			<expression>Log(0.125, 2)</expression>
 			<output>-3.0</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#log -->
+		<test name="LongLog" version="1.5">
+			<capability code="system.long"/>
+			<expression>Log(16L, 2L)</expression>
+			<output>4.0</output>
+		</test>
+		<test name="DecimalLog" version="1.4">
+			<expression>Log(100.0, 10.0)</expression>
+			<output>2.0</output>
+		</test>
+		<test name="QuantityLogIsNull" version="1.4">
+			<expression>Log(null, 10.0)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="LowBoundary" version="1.4">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
@@ -505,6 +574,15 @@
 			<capability code="precision-operators-for-decimal-and-date-time-types"/>
 			<expression>Round(Ln(1000.0), 8)</expression>
 			<output>6.90775528</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#ln -->
+		<test name="DecimalLn" version="1.4">
+			<expression>Ln(1.0)</expression>
+			<output>0.0</output>
+		</test>
+		<test name="QuantityLnIsNull" version="1.4">
+			<expression>Ln(null as Decimal)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="MinValue" version="1.0">
@@ -637,6 +715,19 @@
 			<expression>10.0 'g' mod 0.0 'g'</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#modulo -->
+		<test name="IntegerModulo" version="1.5">
+			<expression>3 mod 2</expression>
+			<output>1</output>
+		</test>
+		<test name="DecimalModulo" version="1.5">
+			<expression>2.5 mod 2</expression>
+			<output>0.5</output>
+		</test>
+		<test name="ModuloIsNull" version="1.5">
+			<expression>2.5 mod null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Multiply" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -746,6 +837,11 @@
 			<expression>-(minimum Long)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#negate -->
+		<test name="DecimalNegate" version="1.0">
+			<expression>-(-3.3)</expression>
+			<output>3.3</output>
+		</test>
 	</group>
 	<group name="Precision" version="1.4">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
@@ -838,6 +934,15 @@
 			<expression>predecessor of @T00:00:00.000</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#predecessor -->
+		<test name="IntegerPredecessor" version="1.0">
+			<expression>predecessor of 100</expression>
+			<output>99</output>
+		</test>
+		<test name="PredecessorIsNull" version="1.0">
+			<expression>predecessor of (null as Quantity)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Power" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -903,6 +1008,19 @@
 			<expression>Power(2, -2) ~ 0.25</expression>
 			<output>true</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#power -->
+		<test name="IntegerPower" version="1.0">
+			<expression>2^3</expression>
+			<output>8</output>
+		</test>
+		<test name="IntegerPowerFun" version="1.0">
+			<expression>Power(2, 3)</expression>
+			<output>8</output>
+		</test>
+		<test name="DecimalPower" version="1.0">
+			<expression>2.5^2.0</expression>
+			<output>6.25</output>
+		</test>
 	</group>
 	<group name="Round" version="1.0">
 		<capability code="precision-operators-for-decimal-and-date-time-types"/>
@@ -960,6 +1078,15 @@
 			<expression>Round(3.14159, null)</expression>
 			<output>3.0</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#round -->
+		<test name="DecimalRound" version="1.0">
+			<expression>Round(3.14159, 3)</expression>
+			<output>3.142</output>
+		</test>
+		<test name="RoundIsNull" version="1.0">
+			<expression>Round(null)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Subtract" version="1.0">
 		<capability code="arithmetic-operators"/>
@@ -997,6 +1124,15 @@
 		<test name="SubtractQuantityInvalidDimension" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>3.14 'cm' - 3.12 'cm2'</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#subtract -->
+		<test name="DecimalSubtract" version="1.0">
+			<expression>3.14 - 3.12</expression>
+			<output>0.02</output>
+		</test>
+		<test name="SubtractIsNull" version="1.0">
+			<expression>3 - null</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -1051,6 +1187,15 @@
 		</test>
 		<test name="SuccessorOverflowT" version="1.0">
 			<expression>successor of @T23:59:59.999</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#successor -->
+		<test name="IntegerSuccessor" version="1.0">
+			<expression>successor of 100</expression>
+			<output>101</output>
+		</test>
+		<test name="SuccessorIsNull" version="1.0">
+			<expression>successor of (null as Quantity)</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -1128,6 +1273,19 @@
 		<test name="TruncateDecimalLessThanMinInteger" version="1.0">
 			<!-- The result is outside the Integer range, so it is null: https://cql.hl7.org/09-b-cqlreference.html#arithmetic-operators-4 -->
 			<expression>Truncate(-2147483649.2)</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#truncate -->
+		<test name="IntegerTruncate" version="1.0">
+			<expression>Truncate(101)</expression>
+			<output>101</output>
+		</test>
+		<test name="DecimalTruncate" version="1.0">
+			<expression>Truncate(1.00000001)</expression>
+			<output>1</output>
+		</test>
+		<test name="TruncateIsNull" version="1.0">
+			<expression>Truncate(null)</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -1225,6 +1383,19 @@
 		<test name="TruncatedDivide10By0DQuantity" version="1.0">
 			<capability code="ucum-unit-conversion-support"/>
 			<expression>10.0 'g' div 0.0 'g'</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#truncated-divide -->
+		<test name="IntegerTruncatedDivide" version="1.0">
+			<expression>4 div 2</expression>
+			<output>2</output>
+		</test>
+		<test name="DecimalTruncatedDivide" version="1.0">
+			<expression>4.14 div 2.06</expression>
+			<output>2</output>
+		</test>
+		<test name="TruncatedDivideIsNull" version="1.0">
+			<expression>3 div null</expression>
 			<output>null</output>
 		</test>
 	</group>
