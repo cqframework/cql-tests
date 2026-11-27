@@ -242,6 +242,12 @@
 			<expression>ToDecimal('foo')</expression>
 			<output>null</output>
 		</test>
+		<!-- Example "IsNull" from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#todecimal -->
+		<test name="ToDecimalIsNull" version="1.4">
+			<capability code="type-operators" />
+			<expression>ToDecimal('+-0.1')</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="ToRatio" version="1.5">
 		<capability code="type-operators" />
@@ -282,6 +288,12 @@
 			<!-- For the Boolean overload, true converts to 1 and false to 0: https://cql.hl7.org/09-b-cqlreference.html#tointeger -->
 			<expression>ToInteger(true)</expression>
 			<output>1</output>
+		</test>
+		<!-- Example "IsNull" from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#tointeger -->
+		<test name="ToIntegerIsNull" version="1.4">
+			<capability code="type-operators" />
+			<expression>ToInteger('one')</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="ToLong" version="1.5">
@@ -329,6 +341,12 @@
 			<capability code="type-operators" />
 			<expression>ToString(true)</expression>
 			<output>'true'</output>
+		</test>
+		<!-- Example "IsNull" from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#tostring -->
+		<test name="ToStringIsNull" version="1.4">
+			<capability code="type-operators" />
+			<expression>ToString(null as Integer)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="ToTime" version="1.4">
