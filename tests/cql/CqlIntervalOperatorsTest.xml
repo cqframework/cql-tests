@@ -119,6 +119,22 @@
 			<expression>Interval[@T15:59:59.999, @T20:59:59.999] after @T17:59:59.999</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#after-1 -->
+		<test name="AfterIsTrue" version="1.0">
+      		<capability code="interval-operators"/>
+			<expression>5 after Interval[1, 4]</expression>
+			<output>true</output>
+		</test>
+		<test name="AfterIsFalse" version="1.0">
+      		<capability code="interval-operators"/>
+			<expression>Interval[1, 4] after 5</expression>
+			<output>false</output>
+		</test>
+		<test name="AfterIsNull" version="1.0">
+      		<capability code="interval-operators"/>
+			<expression>Interval[1, 4] after null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Before" version="1.0">
 		<capability code="interval-operators"/>
@@ -237,6 +253,22 @@
 			<expression>Interval[@T15:59:59.999, @T20:59:59.999] before @T10:59:59.999</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#before-1 -->
+		<test name="BeforeIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>0 before Interval[1, 4]</expression>
+			<output>true</output>
+		</test>
+		<test name="BeforeIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 4] before 0</expression>
+			<output>false</output>
+		</test>
+		<test name="BeforeIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 4] before null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Collapse" version="1.0">
 		<capability code="interval-operators"/>
@@ -295,6 +327,12 @@
 			<capability code="interval-operators"/>
 			<expression>collapse { Interval[@T01:59:59.999, @T10:59:59.999], Interval[@T11:00:00.000, @T15:59:59.999] }</expression>
 			<output>{Interval [ @T01:59:59.999, @T15:59:59.999 ]}</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#collapse -->
+		<test name="CollapseIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>collapse null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Expand" version="1.3">
@@ -502,6 +540,22 @@
 			<expression>Interval[@T01:59:59.999, @T10:59:59.999] contains @T15:59:59.999</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#contains -->
+		<test name="ContainsIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] contains 4</expression>
+			<output>true</output>
+		</test>
+		<test name="ContainsIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] contains 6</expression>
+			<output>false</output>
+		</test>
+		<test name="ContainsIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] contains null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="End" version="1.0">
 		<capability code="interval-operators"/>
@@ -598,6 +652,22 @@
 			<expression>Interval[@T05:59:59.999, @T10:59:59.999] ends Interval[@T01:59:59.999, @T11:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#ends -->
+		<test name="EndsIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 5] ends Interval[-1, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="EndsIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 7] ends Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
+		<test name="EndsIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] ends null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Equal" version="1.0">
 		<capability code="interval-operators"/>
@@ -655,6 +725,22 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T05:59:59.999, @T10:59:59.999] = Interval[@T05:59:59.999, @T10:58:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equal-1 -->
+		<test name="EqualIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 5] = Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="EqualIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 7] = Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
+		<test name="EqualIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] = null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Except" version="1.0">
@@ -718,6 +804,12 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T08:59:59.999, @T11:59:59.999] except Interval[@T05:59:59.999, @T10:59:59.999]</expression>
 			<output>Interval [ @T11:00:00.000, @T11:59:59.999 ]</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#except -->
+		<test name="ExceptIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>null except Interval[-1, 7]</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="In" version="1.0">
@@ -812,6 +904,27 @@
 			</expression>
 			<output>true</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#in -->
+		<test name="InIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>3 in Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="PointDuringIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>@2014-02-03 during Interval[@2014-02-01, @2014-02-08]</expression>
+			<output>true</output>
+		</test>
+		<test name="InIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>-1 in Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
+		<test name="InIsAlsoFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>3 in (null as Interval&lt;Integer&gt;)</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Includes" version="1.0">
 		<capability code="interval-operators"/>
@@ -869,6 +982,22 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T05:59:59.999, @T10:59:59.999] includes Interval[@T04:59:59.999, @T09:59:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#includes -->
+		<test name="IncludesIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] includes Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="IncludesIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] includes 6</expression>
+			<output>false</output>
+		</test>
+		<test name="IncludesIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] includes null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Included In" version="1.0">
@@ -943,6 +1072,22 @@
 			<expression>Interval [@2017-09-01T00:00:00, @2017-09-01T00:00:00] included in millisecond of Interval [@2017-09-01T00:00:00.000, @2017-12-30T23:59:59.999]</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#included-in -->
+		<test name="IncludedInIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] included in Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="IntervalDuringIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[@2014-02-02, @2014-02-05] during Interval[@2014-02-01, @2014-02-10]</expression>
+			<output>true</output>
+		</test>
+		<test name="IncludedInIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>-1 included in Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Intersect" version="1.0">
 		<capability code="interval-operators"/>
@@ -1011,6 +1156,12 @@
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] intersect Interval[@T04:59:59.999, @T06:59:59.999]</expression>
 			<output>Interval [ @T04:59:59.999, @T06:59:59.999 ]</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#intersect -->
+		<test name="IntersectIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[3, 5] intersect (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Equivalent" version="1.0">
 		<capability code="interval-operators"/>
@@ -1062,6 +1213,22 @@
 		<test name="TimeEquivalentFalse" version="1.0">
 			<capability code="interval-operators"/>
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] ~ Interval[@T04:58:59.999, @T09:59:59.999]</expression>
+			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#equivalent-1 -->
+		<test name="EquivalentIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 5] ~ Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivalentIsAlsoTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, null] ~ Interval[1, null]</expression>
+			<output>true</output>
+		</test>
+		<test name="EquivalentIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 7] ~ Interval[0, 7]</expression>
 			<output>false</output>
 		</test>
 	</group>
@@ -1122,6 +1289,17 @@
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] meets Interval[@T10:12:00.000, @T19:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#meets -->
+		<test name="MeetsIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[6, 10] meets Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="MeetsIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[6, 10] meets (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="MeetsBefore" version="1.0">
 		<capability code="interval-operators"/>
@@ -1179,6 +1357,12 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T04:59:59.999, @T09:59:59.999] meets before Interval[@T10:12:00.000, @T19:59:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#meets -->
+		<test name="MeetsBeforeIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-5, -1] meets before Interval[0, 5]</expression>
+			<output>true</output>
 		</test>
 	</group>
 	<group name="MeetsAfter" version="1.0">
@@ -1239,6 +1423,12 @@
 			<expression>Interval[@T10:12:00.000, @T19:59:59.999] meets after Interval[@T04:59:59.999, @T09:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#meets -->
+		<test name="MeetsAfterIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[6, 10] meets after Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="NotEqual" version="1.0">
 		<capability code="interval-operators"/>
@@ -1291,6 +1481,22 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T10:00:00.000, @T19:59:59.999] != Interval[@T10:00:00.000, @T19:59:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#not-equal-1 -->
+		<test name="NotEqualIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 5] != Interval[0, 5]</expression>
+			<output>false</output>
+		</test>
+		<test name="NotEqualIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 7] != Interval[0, 7]</expression>
+			<output>true</output>
+		</test>
+		<test name="NotEqualIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] != null</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="OnOrAfter" version="1.0">
@@ -1521,6 +1727,17 @@
 			<expression>Interval[@T10:00:00.000, @T19:59:59.999] overlaps Interval[@T20:00:00.000, @T21:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#overlaps -->
+		<test name="OverlapsIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 4] overlaps Interval[1, 4]</expression>
+			<output>true</output>
+		</test>
+		<test name="OverlapsIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[6, 10] overlaps (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="OverlapsBefore" version="1.0">
 		<capability code="interval-operators"/>
@@ -1624,6 +1841,12 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T10:00:00.000, @T19:59:59.999] overlaps before Interval[@T20:00:00.000, @T21:59:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#overlaps -->
+		<test name="OverlapsBeforeIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 4] overlaps before Interval[1, 4]</expression>
+			<output>true</output>
 		</test>
 	</group>
 	<group name="OverlapsAfter" version="1.0">
@@ -1729,6 +1952,12 @@
 			<expression>Interval[@T20:00:00.000, @T21:59:59.999] overlaps after Interval[@T10:00:00.000, @T19:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#overlaps -->
+		<test name="OverlapsAfterIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 4] overlaps after Interval[1, 4]</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="PointFrom" version="1.0">
 		<capability code="interval-operators"/>
@@ -1761,6 +1990,21 @@
 			<capability code="interval-operators"/>
 			<expression>point from Interval[1.0 'cm', 1.0 'cm']</expression>
 			<output>1.0'cm'</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#point-from -->
+		<test name="PointFrom" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>point from Interval[4, 4]</expression>
+			<output>4</output>
+		</test>
+		<test name="PointFromExclusive" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>point from Interval[4, 5)</expression>
+			<output>4</output>
+		</test>
+		<test name="PointFromError" version="1.0">
+			<capability code="interval-operators"/>
+			<expression invalid="true">point from Interval[1, 4]</expression>
 		</test>
 	</group>
 	<group name="ProperContains" version="1.0">
@@ -1886,6 +2130,22 @@
 			<expression>Interval[@T12:00:00.000, @T21:59:59.999] properly includes Interval[@T12:01:01.000, @T22:00:00.000]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#properly-includes -->
+		<test name="ProperlyIncludesIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] properly includes Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyIncludesIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] properly includes Interval[-1, 5]</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperlyIncludesIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[-1, 5] properly includes null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="ProperlyIncludedIn" version="1.0">
 		<capability code="interval-operators"/>
@@ -1943,6 +2203,27 @@
 			<capability code="interval-operators"/>
 			<expression>Interval[@T12:01:01.000, @T22:00:00.000] properly included in Interval[@T12:00:00.000, @T21:59:59.999]</expression>
 			<output>false</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#properly-included-in -->
+		<test name="ProperlyIncludedInIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] properly included in Interval[0, 5]</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyDuringIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[@2014-02-02, @2014-02-05] properly during Interval[@2014-02-01, @2014-02-05]</expression>
+			<output>true</output>
+		</test>
+		<test name="ProperlyIncludedInIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 7] properly included in Interval[0, 7]</expression>
+			<output>false</output>
+		</test>
+		<test name="ProperlyIncludedInIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] properly included in (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Start" version="1.0">
@@ -2040,6 +2321,22 @@
 			<expression>Interval[@T05:59:59.999, @T15:59:59.999] starts Interval[@T04:59:59.999, @T17:59:59.999]</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#starts -->
+		<test name="StartsIsTrue" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 5] starts Interval[0, 7]</expression>
+			<output>true</output>
+		</test>
+		<test name="StartsIsFalse" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[0, 7] starts Interval[0, 6]</expression>
+			<output>false</output>
+		</test>
+		<test name="StartsIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[1, 5] starts null</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Union" version="1.0">
 		<capability code="interval-operators"/>
@@ -2103,6 +2400,12 @@
 			<expression>Interval[@T05:59:59.999, @T15:59:59.999] union Interval[@T16:59:59.999, @T20:59:59.999]</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#union -->
+		<test name="UnionIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>Interval[3, 5] union (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Width" version="1.0">
 		<capability code="interval-operators"/>
@@ -2135,6 +2438,17 @@
 			<capability code="interval-operators"/>
 			<!-- invalid: width is not defined for Date/DateTime/Time intervals (use duration or difference instead); per CQL spec "width" (https://cql.hl7.org/09-b-cqlreference.html#width): "because CQL defines duration and difference operations for date and time valued intervals, width is not defined for intervals of these types" -->
 			<expression invalid="true">width of Interval[@T05:59:59.999, @T15:59:59.999]</expression>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#width -->
+		<test name="Width" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>width of Interval[3, 7]</expression>
+			<output>4</output>
+		</test>
+		<test name="WidthIsNull" version="1.0">
+			<capability code="interval-operators"/>
+			<expression>width of (null as Interval&lt;Integer&gt;)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Interval" version="1.0">
