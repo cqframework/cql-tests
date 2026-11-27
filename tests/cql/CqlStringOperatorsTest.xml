@@ -36,6 +36,12 @@
 			<expression>Combine({'a', 'b', 'c'}, null)</expression>
 			<output>'abc'</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#combine -->
+		<test name="CombineWithSeparator" version="1.0">
+			<capability code="string-operators" />
+			<expression>Combine({ 'A', 'B', 'C' }, ' ')</expression>
+			<output>'A B C'</output>
+		</test>
 	</group>
 	<group name="Concatenate" version="1.0">
 		<capability code="string-operators" />
@@ -82,6 +88,22 @@
 			<expression>'John' &amp; null &amp; ' Doe'</expression>
 			<output>'John Doe'</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#concatenate -->
+		<test name="ConcatenatePlus" version="1.0">
+			<capability code="string-operators" />
+			<expression>'John' + ' Doe'</expression>
+			<output>'John Doe'</output>
+		</test>
+		<test name="ConcatenateFunction" version="1.0">
+			<capability code="string-operators" />
+			<expression>Concatenate('John', ' Doe')</expression>
+			<output>'John Doe'</output>
+		</test>
+		<test name="ConcatenateIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>'John' + null + 'Doe'</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="EndsWith" version="1.0">
 		<capability code="string-operators" />
@@ -105,6 +127,22 @@
 			<!-- if the suffix is the empty string, the result is true; per CQL spec "EndsWith" (https://cql.hl7.org/09-b-cqlreference.html#endswith) -->
 			<expression>EndsWith('ABC', '')</expression>
 			<output>true</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#endswith -->
+		<test name="EndsWithIsTrue" version="1.0">
+			<capability code="string-operators" />
+			<expression>EndsWith('ABC', 'C')</expression>
+			<output>true</output>
+		</test>
+		<test name="EndsWithIsFalse" version="1.0">
+			<capability code="string-operators" />
+			<expression>EndsWith('ABC', 'Z')</expression>
+			<output>false</output>
+		</test>
+		<test name="EndsWithIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>EndsWith('ABC', null)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Indexer" version="1.0">
@@ -146,6 +184,22 @@
 			<expression>Indexer('ab', -1)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#indexer -->
+		<test name="Indexer2" version="1.0">
+			<capability code="string-operators" />
+			<expression>'ABCDE'[2]</expression>
+			<output>'C'</output>
+		</test>
+		<test name="IndexerIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>'ABCDE'[14]</expression>
+			<output>null</output>
+		</test>
+		<test name="IndexerIsAlsoNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>'ABCDE'[null]</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="LastPositionOf" version="1.0">
 		<capability code="string-operators" />
@@ -179,6 +233,22 @@
 			<expression>LastPositionOf('', 'Say hi to Ohio!')</expression>
 			<output>15</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#lastpositionof -->
+		<test name="LastPositionOfFound" version="1.0">
+			<capability code="string-operators" />
+			<expression>LastPositionOf('B', 'ABCDEDCBA')</expression>
+			<output>7</output>
+		</test>
+		<test name="LastPositionOfNotFound" version="1.0">
+			<capability code="string-operators" />
+			<expression>LastPositionOf('XYZ', 'ABCDE')</expression>
+			<output>-1</output>
+		</test>
+		<test name="LastPositionOfIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>LastPositionOf(null, 'ABCDE')</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Length" version="1.0">
 		<capability code="string-operators" />
@@ -202,6 +272,12 @@
 			<capability code="string-operators" />
 			<expression>Length('ab')</expression>
 			<output>2</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#length -->
+		<test name="Length14" version="1.0">
+			<capability code="string-operators" />
+			<expression>Length('ABCDE')</expression>
+			<output>5</output>
 		</test>
 	</group>
 	<group name="Lower" version="1.0">
@@ -230,6 +306,12 @@
 			<capability code="string-operators" />
 			<expression>Lower('Ab')</expression>
 			<output>'ab'</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#lower -->
+		<test name="LowerCQL" version="1.0">
+			<capability code="string-operators" />
+			<expression>Lower('ABCDE')</expression>
+			<output>'abcde'</output>
 		</test>
 	</group>
 	<group name="Matches" version="1.0">
@@ -273,6 +355,17 @@
 			<capability code="string-operators" />
 			<expression>Matches(' \n\t', '\\s+')</expression>
 			<output>true</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#matches -->
+		<test name="MatchesTrue" version="1.0">
+			<capability code="string-operators" />
+			<expression>Matches('1,2three', '\\d,\\d\\w+')</expression>
+			<output>true</output>
+		</test>
+		<test name="MatchesIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>Matches('12three', null)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="MatchesFull" version="2.0" reference="https://cql.hl7.org/09-b-cqlreference.html#matchesfull">
@@ -334,6 +427,22 @@
 			<expression>PositionOf('', 'Say hi to Ohio!')</expression>
 			<output>0</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#positionof -->
+		<test name="PositionOfFound" version="1.0">
+			<capability code="string-operators" />
+			<expression>PositionOf('B', 'ABCDEDCBA')</expression>
+			<output>1</output>
+		</test>
+		<test name="PositionOfNotFound" version="1.0">
+			<capability code="string-operators" />
+			<expression>PositionOf('Z', 'ABCDE')</expression>
+			<output>-1</output>
+		</test>
+		<test name="PositionOfIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>PositionOf(null, 'ABCDE')</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="ReplaceMatches" version="1.0">
 		<capability code="string-operators" />
@@ -356,6 +465,17 @@
 			<capability code="string-operators" />
 			<expression>ReplaceMatches('All that glitters is not gold', '\\s', '\\$')</expression>
 			<output>'All$that$glitters$is$not$gold'</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#replacematches -->
+		<test name="ReplaceMatchesFound" version="1.0">
+			<capability code="string-operators" />
+			<expression>ReplaceMatches('ABCDE', 'C', 'XYZ')</expression>
+			<output>'ABXYZDE'</output>
+		</test>
+		<test name="ReplaceMatchesIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>ReplaceMatches('ABCDE', 'C', null)</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="Split" version="1.0">
@@ -384,6 +504,12 @@
 			<capability code="string-operators" />
 			<expression>Split('a,b', ',')</expression>
 			<output>{'a','b'}</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#split -->
+		<test name="SplitIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>Split(null, ' ')</expression>
+			<output>null</output>
 		</test>
 	</group>
 	<group name="SplitOnMatches" version="1.0" reference="https://cql.hl7.org/09-b-cqlreference.html#splitonmatches">
@@ -446,6 +572,22 @@
 			<expression>StartsWith('ABCDE', '')</expression>
 			<output>true</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#startswith -->
+		<test name="StartsWithIsTrue" version="1.0">
+			<capability code="string-operators" />
+			<expression>StartsWith('ABCDE', 'ABC')</expression>
+			<output>true</output>
+		</test>
+		<test name="StartsWithIsFalse" version="1.0">
+			<capability code="string-operators" />
+			<expression>StartsWith('ABCDE', 'XYZ')</expression>
+			<output>false</output>
+		</test>
+		<test name="StartsWithIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>StartsWith('ABCDE', null)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Substring" version="1.0">
 		<capability code="string-operators" />
@@ -504,6 +646,27 @@
 			<expression>Substring('ab', 0, 3)</expression>
 			<output>'ab'</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#substring -->
+		<test name="SubstringWithoutLength" version="1.0">
+			<capability code="string-operators" />
+			<expression>Substring('ABCDE', 2)</expression>
+			<output>'CDE'</output>
+		</test>
+		<test name="SubstringWithLength" version="1.0">
+			<capability code="string-operators" />
+			<expression>Substring('ABCDE', 2, 1)</expression>
+			<output>'C'</output>
+		</test>
+		<test name="SubstringIsNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>Substring('ABCDE', null)</expression>
+			<output>null</output>
+		</test>
+		<test name="SubstringIsAlsoNull" version="1.0">
+			<capability code="string-operators" />
+			<expression>Substring('ABCDE', 14)</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Upper" version="1.0">
 		<capability code="string-operators" />
@@ -531,6 +694,12 @@
 			<capability code="string-operators" />
 			<expression>Upper('aB')</expression>
 			<output>'AB'</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#upper -->
+		<test name="UpperCQL" version="1.0">
+			<capability code="string-operators" />
+			<expression>Upper('abcde')</expression>
+			<output>'ABCDE'</output>
 		</test>
 	</group>
 	<group name="toString tests" version="1.0">

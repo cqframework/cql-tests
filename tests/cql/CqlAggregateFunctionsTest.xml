@@ -49,6 +49,17 @@
 			<expression>AllTrue({null, null, null})</expression>
 			<output>true</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#alltrue -->
+		<test name="AllTrueIsTrue" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>AllTrue({ true, null, true })</expression>
+			<output>true</output>
+		</test>
+		<test name="AllTrueIsFalse" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>AllTrue({ true, false, null })</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="AnyTrue" version="1.5">
 		<capability code="aggregate-functions"/>
@@ -107,6 +118,17 @@
 			<expression>AnyTrue({null, null, null})</expression>
 			<output>false</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#anytrue -->
+		<test name="AnyTrueIsTrue" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>AnyTrue({ true, false, null })</expression>
+			<output>true</output>
+		</test>
+		<test name="AnyTrueIsFalse" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>AnyTrue({ false, false, null })</expression>
+			<output>false</output>
+		</test>
 	</group>
 	<group name="Avg" version="1.5">
 		<capability code="aggregate-functions"/>
@@ -129,6 +151,12 @@
 			<!-- null source -> null -->
 			<expression>Avg(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#avg -->
+		<test name="DecimalAvg" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Avg({ 5.5, 4.7, 4.8 })</expression>
+			<output>5.0</output>
 		</test>
 	</group>
 	<group name="Product" version="1.5">
@@ -155,6 +183,13 @@
 		<test name="ProductIsNull" version="1.5">
 			<!-- null source -> null -->
 			<expression>Product(null as List&lt;Decimal&gt;)</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#product -->
+		<test name="ProductAllNullsIsNull" version="1.5">
+			<capability code="aggregate-functions"/>
+			<capability code="system.long"/>
+			<expression>Product({ null as Quantity, null as Quantity, null as Quantity })</expression>
 			<output>null</output>
 		</test>
 	</group>
@@ -190,6 +225,17 @@
 		<test name="CountNullSource" version="1.5">
 			<!-- null source -> 0 -->
 			<expression>Count(null as List&lt;Integer&gt;)</expression>
+			<output>0</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#count -->
+		<test name="Count5" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Count({ 1, 2, 3, 4, 5 })</expression>
+			<output>5</output>
+		</test>
+		<test name="CountNull0" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Count(null as List&lt;Decimal&gt;)</expression>
 			<output>0</output>
 		</test>
 	</group>
@@ -242,6 +288,12 @@
 			<expression>Max(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#max -->
+		<test name="IntegerMax" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Max({ 2, 4, 8, 6 })</expression>
+			<output>8</output>
+		</test>
 	</group>
 	<group name="Median" version="1.5">
 		<capability code="aggregate-functions"/>
@@ -262,6 +314,12 @@
 		<test name="MedianIsNull" version="1.5">
 			<expression>Median(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#median -->
+		<test name="DecimalMedian" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Median({ 2.0, 4.0, 8.0, 6.0 })</expression>
+			<output>5.0</output>
 		</test>
 	</group>
 	<group name="Min" version="1.5">
@@ -306,6 +364,12 @@
 			<expression>Min(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#min -->
+		<test name="IntegerMin" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Min({ 2, 4, 8, 6 })</expression>
+			<output>2</output>
+		</test>
 	</group>
 	<group name="Mode" version="1.5">
 		<capability code="aggregate-functions"/>
@@ -339,6 +403,12 @@
 		<test name="ModeIsNull" version="1.5">
 			<expression>Mode(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#mode -->
+		<test name="DecimalMode" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Mode({ 2.0, 2.0, 8.0, 6.0, 8.0, 8.0 })</expression>
+			<output>8.0</output>
 		</test>
 	</group>
 	<group name="PopulationStdDev" version="1.5">
@@ -435,6 +505,17 @@
 			<expression>Sum(null as List&lt;Decimal&gt;)</expression>
 			<output>null</output>
 		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#sum -->
+		<test name="DecimalSum" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Sum({ 1.0, 2.0, 3.0, 4.0, 5.0 })</expression>
+			<output>15.0</output>
+		</test>
+		<test name="SumAllNullsIsNull" version="1.5">
+			<capability code="aggregate-functions"/>
+			<expression>Sum({ null as Quantity, null as Quantity, null as Quantity })</expression>
+			<output>null</output>
+		</test>
 	</group>
 	<group name="Variance" version="1.5">
 		<capability code="aggregate-functions"/>
@@ -467,6 +548,11 @@
 		<test name="GeometricMeanIsNull" version="1.5">
 			<!-- null source -> null -->
 			<expression>GeometricMean(null as List&lt;Decimal&gt;)</expression>
+			<output>null</output>
+		</test>
+		<!-- Examples from the CQL Reference: https://cql.hl7.org/09-b-cqlreference.html#geometricmean -->
+		<test name="GeometricMeanAllNullsIsNull" version="1.5">
+			<expression>GeometricMean({ null, null, null })</expression>
 			<output>null</output>
 		</test>
 	</group>
